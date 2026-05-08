@@ -78,4 +78,19 @@ public class Funcoes_basicas {
         
         return novoGerente;
     }
+
+    public static Gerente promover_Funcionario (int id, Usuario usuario) {
+        if(usuario instanceof Funcionario){
+            Funcionario funcionario = (Funcionario) usuario;
+            Gerente gerente_promovido = new Gerente(funcionario.get_id(), funcionario.get_nome(), funcionario.get_email(), funcionario.get_senha(), funcionario.get_departamento());
+            System.out.println("Usuário promovido a gerente com sucesso! ID: " + gerente_promovido.id);
+            return gerente_promovido;
+
+        } else if(usuario instanceof Gerente){
+            System.out.println("O usuário já é um gerente.");
+        } else {
+            System.out.println("O usuário não é um funcionário e não pode ser promovido a gerente.");
+        }
+        return null;
+        }
 }

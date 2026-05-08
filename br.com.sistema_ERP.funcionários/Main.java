@@ -3,6 +3,9 @@ import java.util.HashMap;
 
 public class Main {
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         
         HashMap<Integer, Usuario> banco_usuarios = new HashMap<>();
@@ -10,12 +13,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         
          while(seta !=0){
-       
+            
         System.out.println("Sistema ERP");
         System.out.println("===========================");
         System.out.println("0.Sair");
         System.out.println("1. Cadastrar Usuário");
         System.out.println("2. Buscar Usuário");
+        System.out.println("3. Promover Funcionário");
 
         seta = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
@@ -62,6 +66,15 @@ public class Main {
             System.out.println("Digite o ID do usuário para buscar:");
             int id = scanner.nextInt();
             Funcoes_basicas.buscar_usuario(id,banco_usuarios);
+        }
+        else if(seta==3){
+            System.out.println("Digite o ID do usuário para promover:");
+            int id = scanner.nextInt();
+            Gerente novo_gerente = Funcoes_basicas.promover_Funcionario(id,banco_usuarios.get(id));
+            if(novo_gerente != null){
+            banco_usuarios.put(id, novo_gerente);
+            System.out.println("Usuário promovido a gerente com sucesso! ID: " + novo_gerente.get_id());
+            }
         }
         else if(seta==0){
             System.out.println("Saindo do sistema...");
