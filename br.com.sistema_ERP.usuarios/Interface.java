@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Scanner;
-public class Interface {
+public class Interface extends Funcoes_basicas {
     
     
     public static void exibirMenu() {
@@ -57,13 +57,12 @@ public class Interface {
 
      public static void exibirSubmenuCadastrar(int seta,HashMap<Integer, Usuario> banco_usuarios, Scanner scanner){
        
-       
-            System.out.println("===========================");
-            System.out.println("Escolha uma opção:");
-            seta=scanner.nextInt();
+        int id=Interface.login(banco_usuarios, scanner);
+
+
+       if(id >=0 && banco_usuarios.get(id) instanceof Gerente){
 
              if(seta == 1){
-            scanner.nextLine(); // Limpar o buffer do scanner
             banco_usuarios = Funcoes_basicas.cadastrarUsuario(scanner, banco_usuarios);
             int ultimo_id= banco_usuarios.size()-1;
             Usuario usuario_cadastrado = banco_usuarios.get(ultimo_id);
@@ -97,7 +96,7 @@ public class Interface {
                 
             }else if(seta==2){
             System.out.println("Digite o ID do usuário para promover:");
-            int id = scanner.nextInt();
+             id = scanner.nextInt();
             System.out.println("===========================");
             Gerente novo_gerente = Funcoes_basicas.promover_Funcionario(id,banco_usuarios.get(id));
             if(novo_gerente != null){
@@ -119,7 +118,11 @@ public class Interface {
 
         System.out.println("===========================");
         
-    
+    }else{
+            System.out.println("Acesso negado. Apenas gerentes podem acessar as opções de cadastro.");
+            System.out.println("===========================");
+            Interface.exibirMenu();
+        }
     }
         
        
@@ -130,9 +133,11 @@ public class Interface {
         System.out.println("===========================");
         System.out.println("Escolha uma opção:");
         seta=scanner.nextInt();
+         int id=Interface.login(banco_usuarios, scanner);
+         if(id >=0 && banco_usuarios.get(id) instanceof Gerente){
          if(seta == 1){
             System.out.println("Digite o ID do usuário para buscar:");
-            int id = scanner.nextInt();
+             id = scanner.nextInt();
             Funcoes_basicas.buscar_usuario(id,banco_usuarios);
         }
         else if(seta==0){
@@ -146,9 +151,35 @@ public class Interface {
 
 
         }
+    }     else{
+            System.out.println("Acesso negado. Apenas gerentes podem acessar as opções de busca.");
+            System.out.println("===========================");
+            Interface.exibirMenu();
+        }
         
         System.out.println("===========================");
     }
+
+    public static int login( HashMap<Integer, Usuario> banco_usuarios, Scanner scanner) {
+        System.out.println("===========================");
+        System.out.println("Faça login para acessar as opções:");
+        System.out.println("Digite seu id:");
+        
+        int id = scanner.nextInt();
+        System.out.println("Digite sua senha:");
+        int senha = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do scanner
+
+        if(id < banco_usuarios.size() && id == banco_usuarios.get(id).get_id() && senha == banco_usuarios.get(id).get_senha() && banco_usuarios.get(id).get_ativo()) {
+            System.out.println("Login bem-sucedido! Bem-vindo, " + banco_usuarios.get(id).get_nome() + "!");
+        } else {
+            System.out.println("Email ou senha incorretos ou usuário inativo. Acesso negado.");
+            System.out.println("===========================");
+        }
+        System.out.println("===========================");
+        return id;
+    }
+     
 
 }
 

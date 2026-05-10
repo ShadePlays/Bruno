@@ -2,11 +2,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
-public class Funcoes_basicas {
+public class Funcoes_basicas  {
     
-    
-
-     public static HashMap<Integer, Usuario> buscar_usuario ( int id, HashMap<Integer, Usuario> banco_usuarios) {
+    protected static HashMap<Integer, Usuario> buscar_usuario ( int id, HashMap<Integer, Usuario> banco_usuarios) {
         if(banco_usuarios.containsKey(id)){
             
             System.out.println("Usuário encontrado: " + banco_usuarios.get(id).get_nome());
@@ -24,8 +22,15 @@ public class Funcoes_basicas {
 
         return banco_usuarios;
     }
+    
+    protected static void criar_usuario_padrao(HashMap<Integer, Usuario> banco_usuarios){
+        Gerente usuario_padrao = new Gerente(0, "0","0", 0, "0");
+        banco_usuarios.put(0, usuario_padrao);
 
-     public static HashMap<Integer, Usuario> cadastrarUsuario(Scanner scanner, HashMap<Integer, Usuario> banco_usuarios) {
+    
+    }
+
+     protected static HashMap<Integer, Usuario> cadastrarUsuario(Scanner scanner, HashMap<Integer, Usuario> banco_usuarios) {
         System.out.println("Cadastro de Usuário:");
         // Lógica para cadastrar usuário 
         System.out.println("Digite o nome do usuário:");
@@ -44,7 +49,7 @@ public class Funcoes_basicas {
         return banco_usuarios;
     }
 
-     public static Funcionario cadastrarFuncionario(Usuario usuario, Scanner scanner){ {
+     protected static Funcionario cadastrarFuncionario(Usuario usuario, Scanner scanner){ {
         System.out.println("Cadastro de Funcionário:");
         // Lógica para cadastrar funcionário
          
@@ -62,7 +67,7 @@ public class Funcoes_basicas {
 
 }
 
-    public static Gerente cadastrarGerente(Usuario usuario, Scanner scanner) {
+    protected static Gerente cadastrarGerente(Usuario usuario, Scanner scanner) {
         System.out.println("Cadastro de Gerente:");
        
          
@@ -79,7 +84,7 @@ public class Funcoes_basicas {
         return novoGerente;
     }
 
-    public static Gerente promover_Funcionario (int id, Usuario usuario) {
+    protected static Gerente promover_Funcionario (int id, Usuario usuario) {
         if(usuario instanceof Funcionario){
             Funcionario funcionario = (Funcionario) usuario;
             Gerente gerente_promovido = new Gerente(funcionario.get_id(), funcionario.get_nome(), funcionario.get_email(), funcionario.get_senha(), funcionario.get_departamento());

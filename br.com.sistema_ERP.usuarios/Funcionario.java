@@ -23,7 +23,7 @@ public class Funcionario extends Usuario {
      * @param scanner
      */
     
-    void registrarPonto() {
+    private void registrarPonto() {
         System.out.println("Ponto registrado para " + this.nome);
     }
 }

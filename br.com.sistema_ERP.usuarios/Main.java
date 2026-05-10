@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.HashMap;
 
-public class Main {
+public class Main extends Funcoes_basicas {
 
     /**
      * @param args
@@ -10,6 +10,8 @@ public class Main {
         
         HashMap<Integer, Usuario> banco_usuarios = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
+        Funcoes_basicas.criar_usuario_padrao(banco_usuarios);
+
         int seta = -1;
          while(seta !=0){
         Interface.exibirMenu();

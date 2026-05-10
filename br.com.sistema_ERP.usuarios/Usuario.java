@@ -1,13 +1,14 @@
 
-public class Usuario {
-    int id;
-    String nome;
-    String email;
-    int senha;
-    boolean ativo;
+public class Usuario extends Funcoes_basicas {
+  
+    protected int id;
+    protected String nome;
+    protected String email;
+    protected int senha;
+    protected boolean ativo;
    
 
-    Usuario(int id, String nome, String email, int senha) {
+   protected Usuario(int id, String nome, String email, int senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
