@@ -80,9 +80,8 @@ public class Interface extends Funcoes_basicas {
             }else if(resposta.equalsIgnoreCase("N")){
                 System.out.println("Deseja cadastrar um gerente para este usuário? (s/n)");
                 String resposta_gerente = scanner.nextLine();
-                if(resposta_gerente.equalsIgnoreCase("N")){
+                
                      if(resposta_gerente.equalsIgnoreCase("S")){
-                    System.out.println("Digite o departamento do gerente:");
                     Gerente novoGerente = Funcoes_basicas.cadastrarGerente(usuario_cadastrado, scanner);
 
                     banco_usuarios.put(usuario_cadastrado.get_id(), novoGerente);
@@ -91,7 +90,7 @@ public class Interface extends Funcoes_basicas {
                 else{
                 System.out.println("Usuário cadastrado sem vínculo empregatício.");
                 } 
-            }
+          
              }
                 
             }else if(seta==2){

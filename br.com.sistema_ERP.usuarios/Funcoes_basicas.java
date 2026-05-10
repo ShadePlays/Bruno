@@ -70,7 +70,7 @@ public class Funcoes_basicas  {
     protected static Gerente cadastrarGerente(Usuario usuario, Scanner scanner) {
         System.out.println("Cadastro de Gerente:");
        
-         
+       
         System.out.println("Digite o departamento do gerente:");
         String departamento = scanner.nextLine();
 
