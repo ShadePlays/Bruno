@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.HashMap;
+
 
 public class Main extends Funcoes_basicas {
 
@@ -8,9 +8,9 @@ public class Main extends Funcoes_basicas {
      */
     public static void main(String[] args) {
         
-        HashMap<Integer, Usuario> banco_usuarios = new HashMap<>();
+        
+        Funcoes_basicas.criar_usuario_padrao();
         Scanner scanner = new Scanner(System.in);
-        Funcoes_basicas.criar_usuario_padrao(banco_usuarios);
 
         int seta = -1;
          while(seta !=0){
@@ -19,7 +19,7 @@ public class Main extends Funcoes_basicas {
         seta = scanner.nextInt();
         if(seta >0){
         scanner.nextLine(); // Limpar o buffer do scanner
-        Interface.exibirSubmenu(seta, banco_usuarios, scanner);
+        Interface.exibirSubmenu(seta, scanner);
         }
         
     }

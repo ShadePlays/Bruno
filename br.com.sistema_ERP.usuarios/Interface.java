@@ -1,4 +1,4 @@
-import java.util.HashMap;
+
 import java.util.Scanner;
 public class Interface extends Funcoes_basicas {
     
@@ -14,7 +14,7 @@ public class Interface extends Funcoes_basicas {
     }
 
 
-    public static void exibirSubmenu(int setar, HashMap<Integer, Usuario> banco_usuarios, Scanner scanner) {
+    public static void exibirSubmenu(int setar, Scanner scanner) {
         switch (setar) {
             case 1:
                 System.out.println("===========================");
@@ -45,141 +45,43 @@ public class Interface extends Funcoes_basicas {
             System.out.println("Encerrando o sistema...");
         }
         else if(setar==1){
-            Interface.exibirSubmenuCadastrar(setar, banco_usuarios, scanner);
+            Interface.exibirSubmenuCadastrar(setar, scanner);
            
         }else if(setar==2){
-            Interface.exibirSubmenuBuscar(setar, banco_usuarios, scanner);
+            Interface.exibirSubmenuBuscar(setar, scanner);
            
         }
     }
 
 
 
-     public static void exibirSubmenuCadastrar(int seta,HashMap<Integer, Usuario> banco_usuarios, Scanner scanner){
+     public static void exibirSubmenuCadastrar(int seta, Scanner scanner){
        
-        int id=Interface.login(banco_usuarios, scanner);
+        int id=Funcoes_basicas.login(scanner);
+        Funcoes_basicas.submenu_cadastrar(id, seta,scanner);
 
-
-       if(id >=0 && banco_usuarios.get(id) instanceof Gerente){
-
-             if(seta == 1){
-            banco_usuarios = Funcoes_basicas.cadastrarUsuario(scanner, banco_usuarios);
-            int ultimo_id= banco_usuarios.size()-1;
-            Usuario usuario_cadastrado = banco_usuarios.get(ultimo_id);
-            System.out.println("Usuário cadastrado com sucesso! ID: " + usuario_cadastrado.get_id());
-            scanner.nextLine(); // Limpar o buffer do scanner
-
-
-            System.out.println("Deseja cadastrar um funcionário para este usuário? (s/n)");
-            String resposta = scanner.nextLine();
-            if(resposta.equalsIgnoreCase("S")){
-                Funcionario novoFuncionario=Funcoes_basicas.cadastrarFuncionario(usuario_cadastrado, scanner);
-                banco_usuarios.put(usuario_cadastrado.get_id(), novoFuncionario);
-                System.out.println("Funcionário cadastrado com sucesso! ID: " + novoFuncionario.get_id());
-
-            }else if(resposta.equalsIgnoreCase("N")){
-                System.out.println("Deseja cadastrar um gerente para este usuário? (s/n)");
-                String resposta_gerente = scanner.nextLine();
-                
-                     if(resposta_gerente.equalsIgnoreCase("S")){
-                    Gerente novoGerente = Funcoes_basicas.cadastrarGerente(usuario_cadastrado, scanner);
-
-                    banco_usuarios.put(usuario_cadastrado.get_id(), novoGerente);
-                    System.out.println("Gerente cadastrado com sucesso! ID: " + novoGerente.get_id());
-                }
-                else{
-                System.out.println("Usuário cadastrado sem vínculo empregatício.");
-                } 
-          
-             }
-                
-            }else if(seta==2){
-            System.out.println("Digite o ID do usuário para promover:");
-             id = scanner.nextInt();
-            System.out.println("===========================");
-            Gerente novo_gerente = Funcoes_basicas.promover_Funcionario(id,banco_usuarios.get(id));
-            if(novo_gerente != null){
-            banco_usuarios.put(id, novo_gerente);
-            System.out.println("Usuário promovido a gerente com sucesso! ID: " + novo_gerente.get_id());
-            }
-            System.out.println("===========================");
-        } else if(seta==0){
-            System.out.println("voltando ao menu principal...");
-        }
-        else{
-
-            System.out.println("Opção inválida. Tente novamente.");
-           
-
-
-
-        }
-
-        System.out.println("===========================");
-        
-    }else{
-            System.out.println("Acesso negado. Apenas gerentes podem acessar as opções de cadastro.");
-            System.out.println("===========================");
-            Interface.exibirMenu();
-        }
     }
         
        
 
 
 
-    public static void exibirSubmenuBuscar(int seta, HashMap<Integer, Usuario> banco_usuarios, Scanner scanner){
+    public static void exibirSubmenuBuscar(int seta, Scanner scanner){
+
         System.out.println("===========================");
         System.out.println("Escolha uma opção:");
         seta=scanner.nextInt();
-         int id=Interface.login(banco_usuarios, scanner);
-         if(id >=0 && banco_usuarios.get(id) instanceof Gerente){
-         if(seta == 1){
-            System.out.println("Digite o ID do usuário para buscar:");
-             id = scanner.nextInt();
-            Funcoes_basicas.buscar_usuario(id,banco_usuarios);
-        }
-        else if(seta==0){
+         int id=Funcoes_basicas.login(scanner);
+         Funcoes_basicas.submenu_buscar(id, seta, scanner);
+        
+        if(seta==0){
             System.out.println("voltando ao menu principal...");
-        }
-        else{
-
-            System.out.println("Opção inválida. Tente novamente.");
-           
-
-
-
-        }
-    }     else{
-            System.out.println("Acesso negado. Apenas gerentes podem acessar as opções de busca.");
-            System.out.println("===========================");
-            Interface.exibirMenu();
-        }
-        
-        System.out.println("===========================");
     }
 
-    public static int login( HashMap<Integer, Usuario> banco_usuarios, Scanner scanner) {
-        System.out.println("===========================");
-        System.out.println("Faça login para acessar as opções:");
-        System.out.println("Digite seu id:");
-        
-        int id = scanner.nextInt();
-        System.out.println("Digite sua senha:");
-        int senha = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer do scanner
-
-        if(id < banco_usuarios.size() && id == banco_usuarios.get(id).get_id() && senha == banco_usuarios.get(id).get_senha() && banco_usuarios.get(id).get_ativo()) {
-            System.out.println("Login bem-sucedido! Bem-vindo, " + banco_usuarios.get(id).get_nome() + "!");
-        } else {
-            System.out.println("Email ou senha incorretos ou usuário inativo. Acesso negado.");
-            System.out.println("===========================");
-        }
-        System.out.println("===========================");
-        return id;
-    }
+   
      
 
+}
 }
 
      

@@ -5,7 +5,7 @@ public class Gerente extends Usuario {
 
    public Gerente(int id, String nome, String email, int senha, String departamento) {
        super(id, nome, email, senha);
-        this.departamento = departamento;
+       this.departamento = departamento;
         this.Permissoes = "Vizualizar Relatórios, Cadastrar Funcionários,Cadastrar Estoque, Gerenciar Vendas";
     }
 
