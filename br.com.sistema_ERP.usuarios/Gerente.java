@@ -14,4 +14,9 @@ public class Gerente extends Usuario {
         
     }
 
+    @Override
+    protected String get_departamento() {
+        return this.departamento;
+    }
+
 }

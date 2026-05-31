@@ -37,6 +37,7 @@ public class Funcoes_basicas  {
         System.out.println("Cadastro de Usuário:");
         // Lógica para cadastrar usuário 
         System.out.println("Digite o nome do usuário:");
+        scanner.nextLine(); // Limpar o buffer do scanner
         String nome= scanner.nextLine();
         System.out.println("Digite o email do usuário:");
         String email = scanner.nextLine();
@@ -53,12 +54,37 @@ public class Funcoes_basicas  {
     }
 
     // atualizar banco de usuarios depois
-     protected static Funcionario cadastrarFuncionario(Usuario usuario, Scanner scanner){ {
+     protected static Funcionario cadastrarFuncionario(Usuario usuario, Scanner scanner){ 
+
         System.out.println("Cadastro de Funcionário:");
         // Lógica para cadastrar funcionário
          
         System.out.println("Digite o departamento do funcionário:");
-        String departamento = scanner.nextLine();
+        System.out.println("1. Vendas");
+        System.out.println("2. Estoque");
+        System.out.println("3. RH");
+        System.out.println("4. Financeiro");
+            int departamento_opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do scanner
+            String departamento = "";
+            switch (departamento_opcao) {
+                case 1:
+                    departamento = "Vendas";
+                    break;
+                case 2:
+                    departamento = "Estoque";
+                    break;
+                case 3:
+                    departamento = "RH";
+                    break;
+                case 4:
+                    departamento = "Financeiro";
+                    break;
+                default:
+                    System.out.println("Opção inválida. Definindo departamento como 'Geral'.");
+                    departamento = "Geral";
+            }
+    
 
       
         Funcionario novoFuncionario = new Funcionario(usuario.get_id(), usuario.get_nome(), usuario.get_email(), usuario.get_senha(), departamento);
@@ -69,7 +95,7 @@ public class Funcoes_basicas  {
         return novoFuncionario;
     }
 
-}
+
 
     protected static Gerente cadastrarGerente(Usuario usuario, Scanner scanner) {
         System.out.println("Cadastro de Gerente:");
@@ -179,15 +205,11 @@ public class Funcoes_basicas  {
 
 
 
-        }
+        } 
 
         System.out.println("===========================");
         
-    }else{
-            System.out.println("Acesso negado. Apenas gerentes podem acessar as opções de cadastro.");
-            System.out.println("===========================");
-            Interface.exibirMenu();
-        }
+    }
         }
 
     protected static void submenu_buscar(int id, int seta, Scanner scanner){
@@ -209,12 +231,37 @@ public class Funcoes_basicas  {
 
 
         }
-    }     else{
-            System.out.println("Acesso negado. Apenas gerentes podem acessar as opções de busca.");
-            System.out.println("===========================");
-            Interface.exibirMenu();
-        }
+    } 
         
         System.out.println("===========================");
     }
+
+    protected static int departamento (int id){
+        if(banco_usuarios.get(id).getClass().getSimpleName().equals("Gerente")){
+            return 1;
+
+        } else if(banco_usuarios.get(id).get_departamento().equals("Vendas")){
+          return 2;
+        }  else if(banco_usuarios.get(id).get_departamento().equals("Estoque")){
+            return 3;
+        }
+        else if(banco_usuarios.get(id).get_departamento().equals("RH")){
+            return 4;
+        }
+        else if(banco_usuarios.get(id).get_departamento().equals("Financeiro")){
+            return 5;
+        }
+        else {
+           return 0;
+        }
+    }
+    
+    protected static void registrarVenda(){
+        System.out.println("Venda registrada com sucesso!");
+    }
+
+    protected static void exibirVendas(){
+        System.out.println("Exibindo vendas...");
+    }
 }
+

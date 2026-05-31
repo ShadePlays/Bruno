@@ -6,6 +6,7 @@ public class Usuario extends Funcoes_basicas {
     protected String email;
     protected int senha;
     protected boolean ativo;
+    protected String departamento;
    
 
    protected Usuario(int id, String nome, String email, int senha) {
@@ -32,6 +33,9 @@ public class Usuario extends Funcoes_basicas {
     }
    protected boolean get_ativo(){
         return this.ativo;
+    }
+    protected String get_departamento(){
+        return this.departamento;
     }
 
   protected void login(String id, int senha) {

@@ -14,14 +14,10 @@ public class Main extends Funcoes_basicas {
 
         int seta = -1;
          while(seta !=0){
-        Interface.exibirMenu();
-        System.out.print("Escolha uma opção: ");
+        Interface.tela_inicial(scanner);
+        System.out.print("Deseja continuar? (1 - Sim, 0 - Não): ");
         seta = scanner.nextInt();
-        if(seta >0){
         scanner.nextLine(); // Limpar o buffer do scanner
-        Interface.exibirSubmenu(seta, scanner);
-        }
-        
     }
     
            scanner.close();

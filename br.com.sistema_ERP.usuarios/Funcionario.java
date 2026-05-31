@@ -13,7 +13,9 @@ public class Funcionario extends Usuario {
     public String get_cargo(){
         return this.cargo;
     }
-    public String get_departamento(){
+    
+   @Override
+    protected String get_departamento() {
         return this.departamento;
     }
     
