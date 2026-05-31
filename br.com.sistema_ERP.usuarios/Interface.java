@@ -38,6 +38,10 @@ public class Interface extends Funcoes_basicas {
         System.out.println("exibirMenu(1) - Cadastrar");
         System.out.println("exibirMenu(2) - Buscar");
         System.out.println("exibirMenu(3) - Exibir Todos");
+        System.out.println("exibirMenu(4) - Gerenciar Vendas");
+        System.out.println("exibirMenu(5) - Gerenciar RH");
+        System.out.println("exibirMenu(6) - Gerenciar Estoque");
+        System.out.println("exibirMenu(7) - Gerenciar financeiro");
         System.out.println("===========================");
     }
 
@@ -49,6 +53,15 @@ public class Interface extends Funcoes_basicas {
         System.out.println("exibirMenu(2) - Exibir Vendas");
         System.out.println("===========================");
     }
+
+    public static void exibirmenu_rh() {
+        System.out.println("Bem-vindo ao Sistema ERP!");
+        System.out.println("===========================");
+        System.out.println("0. Sair");
+        System.out.println("exibirMenu(1) - Cadastrar Ponto");
+        System.out.println("===========================");
+    }
+
 
     public static void exibirSubmenu_gerencia(int id, int setar, Scanner scanner) {
         switch (setar) {
@@ -73,6 +86,30 @@ public class Interface extends Funcoes_basicas {
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
+                case 4:
+                System.out.println("===========================");
+                System.out.println("1. Gerenciar Vendas");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
+                case 5:
+                System.out.println("===========================");
+                System.out.println("1. Gerenciar RH");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
+                case 6:
+                System.out.println("===========================");
+                System.out.println("1. Gerenciar Estoque");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
+                case 7:
+                System.out.println("===========================");
+                System.out.println("1. Gerenciar Financeiro");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
@@ -88,12 +125,21 @@ public class Interface extends Funcoes_basicas {
             setar= scanner.nextInt();
             Interface.exibirSubmenuBuscar(id,setar, scanner);
            
+        }else if(setar==4){
+            setar= scanner.nextInt();
+            Interface.ExibirSubmenu_vendas(id,setar, scanner);
+        }else if(setar==5){
+            setar= scanner.nextInt();
+            Interface.ExibirSubmenu_rh(id,setar, scanner);
+        }else if(setar==6){
+            setar= scanner.nextInt();
+            //Interface.ExibirSubmenu_estoque(id,setar, scanner);
+        }else if(setar==7){
+            setar= scanner.nextInt();
+            Interface.ExibirSubmenu_financeiro(id,setar, scanner);
         }
     }
-
-
-
-     public static void exibirSubmenuCadastrar(int id, int seta, Scanner scanner){
+    public static void exibirSubmenuCadastrar(int id, int seta, Scanner scanner){
        
         Funcoes_basicas.submenu_cadastrar(id, seta,scanner);
 
@@ -136,7 +182,55 @@ public class Interface extends Funcoes_basicas {
         }
     }
      
+    public static void ExibirSubmenu_rh(int id, int seta, Scanner scanner){
+        switch (seta) {
+            case 1:
+                System.out.println("===========================");
+                System.out.println("1. Registrar Ponto");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
+            default:
+                System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
+        }
+
+        if(seta==0){
+            System.out.println("Encerrando o sistema...");
+        }
+        else if(seta==1){
+            System.out.println("Registrando ponto para qual funcionário? (Digite o ID do funcionário)");
+            int funcionarioId = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do scanner
+            Funcoes_basicas.registrarPonto(funcionarioId);
+        }
+    }
+    public static void ExibirSubmenu_financeiro(int id, int seta, Scanner scanner){
+        switch (seta) {
+            case 1:
+                System.out.println("===========================");
+                System.out.println("1. cadastrar despesa");
+                System.out.println("2. exibir despesas");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
+            default:
+                System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
+        }
+        seta = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do scanner
+        if(seta==0){
+            System.out.println("Encerrando o sistema...");
+        }
+        else if(seta==1){
+          
+            Financeiro.registrarDespesa(scanner);
+            
+        }else if(seta==2){
+            Financeiro.exibirDespesas();
+        }
+    }
 }
+
 
      
     

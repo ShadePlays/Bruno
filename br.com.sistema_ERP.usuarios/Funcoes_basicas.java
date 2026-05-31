@@ -263,5 +263,17 @@ public class Funcoes_basicas  {
     protected static void exibirVendas(){
         System.out.println("Exibindo vendas...");
     }
+    protected static void gerenciarEstoque(){
+        System.out.println("Gerenciando estoque...");
+    }
+
+    protected static void registrarPonto(int id){
+        if(banco_usuarios.get(id) instanceof Funcionario){
+            Funcionario funcionario = (Funcionario) banco_usuarios.get(id);
+            funcionario.registrarPonto();
+        } else {
+            System.out.println("Apenas funcionários do RH podem registrar ponto.");
+        }
+    }
 }
 
