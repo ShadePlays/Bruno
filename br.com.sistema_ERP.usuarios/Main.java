@@ -19,7 +19,9 @@ public class Main extends Funcoes_basicas {
         seta = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
     }
-    
+
+        Financeiro.registrar_em_arquivo_csv();
+        Funcoes_basicas.registrar_em_arquivo_csv();
            scanner.close();
            System.out.println("Sistema encerrado.");
     }

@@ -1,4 +1,6 @@
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Financeiro {
@@ -35,5 +37,43 @@ public class Financeiro {
             }
         }
         
-        
+        public static void exibirDespesasPorCategoria(String categoria) {
+            System.out.println("Despesas na categoria: " + categoria);
+            for (Integer codigo : banco_despesas.keySet()) {
+                if (banco_despesas.get(codigo).categoria.equalsIgnoreCase(categoria)) {
+                    System.out.println("codigo: " + codigo + ", Descrição: " + banco_despesas.get(codigo));
+                }
+            }
+        }
+
+        public static void registrar_em_arquivo_csv() {
+             
+            try {
+
+        PrintWriter writer = new PrintWriter("despesas.csv");
+
+        writer.println("Codigo;Valor;Descricao;Data;Categoria");
+
+        for (Map.Entry<Integer, Despesa> entry : banco_despesas.entrySet()) {
+
+            Integer codigo = entry.getKey();
+            Despesa despesa = entry.getValue();
+
+            writer.println(
+                codigo + ";" +
+                despesa.valor + ";" +
+                despesa.descricao + ";" +
+                despesa.data + ";" +
+                despesa.categoria
+            );
+        }
+
+        writer.close();
+
+        System.out.println("Arquivo despesas.csv criado com sucesso!");
+
+    } catch (Exception e) {
+        System.out.println("Erro ao criar arquivo: " + e.getMessage());
+    }
+        }
 }

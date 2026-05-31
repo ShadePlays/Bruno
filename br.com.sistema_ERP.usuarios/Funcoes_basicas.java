@@ -1,5 +1,9 @@
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.io.FileWriter;
+
 
 
 public class Funcoes_basicas  {
@@ -26,6 +30,41 @@ public class Funcoes_basicas  {
         return banco_usuarios;
     }
     
+
+    public static void registrar_em_arquivo_csv() {
+             
+            try {
+
+        PrintWriter writer = new PrintWriter("Usuarios.csv");
+
+        writer.println("ID;Nome;Email;Senha;Ativo;Cargo;Departamento");
+
+        for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
+
+            Integer id = entry.getKey();
+            Usuario usuario = entry.getValue();
+
+            writer.println(
+                id + ";" +
+                usuario.get_nome() + ";" +
+                usuario.get_email() + ";" +
+                usuario.get_senha() + ";" +
+                usuario.get_ativo() + ";" +
+                usuario.getClass().getSimpleName() + ";" +
+                (usuario instanceof Funcionario ? ((Funcionario) usuario).get_departamento() : "N/A")
+            );
+        }
+
+        writer.close();
+
+        System.out.println("Arquivo Usuarios.csv criado com sucesso!");
+
+    } catch (Exception e) {
+        System.out.println("Erro ao criar arquivo: " + e.getMessage());
+    }
+        }
+
+
     protected static void criar_usuario_padrao(){
         Gerente usuario_padrao = new Gerente(0, "0","0", 0, "0");
         banco_usuarios.put(0, usuario_padrao);
