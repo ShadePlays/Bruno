@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Financeiro {
     
         private static HashMap<Integer, Despesa> banco_despesas = new HashMap<>();
+        private static HashMap<Integer, Faturamento> banco_faturamentos = new HashMap<>();
     
         public static void registrarDespesa(Scanner scanner) {
             
@@ -46,6 +47,21 @@ public class Financeiro {
             }
         }
 
+        public static void registrarFaturamento(float valor, String nome_produto, String data) {
+            Faturamento faturamento = new Faturamento();
+            faturamento.setValor(valor);
+            int codigo = banco_faturamentos.size() + 1; 
+            faturamento.setDescricao("Faturamento venda"+ nome_produto + "data: " + data);
+            banco_faturamentos.put(codigo, faturamento);
+            System.out.println("Faturamento registrado: " + banco_faturamentos.get(codigo));{
+            
+           
+        }
+    }
+
+
+
+
         public static void registrar_em_arquivo_csv() {
              
             try {
@@ -75,5 +91,33 @@ public class Financeiro {
     } catch (Exception e) {
         System.out.println("Erro ao criar arquivo: " + e.getMessage());
     }
+
+    try {
+        PrintWriter writer = new PrintWriter("faturamentos.csv");
+
+        writer.println("Codigo;Valor;Descricao");
+
+        for (Map.Entry<Integer, Faturamento> entry : banco_faturamentos.entrySet()) {
+
+            Integer codigo = entry.getKey();
+            Faturamento faturamento = entry.getValue();
+
+            writer.println(
+                codigo + ";" +
+                faturamento.getValor() + ";" +
+                faturamento.getDescricao()
+            );
         }
-}
+
+        writer.close();
+
+        System.out.println("Arquivo faturamentos.csv criado com sucesso!");
+
+    } catch (Exception e) {
+        System.out.println("Erro ao criar arquivo: " + e.getMessage());
+    }
+        }
+
+
+
+    }

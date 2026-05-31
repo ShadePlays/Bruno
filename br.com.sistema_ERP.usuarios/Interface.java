@@ -20,10 +20,31 @@ public class Interface extends Funcoes_basicas {
                 if(seta >0){
                 scanner.nextLine(); // Limpar o buffer do scanner
                 Interface.ExibirSubmenu_vendas(id,seta, scanner);
-        }
-                
-                
-            } else {
+        }         
+            } else if(cargo == 3){
+                Interface.exibirmenu_rh();
+                int seta = scanner.nextInt();
+                if(seta >0){
+                scanner.nextLine(); // Limpar o buffer do scanner
+                Interface.ExibirSubmenu_rh(id,seta, scanner);
+                }
+            }else if(cargo == 4){
+                Interface.exibirmenu_estoque();
+                int seta = scanner.nextInt();
+                if(seta >0){
+                scanner.nextLine(); // Limpar o buffer do scanner
+                Interface.ExibirSubmenu_estoque(id,seta, scanner);
+                }   
+            }else if(cargo == 5){
+                Interface.exibirmenu_financeiro();
+                int seta = scanner.nextInt();
+                if(seta >0){
+                scanner.nextLine(); // Limpar o buffer do scanner
+                Interface.ExibirSubmenu_financeiro(id,seta, scanner);
+                }
+            }
+            
+            else {
                 System.out.println("Cargo desconhecido. Acesso limitado.");
             }
 
@@ -61,8 +82,21 @@ public class Interface extends Funcoes_basicas {
         System.out.println("exibirMenu(1) - Cadastrar Ponto");
         System.out.println("===========================");
     }
-
-
+    public static void exibirmenu_estoque() {
+        System.out.println("Bem-vindo ao Sistema ERP!");
+        System.out.println("===========================");
+        System.out.println("0. Sair");
+        System.out.println("exibirMenu(1) - Gerenciar Estoque");
+        System.out.println("===========================");
+    }
+    public static void exibirmenu_financeiro() {
+        System.out.println("Bem-vindo ao Sistema ERP!");
+        System.out.println("===========================");
+        System.out.println("0. Sair");
+        System.out.println("exibirMenu(1) - Gerenciar Financeiro");
+        System.out.println("===========================");
+    }
+    
     public static void exibirSubmenu_gerencia(int id, int setar, Scanner scanner) {
         switch (setar) {
             case 1:
@@ -229,6 +263,26 @@ public class Interface extends Funcoes_basicas {
             Financeiro.exibirDespesas();
         }
     }
+    public static void ExibirSubmenu_estoque(int id, int seta, Scanner scanner){
+        switch (seta) {
+            case 1:
+                System.out.println("===========================");
+                System.out.println("1. Gerenciar Estoque");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
+            default:
+                System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
+        }
+
+        if(seta==0){
+            System.out.println("Encerrando o sistema...");
+        }
+        else if(seta==1){
+            //Funcoes_basicas.gerenciarEstoque();
+        }
+    }
+
 }
 
 
