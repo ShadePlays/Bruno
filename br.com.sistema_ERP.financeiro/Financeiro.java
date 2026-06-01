@@ -3,11 +3,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Financeiro {
-    
+public final class Financeiro {
+        private  static float caixa = 0;
         private static HashMap<Integer, Despesa> banco_despesas = new HashMap<>();
         private static HashMap<Integer, Faturamento> banco_faturamentos = new HashMap<>();
     
+        public static  void registrarCaixa(float valor) {
+
+            caixa += valor;       
+        
+        }
         public static void registrarDespesa(Scanner scanner) {
             
             System.out.println ("Digite o valor da despesa:");
@@ -17,7 +22,7 @@ public class Financeiro {
             String descricao = scanner.nextLine();
             System.out.println("Digite a data da despesa (dd/mm/yyyy):");
             String data = scanner.nextLine();
-            System.out.println("Digite a categoria da despesa(fixa ou variável):");
+            System.out.println("Digite a categoria da despesa(compra ou operacional):");
             String categoria = scanner.nextLine();
 
             Despesa despesa = new Despesa();
@@ -54,13 +59,42 @@ public class Financeiro {
             faturamento.setDescricao("Faturamento venda"+ nome_produto + "data: " + data);
             banco_faturamentos.put(codigo, faturamento);
             System.out.println("Faturamento registrado: " + banco_faturamentos.get(codigo));{
-            
+             Financeiro.registrarCaixa(valor); 
            
         }
     }
 
+        public static void demonstracao_de_resultados() {
+            float totalDespesasfixas = 0;
+            float totalDespesasvariaveis = 0;
+            float totalDespesas = 0;
+             for (Despesa despesa : banco_despesas.values()) {
+                if(despesa.categoria.equalsIgnoreCase("operacional")){
+                    totalDespesasfixas += despesa.valor;
+                }else if(despesa.categoria.equalsIgnoreCase("compras")){
+                    totalDespesasvariaveis += despesa.valor;
+                }
+            }
+             totalDespesas = totalDespesasfixas + totalDespesasvariaveis;
+            float totalFaturamentos = 0;
 
+            for (Despesa despesa : banco_despesas.values()) {
+                totalDespesas += despesa.valor;
+            }
 
+            for (Faturamento faturamento : banco_faturamentos.values()) {
+                totalFaturamentos += faturamento.getValor();
+            }
+
+            float resultado = totalFaturamentos - totalDespesas;
+
+            System.out.println("Demonstração de Resultados:");
+            System.out.println("Total de Faturamentos: " + totalFaturamentos);
+            System.out.println("Total de Despesas: " + totalDespesas);
+            System.out.println("Resultado: " + resultado);
+        }
+        
+        
 
         public static void registrar_em_arquivo_csv() {
              
@@ -116,7 +150,49 @@ public class Financeiro {
     } catch (Exception e) {
         System.out.println("Erro ao criar arquivo: " + e.getMessage());
     }
-        }
+        
+
+        try {
+        PrintWriter writer = new PrintWriter("Demonstração_de_resultados.csv");
+
+        writer.println("=== DEMONSTRAÇÃO DE RESULTADOS ===");
+
+       float totalDespesasfixas = 0;
+            float totalDespesasvariaveis = 0;
+            float totalDespesas = 0;
+             for (Despesa despesa : banco_despesas.values()) {
+                if(despesa.categoria.equalsIgnoreCase("operacional")){
+                    totalDespesasfixas += despesa.valor;
+                }else if(despesa.categoria.equalsIgnoreCase("compras")){
+                    totalDespesasvariaveis += despesa.valor;
+                }
+            }
+             totalDespesas = totalDespesasfixas + totalDespesasvariaveis;
+            float totalFaturamentos = 0;
+
+            for (Despesa despesa : banco_despesas.values()) {
+                totalDespesas += despesa.valor;
+            }
+
+            for (Faturamento faturamento : banco_faturamentos.values()) {
+                totalFaturamentos += faturamento.getValor();
+            }
+
+            float resultado = totalFaturamentos - totalDespesas;
+
+        writer.println("Total de Faturamentos: " + totalFaturamentos);
+        writer.println("Total de Despesas: " + totalDespesas);
+        writer.println("Resultado: " + resultado);
+
+        writer.close();
+
+        System.out.println("Arquivo Demonstração_de_resultados.csv criado com sucesso!");
+
+    } catch (Exception e) {
+        System.out.println("Erro ao criar arquivo: " + e.getMessage());
+    }
+}
+        
 
 
 

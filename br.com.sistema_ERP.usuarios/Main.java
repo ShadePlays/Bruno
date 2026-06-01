@@ -22,7 +22,6 @@ public class Main extends Funcoes_basicas {
 
         Financeiro.registrar_em_arquivo_csv();
         Funcoes_basicas.registrar_em_arquivo_csv();
-        Financeiro.registrar_em_arquivo_csv();
         Vendas.registrar_em_arquivo_csv();
         Estoque.registrar_em_arquivo_csv();
            

@@ -72,6 +72,8 @@ public class Interface extends Funcoes_basicas {
         System.out.println("0. Sair");
         System.out.println("exibirMenu(1) - Registrar Venda");
         System.out.println("exibirMenu(2) - Exibir Vendas");
+        System.out.println("exibirMenu(3) - Exibir Vendas por Data");
+        System.out.println("exibirMenu(4) - Cadastrar Cliente");
         System.out.println("===========================");
     }
 
@@ -198,12 +200,20 @@ public class Interface extends Funcoes_basicas {
             case 1:
                 System.out.println("===========================");
                 System.out.println("1. Registrar Venda");
-                System.out.println("2. Exibir Vendas");
-                System.out.println("3. Exibir Vendas por Data");
-                System.out.println("4. cadastrar Cliente");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
+                case 2:
+                System.out.println("===========================");
+                System.out.println("1. Exibir Vendas");
+                System.out.println("2. Exibir Vendas por Data");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                case 3:
+                    System.out.println("===========================");
+                    System.out.println("1. cadastrar Cliente");
+                    System.out.println("0. Voltar ao Menu Principal");
+                    System.out.println("===========================");
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
@@ -212,15 +222,26 @@ public class Interface extends Funcoes_basicas {
             System.out.println("Encerrando o sistema...");
         }
         else if(seta==1){
+             seta= scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do scanner
+            if(seta==1){
             Vendas.registrarVenda(scanner);
+            }
         }else if(seta==2){
+             seta= scanner.nextInt();
+            if(seta==1){
             Vendas.exibirVendas();
+            }else if(seta==2){
+                System.out.println("Digite a data para filtrar as vendas (dd/mm/yyyy):");
+                String data = scanner.nextLine();
+                Vendas.exibirVendasPorData(data);
+            }
         }else if(seta==3){
-            System.out.println("Digite a data para filtrar as vendas (dd/mm/yyyy):");
-            String data = scanner.nextLine();
-            Vendas.exibirVendasPorData(data);
-        }else if(seta==4){
-            Cliente.cadastrarCliente(scanner);
+             seta= scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do scanner
+            if(seta==1){
+                Cliente.cadastrarCliente(scanner);
+            }
         }
     }
      
@@ -240,10 +261,14 @@ public class Interface extends Funcoes_basicas {
             System.out.println("Encerrando o sistema...");
         }
         else if(seta==1){
+            seta= scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do scanner
+            if(seta==1){
             System.out.println("Registrando ponto para qual funcionário? (Digite o ID do funcionário)");
             int funcionarioId = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do scanner
             Funcoes_basicas.registrarPonto(funcionarioId);
+            }
         }
     }
     public static void ExibirSubmenu_financeiro(int id, int seta, Scanner scanner){

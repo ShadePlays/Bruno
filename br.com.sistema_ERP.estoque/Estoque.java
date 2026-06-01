@@ -13,18 +13,22 @@ public class Estoque {
         String nome = scanner.nextLine();
         System.out.println("Digite a descrição do produto:");
         String descricao = scanner.nextLine();
-        System.out.println("Digite o preço do produto:");
-        double preco = scanner.nextDouble();
+        System.out.println("Digite o preço de custo do produto:");
+        double custo = scanner.nextDouble();
+        scanner.nextLine(); // Limpar o buffer do scanner
+        System.out.println("Digite o preço de venda do produto:");
+        double preco_venda = scanner.nextDouble();
         scanner.nextLine(); // Limpar o buffer do scanner
         System.out.println("Digite a quantidade em estoque:");
         int quantidade = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
 
         Produto produto = new Produto();
-        produto.nome = nome;
-        produto.descricao = descricao;
-        produto.preco = preco;
-        produto.quantidade = quantidade;
+        produto.setNome(nome);
+        produto.setDescricao(descricao);
+        produto.setCusto(custo);
+        produto.setPreco_venda(preco_venda);
+        produto.setQuantidade(quantidade);
         int codigo = banco_produtos.size() + 1; 
 
         banco_produtos.put(codigo, produto);
@@ -40,7 +44,7 @@ public class Estoque {
 
     public static void atualizarQuantidade(int codigoProduto, int quantidade) {
          if (banco_produtos.containsKey(codigoProduto)) {
-            banco_produtos.get(codigoProduto).quantidade += quantidade;
+            banco_produtos.get(codigoProduto).setQuantidade(quantidade); += quantidade;
             System.out.println("Quantidade atualizada: " + banco_produtos.get(codigoProduto));
         } else {
             System.out.println("Produto não encontrado.");
@@ -67,7 +71,7 @@ public class Estoque {
             return 0;
         }
         int soma = 0;
-        soma = banco_produtos.get(codigoProduto).quantidade;
+        soma = banco_produtos.get(codigoProduto).getQuantidade();
         
         return soma;
     }
@@ -79,7 +83,7 @@ public class Estoque {
             return 0;
         }
         float valor_total = 0;
-        valor_total = (float) (banco_produtos.get(codigoProduto).preco * quantidadeVendida);
+        valor_total = (float) (banco_produtos.get(codigoProduto).getPreco_venda() * quantidadeVendida);
         
         return valor_total;
     }
@@ -89,7 +93,7 @@ public class Estoque {
             System.out.println("Nenhum produto registrado.");
             return "";
         }
-        return banco_produtos.get(codigoProduto).nome;
+        return banco_produtos.get(codigoProduto).getNome();
     }
 
     public static void registrar_em_arquivo_csv() {
@@ -97,12 +101,12 @@ public class Estoque {
 
         PrintWriter writer = new PrintWriter("estoque.csv");
 
-        writer.println("codigo;nome;descricao;preco;quantidade");
+        writer.println("codigo;nome;descricao;custo;quantidade;preco_venda");
         for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
     
             Integer codigo = entry.getKey();
             Produto produto = entry.getValue();
-            writer.println(codigo + ";" + produto.nome + ";" + produto.descricao + ";" + produto.preco + ";" + produto.quantidade);
+            writer.println(codigo + ";" + produto.getNome() + ";" + produto.getDescricao() + ";" + produto.getCusto() + ";" + produto.getQuantidade() + ";" + produto.getPreco_venda()+";");
         }
         
         writer.close();

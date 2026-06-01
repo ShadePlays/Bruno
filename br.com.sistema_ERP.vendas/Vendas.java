@@ -6,8 +6,7 @@ import java.util.Scanner;
 public class Vendas {
     
     private static HashMap<Integer, Sale> banco_vendas = new HashMap<>();
-    private static HashMap<Integer, Cliente> banco_clientes = new HashMap<>();
-
+    
     public static void registrarVenda(Scanner scanner) {
         System.out.println("Registrar Venda");
         System.out.println("Digite o código do produto:");
@@ -112,6 +111,7 @@ public class Vendas {
         }
     }
 
+   
 }
 
 

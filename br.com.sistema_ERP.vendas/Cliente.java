@@ -17,11 +17,17 @@ private static HashMap<Integer, Pessoa> banco_clientes = new HashMap<>();
         System.out.println("Digite o CPF do cliente:");
         float cpf = scanner.nextFloat();
         scanner.nextLine(); // Limpar o buffer do scanner
+        System.out.println("Digite o telefone do cliente:");
+        String telefone = scanner.nextLine();
+        System.out.println("Digite o endereço do cliente:");
+        String endereco = scanner.nextLine();
 
         Pessoa cliente = new Pessoa();
         cliente.setNome(nome);
         cliente.setEmail(email);
         cliente.setCpf(cpf);
+        cliente.setTelefone(telefone);
+        cliente.setEndereco(endereco);
         int codigo = banco_clientes.size() + 1;
         banco_clientes.put(codigo, cliente);
         System.out.println("Cliente registrado: " + banco_clientes.get(codigo));
