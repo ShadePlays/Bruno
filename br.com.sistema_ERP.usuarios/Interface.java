@@ -1,12 +1,12 @@
 
 import java.util.Scanner;
-public class Interface extends Funcoes_basicas {
+public class Interface extends RH {
     
     
     public static void tela_inicial(Scanner scanner){
-       int id=Funcoes_basicas.login(scanner);
+       int id=RH.login(scanner);
         if(id >-1){
-            int cargo = Funcoes_basicas.departamento(id);
+            int cargo = RH.departamento(id);
             if(cargo == 1){
                 Interface.exibirMenu_gerencia();
                  int seta = scanner.nextInt();
@@ -177,13 +177,13 @@ public class Interface extends Funcoes_basicas {
     }
     public static void exibirSubmenuCadastrar(int id, int seta, Scanner scanner){
        
-        Funcoes_basicas.submenu_cadastrar(id, seta,scanner);
+        RH.submenu_cadastrar(id, seta,scanner);
 
     }
 
     public static void exibirSubmenuBuscar(int id, int seta, Scanner scanner){
 
-         Funcoes_basicas.submenu_buscar(id, seta, scanner);
+         RH.submenu_buscar(id, seta, scanner);
         
         if(seta==0){
             System.out.println("voltando ao menu principal...");
@@ -267,7 +267,7 @@ public class Interface extends Funcoes_basicas {
             System.out.println("Registrando ponto para qual funcionário? (Digite o ID do funcionário)");
             int funcionarioId = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do scanner
-            Funcoes_basicas.registrarPonto(funcionarioId);
+            RH.registrarPonto(funcionarioId);
             }
         }
     }

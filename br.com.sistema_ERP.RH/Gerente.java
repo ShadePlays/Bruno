@@ -1,6 +1,6 @@
 public class Gerente extends Usuario {
-        private String departamento;
         private String Permissoes;
+        
         
 
    public Gerente(int id, String nome, String email, int senha, String departamento) {
@@ -18,5 +18,19 @@ public class Gerente extends Usuario {
     protected String get_departamento() {
         return this.departamento;
     }
+    @Override
+    protected double get_salario() {
+        return this.salario;
+    }
+    protected String get_permissoes() {
+        return this.Permissoes;
+    }
+    protected void set_permissoes(String permissoes) {
+        this.Permissoes = permissoes;
+    }
+    protected void set_salario(Double salario) {
+        this.salario = salario;
+    }
+    
 
 }

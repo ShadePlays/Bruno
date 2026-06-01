@@ -1,5 +1,5 @@
 
-public class Usuario extends Funcoes_basicas {
+public class Usuario extends RH {
   
     protected int id;
     protected String nome;
@@ -7,6 +7,7 @@ public class Usuario extends Funcoes_basicas {
     protected int senha;
     protected boolean ativo;
     protected String departamento;
+    protected double salario;
    
 
    protected Usuario(int id, String nome, String email, int senha) {
@@ -36,6 +37,12 @@ public class Usuario extends Funcoes_basicas {
     }
     protected String get_departamento(){
         return this.departamento;
+    }
+    protected double get_salario(){
+        return this.salario;
+    }
+    protected void set_id(int id){
+        this.id = id;
     }
 
   protected void login(String id, int senha) {

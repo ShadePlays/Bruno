@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class Main extends Funcoes_basicas {
+public class Main extends RH {
 
     /**
      * @param args
@@ -9,7 +9,7 @@ public class Main extends Funcoes_basicas {
     public static void main(String[] args) {
         
         
-        Funcoes_basicas.criar_usuario_padrao();
+        RH.criar_usuario_padrao();
         Scanner scanner = new Scanner(System.in);
 
         int seta = -1;
@@ -21,7 +21,7 @@ public class Main extends Funcoes_basicas {
     }
 
         Financeiro.registrar_em_arquivo_csv();
-        Funcoes_basicas.registrar_em_arquivo_csv();
+        RH.registrar_em_arquivo_csv();
         Vendas.registrar_em_arquivo_csv();
         Estoque.registrar_em_arquivo_csv();
            

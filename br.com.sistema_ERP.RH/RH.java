@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 
-public class Funcoes_basicas  {
+public class RH  {
     
        private static HashMap<Integer, Usuario> banco_usuarios = new HashMap<>();
     
@@ -123,10 +123,15 @@ public class Funcoes_basicas  {
                     System.out.println("Opção inválida. Definindo departamento como 'Geral'.");
                     departamento = "Geral";
             }
+
+            System.out.println("salario do funcionário:");
+            double salario = scanner.nextDouble();
+            scanner.nextLine(); // Limpar o buffer do scanner
     
 
       
-        Funcionario novoFuncionario = new Funcionario(usuario.get_id(), usuario.get_nome(), usuario.get_email(), usuario.get_senha(), departamento);
+        Funcionario novoFuncionario = new Funcionario(usuario.get_id(), usuario.get_nome(), usuario.get_email(), usuario.get_senha(), departamento, salario);
+    
         
         System.out.println("Funcionário cadastrado com sucesso!");
         System.out.println("ID do funcionário:" + novoFuncionario.id);
@@ -194,7 +199,7 @@ public class Funcoes_basicas  {
        if(id >=0 && banco_usuarios.get(id) instanceof Gerente){
 
              if(seta == 1){
-            banco_usuarios = Funcoes_basicas.cadastrarUsuario(scanner);
+            banco_usuarios = RH.cadastrarUsuario(scanner);
             int ultimo_id= banco_usuarios.size()-1;
             Usuario usuario_cadastrado = banco_usuarios.get(ultimo_id);
             System.out.println("Usuário cadastrado com sucesso! ID: " + usuario_cadastrado.get_id());
@@ -204,7 +209,7 @@ public class Funcoes_basicas  {
             System.out.println("Deseja cadastrar um funcionário para este usuário? (s/n)");
             String resposta = scanner.nextLine();
             if(resposta.equalsIgnoreCase("S")){
-                Funcionario novoFuncionario=Funcoes_basicas.cadastrarFuncionario(usuario_cadastrado, scanner);
+                Funcionario novoFuncionario=RH.cadastrarFuncionario(usuario_cadastrado, scanner);
                 banco_usuarios.put(usuario_cadastrado.get_id(), novoFuncionario);
                 System.out.println("Funcionário cadastrado com sucesso! ID: " + novoFuncionario.get_id());
 
@@ -213,7 +218,7 @@ public class Funcoes_basicas  {
                 String resposta_gerente = scanner.nextLine();
                 
                      if(resposta_gerente.equalsIgnoreCase("S")){
-                    Gerente novoGerente = Funcoes_basicas.cadastrarGerente(usuario_cadastrado, scanner);
+                    Gerente novoGerente = RH.cadastrarGerente(usuario_cadastrado, scanner);
 
                     banco_usuarios.put(usuario_cadastrado.get_id(), novoGerente);
                     System.out.println("Gerente cadastrado com sucesso! ID: " + novoGerente.get_id());
@@ -228,7 +233,7 @@ public class Funcoes_basicas  {
             System.out.println("Digite o ID do usuário para promover:");
              id = scanner.nextInt();
             System.out.println("===========================");
-            Gerente novo_gerente = Funcoes_basicas.promover_Funcionario(id,banco_usuarios.get(id));
+            Gerente novo_gerente = RH.promover_Funcionario(id,banco_usuarios.get(id));
             if(novo_gerente != null){
             banco_usuarios.put(id, novo_gerente);
             System.out.println("Usuário promovido a gerente com sucesso! ID: " + novo_gerente.get_id());
@@ -257,7 +262,7 @@ public class Funcoes_basicas  {
          if(seta == 1){
             System.out.println("Digite o ID do usuário para buscar:");
              id = scanner.nextInt();
-            Funcoes_basicas.buscar_usuario(id);
+            RH.buscar_usuario(id);
         }
         else if(seta==0){
             System.out.println("voltando ao menu principal...");
@@ -294,7 +299,6 @@ public class Funcoes_basicas  {
            return 0;
         }
     }
-   
 
     protected static void registrarPonto(int id){
         if(banco_usuarios.get(id) instanceof Funcionario){
@@ -302,6 +306,50 @@ public class Funcoes_basicas  {
             funcionario.registrarPonto();
         } else {
             System.out.println("Apenas funcionários do RH podem registrar ponto.");
+        }
+    }
+
+    protected static void FolhaPagamento(int id){
+        if(banco_usuarios.get(id) instanceof Funcionario){
+            Funcionario funcionario = (Funcionario) banco_usuarios.get(id);
+            System.out.println("Calculando folha de pagamento para " + funcionario.get_nome() + "...");
+            System.out.println("Salário: " + funcionario.get_salario());
+
+        } else {
+            System.out.println("Apenas funcionários do RH podem calcular folha de pagamento.");
+        }
+    }
+     protected static void FolhaPagamento_total(){
+        double Somatorio_rh = 0;
+        double Somatorio_vendas = 0;
+        double Somatorio_estoque = 0;
+        double Somatorio_financeiro = 0;
+        double Somatorio_gerentes = 0;
+
+        for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
+            Integer id = entry.getKey();
+            Usuario usuario = entry.getValue();
+
+            if(usuario instanceof Funcionario){
+                Funcionario funcionario = (Funcionario) usuario;
+                switch (funcionario.get_departamento()) {
+                    case "RH":
+                        Somatorio_rh += funcionario.get_salario();
+                        break;
+                    case "Vendas":
+                        Somatorio_vendas += funcionario.get_salario();
+                        break;
+                    case "Estoque":
+                        Somatorio_estoque += funcionario.get_salario();
+                        break;
+                    case "Financeiro":
+                        Somatorio_financeiro += funcionario.get_salario();
+                        break;
+                }
+            } else if(usuario instanceof Gerente){
+                Gerente gerente = (Gerente) usuario;
+                Somatorio_gerentes += gerente.get_salario();
+            }
         }
     }
 }
