@@ -4,11 +4,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public final class Financeiro {
-        private  static float caixa = 0;
+        private  static double caixa= 0.0;
         private static HashMap<Integer, Despesa> banco_despesas = new HashMap<>();
         private static HashMap<Integer, Faturamento> banco_faturamentos = new HashMap<>();
     
-        public static  void registrarCaixa(float valor) {
+        public static  void registrarCaixa(double valor) {
 
             caixa += valor;       
         
@@ -26,10 +26,10 @@ public final class Financeiro {
             String categoria = scanner.nextLine();
 
             Despesa despesa = new Despesa();
-            despesa.valor = valor;
-            despesa.descricao = descricao;
-            despesa.data = data;
-            despesa.categoria = categoria;
+            despesa.setValor(valor);
+            despesa.setDescricao(descricao);
+            despesa.setData(data);
+            despesa.setCategoria(categoria);
             int codigo = banco_despesas.size() + 1; 
 
             banco_despesas.put(codigo, despesa);
@@ -46,7 +46,7 @@ public final class Financeiro {
         public static void exibirDespesasPorCategoria(String categoria) {
             System.out.println("Despesas na categoria: " + categoria);
             for (Integer codigo : banco_despesas.keySet()) {
-                if (banco_despesas.get(codigo).categoria.equalsIgnoreCase(categoria)) {
+                if (banco_despesas.get(codigo).getCategoria().equalsIgnoreCase(categoria)) {
                     System.out.println("codigo: " + codigo + ", Descrição: " + banco_despesas.get(codigo));
                 }
             }
@@ -69,17 +69,17 @@ public final class Financeiro {
             float totalDespesasvariaveis = 0;
             float totalDespesas = 0;
              for (Despesa despesa : banco_despesas.values()) {
-                if(despesa.categoria.equalsIgnoreCase("operacional")){
-                    totalDespesasfixas += despesa.valor;
-                }else if(despesa.categoria.equalsIgnoreCase("compras")){
-                    totalDespesasvariaveis += despesa.valor;
+                if(despesa.getCategoria().equalsIgnoreCase("operacional")){
+                    totalDespesasfixas += despesa.getValor();
+                }else if(despesa.getCategoria().equalsIgnoreCase("compras")){
+                    totalDespesasvariaveis += despesa.getValor();
                 }
             }
              totalDespesas = totalDespesasfixas + totalDespesasvariaveis;
             float totalFaturamentos = 0;
 
             for (Despesa despesa : banco_despesas.values()) {
-                totalDespesas += despesa.valor;
+                totalDespesas += despesa.getValor();
             }
 
             for (Faturamento faturamento : banco_faturamentos.values()) {
@@ -111,10 +111,10 @@ public final class Financeiro {
 
             writer.println(
                 codigo + ";" +
-                despesa.valor + ";" +
-                despesa.descricao + ";" +
-                despesa.data + ";" +
-                despesa.categoria
+                despesa.getValor() + ";" +
+                despesa.getDescricao() + ";" +
+                despesa.getData() + ";" +
+                despesa.getCategoria()
             );
         }
 
@@ -161,17 +161,17 @@ public final class Financeiro {
             float totalDespesasvariaveis = 0;
             float totalDespesas = 0;
              for (Despesa despesa : banco_despesas.values()) {
-                if(despesa.categoria.equalsIgnoreCase("operacional")){
-                    totalDespesasfixas += despesa.valor;
-                }else if(despesa.categoria.equalsIgnoreCase("compras")){
-                    totalDespesasvariaveis += despesa.valor;
+                if(despesa.getCategoria().equalsIgnoreCase("operacional")){
+                    totalDespesasfixas += despesa.getValor();
+                }else if(despesa.getCategoria().equalsIgnoreCase("compras")){
+                    totalDespesasvariaveis += despesa.getValor();
                 }
             }
              totalDespesas = totalDespesasfixas + totalDespesasvariaveis;
             float totalFaturamentos = 0;
 
             for (Despesa despesa : banco_despesas.values()) {
-                totalDespesas += despesa.valor;
+                totalDespesas += despesa.getValor();
             }
 
             for (Faturamento faturamento : banco_faturamentos.values()) {
@@ -188,8 +188,8 @@ public final class Financeiro {
 
         System.out.println("Arquivo Demonstração_de_resultados.csv criado com sucesso!");
 
-    } catch (Exception e) {
-        System.out.println("Erro ao criar arquivo: " + e.getMessage());
+    } catch (Exception erro) {
+        System.out.println("Erro ao criar arquivo: " + erro.getMessage());
     }
 }
         

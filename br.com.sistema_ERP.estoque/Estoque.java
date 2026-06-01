@@ -113,8 +113,8 @@ public class Estoque {
 
         System.out.println("Arquivo estoque.csv criado com sucesso!");
 
-         }catch (Exception e) {
-            System.out.println("Ocorreu um erro ao criar o arquivo estoque.csv: " + e.getMessage());
+         }catch (Exception erro) {
+            System.out.println("Ocorreu um erro ao criar o arquivo estoque.csv: " + erro.getMessage());
          }
 }
 }

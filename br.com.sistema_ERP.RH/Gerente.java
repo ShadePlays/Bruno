@@ -9,28 +9,31 @@ public class Gerente extends Usuario {
         this.Permissoes = "Vizualizar Relatórios, Cadastrar Funcionários,Cadastrar Estoque, Gerenciar Vendas";
     }
 
-    private void visualizarRelatorio() {
+    /*  private void visualizarRelatorio() {
         System.out.println("Visualizando relatório de vendas...");
         
-    }
+    }*/
 
     @Override
     protected String get_departamento() {
         return this.departamento;
     }
-    @Override
     protected double get_salario() {
         return this.salario;
     }
+    protected void set_salario(Double salario) {
+        this.salario = salario;
+    }
+
+
     protected String get_permissoes() {
         return this.Permissoes;
     }
     protected void set_permissoes(String permissoes) {
         this.Permissoes = permissoes;
     }
-    protected void set_salario(Double salario) {
-        this.salario = salario;
-    }
+
+    
     
 
 }

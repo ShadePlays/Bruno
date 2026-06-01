@@ -44,6 +44,24 @@ public class Usuario extends RH {
     protected void set_id(int id){
         this.id = id;
     }
+    protected void set_nome(String nome){
+        this.nome = nome;
+    }
+    protected void set_email(String email){
+        this.email = email;
+    }
+    protected void set_senha(int senha){
+        this.senha = senha;
+    }
+    protected void set_ativo(boolean ativo){
+        this.ativo = ativo;
+    }
+    protected void set_departamento(String departamento){
+        this.departamento = departamento;
+    }
+    protected void set_salario(double salario){
+        this.salario = salario;
+    }
 
   protected void login(String id, int senha) {
         if (this.email.equals(email) && this.senha == senha) {

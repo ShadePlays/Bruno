@@ -139,8 +139,6 @@ public class RH  {
         return novoFuncionario;
     }
 
-
-
     protected static Gerente cadastrarGerente(Usuario usuario, Scanner scanner) {
         System.out.println("Cadastro de Gerente:");
        

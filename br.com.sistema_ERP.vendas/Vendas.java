@@ -80,8 +80,8 @@ public class Vendas {
 
         System.out.println("Arquivo vendas.csv criado com sucesso!");
 
-         }catch (Exception e) {
-            System.out.println("Ocorreu um erro ao criar o arquivo vendas.csv: " + e.getMessage());
+         }catch (Exception erro) {
+            System.out.println("Ocorreu um erro ao criar o arquivo vendas.csv: " + erro.getMessage());
          }
 
     }
