@@ -199,6 +199,8 @@ public class Interface extends Funcoes_basicas {
                 System.out.println("===========================");
                 System.out.println("1. Registrar Venda");
                 System.out.println("2. Exibir Vendas");
+                System.out.println("3. Exibir Vendas por Data");
+                System.out.println("4. cadastrar Cliente");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
@@ -210,9 +212,15 @@ public class Interface extends Funcoes_basicas {
             System.out.println("Encerrando o sistema...");
         }
         else if(seta==1){
-            Funcoes_basicas.registrarVenda();
+            Vendas.registrarVenda(scanner);
         }else if(seta==2){
-            Funcoes_basicas.exibirVendas();
+            Vendas.exibirVendas();
+        }else if(seta==3){
+            System.out.println("Digite a data para filtrar as vendas (dd/mm/yyyy):");
+            String data = scanner.nextLine();
+            Vendas.exibirVendasPorData(data);
+        }else if(seta==4){
+            Cliente.cadastrarCliente(scanner);
         }
     }
      

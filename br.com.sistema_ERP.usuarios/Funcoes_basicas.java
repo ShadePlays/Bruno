@@ -294,17 +294,7 @@ public class Funcoes_basicas  {
            return 0;
         }
     }
-    
-    protected static void registrarVenda(){
-        System.out.println("Venda registrada com sucesso!");
-    }
-
-    protected static void exibirVendas(){
-        System.out.println("Exibindo vendas...");
-    }
-    protected static void gerenciarEstoque(){
-        System.out.println("Gerenciando estoque...");
-    }
+   
 
     protected static void registrarPonto(int id){
         if(banco_usuarios.get(id) instanceof Funcionario){

@@ -1,6 +1,6 @@
 public class Gerente extends Usuario {
         private String departamento;
-        String Permissoes;
+        private String Permissoes;
         
 
    public Gerente(int id, String nome, String email, int senha, String departamento) {

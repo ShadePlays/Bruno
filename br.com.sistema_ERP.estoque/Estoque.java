@@ -1,5 +1,6 @@
-
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Estoque {
@@ -90,4 +91,26 @@ public class Estoque {
         }
         return banco_produtos.get(codigoProduto).nome;
     }
+
+    public static void registrar_em_arquivo_csv() {
+         try{
+
+        PrintWriter writer = new PrintWriter("estoque.csv");
+
+        writer.println("codigo;nome;descricao;preco;quantidade");
+        for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
+    
+            Integer codigo = entry.getKey();
+            Produto produto = entry.getValue();
+            writer.println(codigo + ";" + produto.nome + ";" + produto.descricao + ";" + produto.preco + ";" + produto.quantidade);
+        }
+        
+        writer.close();
+
+        System.out.println("Arquivo estoque.csv criado com sucesso!");
+
+         }catch (Exception e) {
+            System.out.println("Ocorreu um erro ao criar o arquivo estoque.csv: " + e.getMessage());
+         }
+}
 }
