@@ -44,7 +44,7 @@ public class Estoque {
 
     public static void atualizarQuantidade(int codigoProduto, int quantidade) {
          if (banco_produtos.containsKey(codigoProduto)) {
-            banco_produtos.get(codigoProduto).setQuantidade(quantidade); += quantidade;
+            banco_produtos.get(codigoProduto).setQuantidade(banco_produtos.get(codigoProduto).getQuantidade() + quantidade);
             System.out.println("Quantidade atualizada: " + banco_produtos.get(codigoProduto));
         } else {
             System.out.println("Produto não encontrado.");
