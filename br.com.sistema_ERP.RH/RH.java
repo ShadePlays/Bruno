@@ -54,6 +54,7 @@ public class RH  {
                 (usuario instanceof Funcionario ? ((Funcionario) usuario).get_departamento() : "N/A")
             );
         }
+        
 
         writer.close();
 
@@ -62,7 +63,40 @@ public class RH  {
     } catch (Exception e) {
         System.out.println("Erro ao criar arquivo: " + e.getMessage());
     }
+
+        try {
+        PrintWriter writer = new PrintWriter("FolhaPagamento.csv");
+        writer.println("ID;Nome;Cargo;Departamento;Salário");
+        for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
+            Integer id = entry.getKey();
+            Usuario usuario = entry.getValue();
+
+            if(usuario instanceof Funcionario){
+                Funcionario funcionario = (Funcionario) usuario;
+                writer.println(
+                    id + ";" +
+                    funcionario.get_nome() + ";" +
+                    "Funcionario" + ";" +
+                    funcionario.get_departamento() + ";" +
+                    funcionario.get_salario()
+                );
+            } else if(usuario instanceof Gerente){
+                Gerente gerente = (Gerente) usuario;
+                writer.println(
+                    id + ";" +
+                    gerente.get_nome() + ";" +
+                    "Gerente" + ";" +
+                    gerente.get_departamento() + ";" +
+                    gerente.get_salario()
+                );
+            }
         }
+        writer.close();
+        }catch(Exception e){
+            System.out.println("Erro ao criar arquivo: " + e.getMessage());
+        }
+        
+    }
 
 
     protected static void criar_usuario_padrao(){
@@ -325,7 +359,6 @@ public class RH  {
         double Somatorio_gerentes = 0;
 
         for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
-            Integer id = entry.getKey();
             Usuario usuario = entry.getValue();
 
             if(usuario instanceof Funcionario){

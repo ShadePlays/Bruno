@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class Main extends RH {
+public class Main {
 
     /**
      * @param args
