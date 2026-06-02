@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public final class Financeiro {
         private  static double caixa= 0.0;
         private static HashMap<Integer, Despesa> banco_despesas = new HashMap<>();
@@ -94,7 +95,15 @@ public final class Financeiro {
             System.out.println("Resultado: " + resultado);
         }
         
-        
+        public static float get_despesas_por_categoria(String categoria) {
+            float total = 0;
+            for (Despesa despesa : banco_despesas.values()) {
+                if (despesa.getCategoria().equalsIgnoreCase(categoria)) {
+                    total += despesa.getValor();
+                }
+            }
+            return total;
+        }
 
         public static void registrar_em_arquivo_csv() {
              
@@ -193,6 +202,32 @@ public final class Financeiro {
     }
 }
         
+        public static double getCaixa() {
+            return caixa;
+        }
+
+        public static void calcular_ponto_de_equilibrio_total() {
+            System.out.println("Cálculo do Ponto de Equilíbrio Total\n");
+            float totalDespesasfixas = 0;
+            float totalDespesasvariaveis = 0;
+                for (Despesa despesa : banco_despesas.values()) {
+                    if(despesa.getCategoria().equalsIgnoreCase("operacional")){
+                        totalDespesasfixas += despesa.getValor();
+                    }else if(despesa.getCategoria().equalsIgnoreCase("compras")){
+                        totalDespesasvariaveis += despesa.getValor();
+                    }
+                }
+                float totalDespesas = totalDespesasfixas + totalDespesasvariaveis;
+
+            float totalFaturamentos = 0;
+            for (Faturamento faturamento : banco_faturamentos.values()) {
+                totalFaturamentos += faturamento.getValor();
+            }
+
+            float pontoEquilibrio = totalDespesas / (totalFaturamentos - totalDespesas);
+            System.out.println("Ponto de Equilíbrio Total: " + pontoEquilibrio);
+
+        }
 
 
 
