@@ -169,7 +169,7 @@ public class Interface extends RH {
             Interface.ExibirSubmenu_rh(id,setar, scanner);
         }else if(setar==6){
             setar= scanner.nextInt();
-            //Interface.ExibirSubmenu_estoque(id,setar, scanner);
+            Interface.ExibirSubmenu_estoque(id,setar, scanner);
         }else if(setar==7){
             setar= scanner.nextInt();
             Interface.ExibirSubmenu_financeiro(id,setar, scanner);
@@ -300,9 +300,13 @@ public class Interface extends RH {
         switch (seta) {
             case 1:
                 System.out.println("===========================");
-                System.out.println("1. Gerenciar Estoque");
+                System.out.println("1. Visualizar Estoque");
+                System.out.println("2. Adicionar Produto");
+                System.out.println("3. Reativar Produto");
+                System.out.println("4. Desativar Produto");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
+                seta= scanner.nextInt();
                 break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
@@ -312,7 +316,17 @@ public class Interface extends RH {
             System.out.println("Encerrando o sistema...");
         }
         else if(seta==1){
-            //Funcoes_basicas.gerenciarEstoque();
+            
+
+        }
+        else if(seta==2){
+            Estoque.registrarProduto(scanner);
+        }
+        else if(seta==3){
+            Estoque.ativarProduto(scanner);
+        }
+        else if(seta==4){
+            Estoque.desativarProduto(scanner);
         }
     }
 

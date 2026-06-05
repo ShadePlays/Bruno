@@ -1,16 +1,22 @@
-public class Produto {
-   private int codigo;
+public abstract class Produto {
+    private int id;
     private String nome;
     private String descricao;
-    private double preco_venda;
+    private double precoVenda;
     private double custo;
-    private int quantidade;
+    private int estoque;
+    private boolean ativo;
+    private double lucro = precoVenda - custo;
 
-    public int getCodigo() {
-        return codigo;
+    public int tipoProduto() { 
+        return 0;
     }
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+
+    public int getid() {
+        return id;
+    }
+    public void setid(int id) {
+        this.id = id;
     }
     public String getNome() {
         return nome;
@@ -24,11 +30,11 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public double getPreco_venda() {
-        return preco_venda;
+    public double getPrecoVenda() {
+        return precoVenda;
     }
-    public void setPreco_venda(double preco_venda) {
-        this.preco_venda = preco_venda;
+    public void setPrecoVenda(double precoVenda) {
+        this.precoVenda = precoVenda;
     }
     public double getCusto() {
         return custo;
@@ -37,10 +43,26 @@ public class Produto {
         this.custo = custo;
     }
     public int getQuantidade() {
-        return quantidade;
+        return estoque;
     }
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidade(int estoque) {
+        this.estoque = estoque;
     }
-
+    public boolean isAtivo() {
+        return ativo;
+    }
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    public void getLucro(){
+        if (lucro < 0){
+            System.out.println("Você está perdendo " + (lucro * -1) + " reais");
+        }
+        else if (lucro > 0){
+             System.out.println("Você está lucrando " + lucro + " reais");
+        }
+        else {
+            System.out.println("Você não está tendo lucro algum.");
+        }
+    }
 }
