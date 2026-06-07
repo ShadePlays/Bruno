@@ -256,24 +256,37 @@ public class Estoque {
     }
 
     public static void registrar_em_arquivo_csv() {
-         try{
-
+          
+        try{
         PrintWriter writer = new PrintWriter("estoque.csv");
 
-        writer.println("codigo;nome;descricao;custo;quantidade;precoVenda");
-        for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
-    
-            Integer codigo = entry.getKey();
-            Produto produto = entry.getValue();
-            writer.println(codigo + ";" + produto.getNome() + ";" + produto.getDescricao() + ";" + produto.getCusto() + ";" + produto.getQuantidade() + ";" + produto.getPrecoVenda()+";");
+        for(Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()){
+            Integer codigoProduto = entry.getKey();
+
+         if( banco_produtos.get(codigoProduto).tipoProduto() == 1) {
+            writer.println("codigo;nome;descricao;custo;quantidade;precoVenda;dataValidade");
+            System.out.println("Registrando produtos alimentícios em arquivo CSV...");
+            System.out.println("Não é possível registrar produtos alimentícios em arquivo CSV.");
         }
-        
-        writer.close();
+    }
 
-        System.out.println("Arquivo estoque.csv criado com sucesso!");
-
-         }catch (Exception erro) {
-            System.out.println("Ocorreu um erro ao criar o arquivo estoque.csv: " + erro.getMessage());
-         }
+    for(Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()){
+            Integer codigoProduto = entry.getKey();
+        if( banco_produtos.get(codigoProduto).tipoProduto() == 2) {
+            writer.println("codigo;nome;descricao;custo;quantidade;precoVenda;unidadeMedida;ingredientesAtivos;volume");
+            System.out.println("Registrando produtos de limpeza em arquivo CSV...");
+        }
+    }
+       for(Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()){
+            Integer codigoProduto = entry.getKey();
+        if( banco_produtos.get(codigoProduto).tipoProduto() == 3) {
+            writer.println("codigo;nome;descricao;custo;quantidade;precoVenda;marca;modelo;voltagem;garantiaMeses");
+            System.out.println("Registrando produtos eletrônicos em arquivo CSV...");
+        }
+    }
+}catch (Exception e) {
+    System.out.println("Ocorreu um erro ao registrar os produtos em arquivo CSV: " + e.getMessage());
 }
+    }
+      
 }
