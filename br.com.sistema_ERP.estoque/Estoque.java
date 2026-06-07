@@ -162,6 +162,8 @@ public class Estoque {
         produto.setDescricao(descricao);
         produto.setPrecoVenda(precoVenda);
         produto.setQuantidade(quantidade);
+        produto.tipoProduto();
+        produto.setAtivo( true);
         int codigo = banco_produtos.size() + 1; 
         banco_produtos.put(codigo, produto);
         System.out.println("Produto registrado: " + banco_produtos.get(codigo));
@@ -194,10 +196,21 @@ public class Estoque {
         }
     }
 
-    public static void exibirProdutos() {
+    public static void exibirProdutosAtivos() {
         System.out.println("Produtos em Estoque:");
         for (Integer codigo : banco_produtos.keySet()) {
-            System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo));
+            if (banco_produtos.get(codigo).isAtivo()) {
+                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo) + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
+            }
+        }
+    }
+
+    public static void exibirProdutosInativos() {
+        System.out.println("Produtos em Estoque:");
+        for (Integer codigo : banco_produtos.keySet()) {
+            if (!banco_produtos.get(codigo).isAtivo()) {
+                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo) + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
+            }
         }
     }
 
@@ -255,25 +268,5 @@ public class Estoque {
         return banco_produtos.get(codigoProduto).getNome();
     }
 
-    public static void registrar_em_arquivo_csv() {
-         try{
-
-        PrintWriter writer = new PrintWriter("estoque.csv");
-
-        writer.println("codigo;nome;descricao;custo;quantidade;precoVenda");
-        for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
     
-            Integer codigo = entry.getKey();
-            Produto produto = entry.getValue();
-            writer.println(codigo + ";" + produto.getNome() + ";" + produto.getDescricao() + ";" + produto.getCusto() + ";" + produto.getQuantidade() + ";" + produto.getPrecoVenda()+";");
-        }
-        
-        writer.close();
-
-        System.out.println("Arquivo estoque.csv criado com sucesso!");
-
-         }catch (Exception erro) {
-            System.out.println("Ocorreu um erro ao criar o arquivo estoque.csv: " + erro.getMessage());
-         }
-}
 }

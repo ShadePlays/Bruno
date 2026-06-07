@@ -9,35 +9,35 @@ public class Interface extends RH {
             int cargo = RH.departamento(id);
             if(cargo == 1){
                 Interface.exibirMenu_gerencia();
-                 int seta = scanner.nextInt();
+                 int seta = TesteEntrada.nextInt(scanner);
                 if(seta >0){
                 scanner.nextLine(); // Limpar o buffer do scanner
                 Interface.exibirSubmenu_gerencia(id,seta, scanner);
         }
             } else if(cargo == 2){
                 Interface.exibirmenu_vendas();
-                int seta = scanner.nextInt();
+                int seta = TesteEntrada.nextInt(scanner);
                 if(seta >0){
                 scanner.nextLine(); // Limpar o buffer do scanner
                 Interface.ExibirSubmenu_vendas(id,seta, scanner);
         }         
             } else if(cargo == 3){
                 Interface.exibirmenu_rh();
-                int seta = scanner.nextInt();
+                int seta = TesteEntrada.nextInt(scanner);
                 if(seta >0){
                 scanner.nextLine(); // Limpar o buffer do scanner
                 Interface.ExibirSubmenu_rh(id,seta, scanner);
                 }
             }else if(cargo == 4){
                 Interface.exibirmenu_estoque();
-                int seta = scanner.nextInt();
+                int seta = TesteEntrada.nextInt(scanner);
                 if(seta >0){
                 scanner.nextLine(); // Limpar o buffer do scanner
                 Interface.ExibirSubmenu_estoque(id,seta, scanner);
                 }   
             }else if(cargo == 5){
                 Interface.exibirmenu_financeiro();
-                int seta = scanner.nextInt();
+                int seta = TesteEntrada.nextInt(scanner);
                 if(seta >0){
                 scanner.nextLine(); // Limpar o buffer do scanner
                 Interface.ExibirSubmenu_financeiro(id,seta, scanner);
@@ -154,24 +154,24 @@ public class Interface extends RH {
             System.out.println("Encerrando o sistema...");
         }
         else if(setar==1){
-            setar= scanner.nextInt();
+            setar= TesteEntrada.nextInt(scanner);
             Interface.exibirSubmenuCadastrar(id,setar, scanner);
            
         }else if(setar==2){
-            setar= scanner.nextInt();
+            setar= TesteEntrada.nextInt(scanner);
             Interface.exibirSubmenuBuscar(id,setar, scanner);
            
         }else if(setar==4){
-            setar= scanner.nextInt();
+            setar= TesteEntrada.nextInt(scanner);
             Interface.ExibirSubmenu_vendas(id,setar, scanner);
         }else if(setar==5){
-            setar= scanner.nextInt();
+            setar= TesteEntrada.nextInt(scanner);
             Interface.ExibirSubmenu_rh(id,setar, scanner);
         }else if(setar==6){
-            setar= scanner.nextInt();
+            setar= TesteEntrada.nextInt(scanner);
             Interface.ExibirSubmenu_estoque(id,setar, scanner);
         }else if(setar==7){
-            setar= scanner.nextInt();
+            setar= TesteEntrada.nextInt(scanner);
             Interface.ExibirSubmenu_financeiro(id,setar, scanner);
         }
     }
@@ -222,13 +222,13 @@ public class Interface extends RH {
             System.out.println("Encerrando o sistema...");
         }
         else if(seta==1){
-             seta= scanner.nextInt();
+             seta= TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
             if(seta==1){
             Vendas.registrarVenda(scanner);
             }
         }else if(seta==2){
-             seta= scanner.nextInt();
+             seta= TesteEntrada.nextInt(scanner);
             if(seta==1){
             Vendas.exibirVendas();
             }else if(seta==2){
@@ -237,7 +237,7 @@ public class Interface extends RH {
                 Vendas.exibirVendasPorData(data);
             }
         }else if(seta==3){
-             seta= scanner.nextInt();
+             seta= TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
             if(seta==1){
                 Cliente.cadastrarCliente(scanner);
@@ -261,11 +261,11 @@ public class Interface extends RH {
             System.out.println("Encerrando o sistema...");
         }
         else if(seta==1){
-            seta= scanner.nextInt();
+            seta= TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
             if(seta==1){
             System.out.println("Registrando ponto para qual funcionário? (Digite o ID do funcionário)");
-            int funcionarioId = scanner.nextInt();
+            int funcionarioId = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
             RH.registrarPonto(funcionarioId);
             }
@@ -283,7 +283,7 @@ public class Interface extends RH {
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
-        seta = scanner.nextInt();
+        seta = TesteEntrada.nextInt(scanner);
         scanner.nextLine(); // Limpar o buffer do scanner
         if(seta==0){
             System.out.println("Encerrando o sistema...");
@@ -296,46 +296,46 @@ public class Interface extends RH {
             Financeiro.exibirDespesas();
         }
     }
+
     public static void ExibirSubmenu_estoque(int id, int seta, Scanner scanner){
+        System.out.println("===========================");
+            System.out.println("1. Visualizar Estoque Ativo");
+            System.out.println("2. Visualizar Estoque Inativo");
+            System.out.println("3. Adicionar Produto");
+            System.out.println("4. Ativar Produto");
+            System.out.println("5. Desativar Produto");
+            System.out.println("6. Remover Produto");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.println("===========================");
+            seta = TesteEntrada.nextInt(scanner);
+            scanner.nextLine(); // Limpar o buffer do scanner
         switch (seta) {
+            case 0:
+                System.out.println("Encerrando o sistema...");
+                break;
             case 1:
-                System.out.println("===========================");
-                System.out.println("1. Visualizar Estoque");
-                System.out.println("2. Adicionar Produto");
-                System.out.println("3. Reativar Produto");
-                System.out.println("4. Desativar Produto");
-                System.out.println("0. Voltar ao Menu Principal");
-                System.out.println("===========================");
-                seta= scanner.nextInt();
+                Estoque.exibirProdutosAtivos();
+                break;
+            case 2:
+                Estoque.exibirProdutosInativos();
+                break;
+            case 3:
+                Estoque.registrarProduto(scanner);
+                break;
+            case 4:
+                Estoque.ativarProduto(scanner);
+                break;
+            case 5:
+                Estoque.desativarProduto(scanner);
+                break;
+            case 6:
+                Estoque.removerProduto(scanner);
                 break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
-
-        if(seta==0){
-            System.out.println("Encerrando o sistema...");
-        }
-        else if(seta==1){
-            
-
-        }
-        else if(seta==2){
-            Estoque.registrarProduto(scanner);
-        }
-        else if(seta==3){
-            Estoque.ativarProduto(scanner);
-        }
-        else if(seta==4){
-            Estoque.desativarProduto(scanner);
-        }
     }
-
 }
-
-
-     
-    
-
 
     
    
