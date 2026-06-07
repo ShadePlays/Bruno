@@ -24,13 +24,13 @@ public class Vendas {
        
         System.out.println("Venda registrada: Produto código " + codigoProduto + ", Quantidade vendida: " + quantidadeVendida);
        
-        Financeiro.registrarFaturamento(Estoque.valor_total_produtos(codigoProduto, quantidadeVendida), Estoque.getNomeProduto(codigoProduto), dataVenda);
+        Financeiro.registrarFaturamento(Estoque.valor_total_produtos(codigoProduto, quantidadeVendida), Estoque.NomeProduto(codigoProduto), dataVenda);
 
         Sale venda = new Sale();
         venda.setCodigoProduto(codigoProduto);
         venda.setQuantidadeVendida(quantidadeVendida);
         venda.setDataVenda(dataVenda);
-        venda.setNomeProduto(Estoque.getNomeProduto(codigoProduto));
+        venda.setNomeProduto(Estoque.NomeProduto(codigoProduto));
         banco_vendas.put(codigoProduto, venda);
        }
         else {

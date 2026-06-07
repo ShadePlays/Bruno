@@ -1,2 +1,5 @@
-codigo;nome;descricao;custo;quantidade;precoVenda
-1;Ype;Ype com volume de 1350.0 ML;14.98;68;22.74
+codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade
+1001;1;1;1.0;1.0;1;1 que vence em 09/09/9000;09/09/9000
+codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume
+2002;2;2;2.0;2.0;2;2 com volume de 1.0 L;L;1;1.0
+codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses

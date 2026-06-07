@@ -20,6 +20,14 @@ public class Main {
         scanner.nextLine(); // Limpar o buffer do scanner
     }
 
+        // teste de cadastro de produtos
+    int cont = 0;
+    while(cont <=3){
+        Estoque.registrarProduto(scanner);
+        cont++;
+    }
+    // termina aqui o teste de cadastro de produtos
+       
         Financeiro.registrar_em_arquivo_csv();
         RH.registrar_em_arquivo_csv();
         Vendas.registrar_em_arquivo_csv();

@@ -164,7 +164,7 @@ public class Estoque {
         produto.setQuantidade(quantidade);
         produto.tipoProduto();
         produto.setAtivo( true);
-        int codigo = banco_produtos.size() + 1; 
+        int codigo = tipoProduto*1000 +banco_produtos.size() + 1; 
         banco_produtos.put(codigo, produto);
         System.out.println("Produto registrado: " + banco_produtos.get(codigo));
 
@@ -260,7 +260,7 @@ public class Estoque {
         return valor_total;
     }
 
-    public static String getNomeProduto(int codigoProduto) {
+    public static String NomeProduto(int codigoProduto) {
         if(banco_produtos.isEmpty()) {
             System.out.println("Nenhum produto registrado.");
             return "";
@@ -270,23 +270,89 @@ public class Estoque {
 
     public static void registrar_em_arquivo_csv() {
           
-        try{
-        PrintWriter writer = new PrintWriter("estoque.csv");
+        try(PrintWriter writer = new PrintWriter("estoque.csv")) {
+           
+            boolean cabeçalhoAlimenticio = false;
+            boolean cabeçalhoLimpeza = false;
+            boolean cabeçalhoEletronico = false;
 
-        writer.println("codigo;nome;descricao;custo;quantidade;precoVenda");
-        for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
-    
-            Integer codigo = entry.getKey();
-            Produto produto = entry.getValue();
-            writer.println(codigo + ";" + produto.getNome() + ";" + produto.getDescricao() + ";" + produto.getCusto() + ";" + produto.getQuantidade() + ";" + produto.getPrecoVenda()+";");
+            for(Map.Entry<Integer,Produto> entry: banco_produtos.entrySet()){
+                
+                Integer codigo = entry.getKey();
+                Produto produto = entry.getValue();
+
+                if( cabeçalhoAlimenticio ==false){
+                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade");
+                    cabeçalhoAlimenticio = true;
+                }
+                if(produto.tipoProduto()==1){
+                writer.println(
+                    codigo + ";" +
+                    produto.tipoProduto() + ";" +
+                    produto.getNome() + ";" +
+                    produto.getCusto() + ";" +
+                    produto.getPrecoVenda() + ";" +
+                    produto.getQuantidade() + ";" +
+                    produto.getDescricao() + ";" +
+                    (produto instanceof ProdutoAlimenticio ? ((ProdutoAlimenticio) produto).getDataValidade() : "")
+                );
+            }
+            }
+
+            for(Map.Entry<Integer,Produto> entry: banco_produtos.entrySet()){
+                
+                Integer codigo = entry.getKey();
+                Produto produto = entry.getValue();
+
+                if( cabeçalhoLimpeza ==false){
+                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume");
+                    cabeçalhoLimpeza = true;
+                }
+                if(produto.tipoProduto()== 2){
+                writer.println(
+                    codigo + ";" +
+                    produto.tipoProduto() + ";" +
+                    produto.getNome() + ";" +
+                    produto.getCusto() + ";" +
+                    produto.getPrecoVenda() + ";" +
+                    produto.getQuantidade() + ";" +
+                    produto.getDescricao() + ";" +
+                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getunidadeMedida() : "") + ";" +
+                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getIngredientesAtivos() : "") + ";" +
+                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getVolume() : "")
+                );
+            }
+            }
+
+            for(Map.Entry<Integer,Produto> entry: banco_produtos.entrySet()){
+                
+                Integer codigo = entry.getKey();
+                Produto produto = entry.getValue();
+
+                if( cabeçalhoEletronico ==false){
+                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses");
+                    cabeçalhoEletronico = true;
+                }
+                if(produto.tipoProduto()== 3 ){
+                writer.println(
+                    codigo + ";" +
+                    produto.tipoProduto() + ";" +
+                    produto.getNome() + ";" +
+                    produto.getCusto() + ";" +
+                    produto.getPrecoVenda() + ";" +
+                    produto.getQuantidade() + ";" +
+                    produto.getDescricao() + ";" +
+                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getMarca() : "") + ";" +
+                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getModelo() : "") + ";" +
+                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getVoltagem() : "") + ";" +
+                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getGarantiaMeses() : "")
+                );
+            }
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("Erro ao registrar dados no arquivo: " + e.getMessage());
         }
-        
-        writer.close();
-
-        System.out.println("Arquivo estoque.csv criado com sucesso!");
-
-         }catch (Exception erro) {
-            System.out.println("Ocorreu um erro ao criar o arquivo estoque.csv: " + erro.getMessage());
-         }
-}
+    }
 }
