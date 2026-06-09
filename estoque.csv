@@ -4,3 +4,4 @@ codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo
 codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo
 2002;2;Cif;22.0;29.0;32;Cif com volume de 1.2 L;L;Cloro;1.2;true
 codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo
+3004;3;Celular;1299.99;2199.98;7;Celular modelo S20 FE da marca Samsung;Samsung;S20 FE;127;24;true
