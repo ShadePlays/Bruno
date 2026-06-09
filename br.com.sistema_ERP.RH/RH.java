@@ -437,5 +437,23 @@ public class RH  {
             System.out.println("Arquivo Usuarios.csv não encontrado ou erro ao ler: " + e.getMessage());
         }
     }
+    public static void exibirFuncionarios() {
+        System.out.println("Funcionários Cadastrados:");
+        for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
+            Usuario usuario = entry.getValue();
+            if (usuario instanceof Funcionario) {
+                System.out.println("ID: " + usuario.getID() + ", Nome: " + usuario.getNome() + ", Departamento: " + usuario.getDepartamento());
+            }
+        }
+    }
+    public static void exibirGerentes() {
+        System.out.println("Gerentes Cadastrados:");
+        for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
+            Usuario usuario = entry.getValue();
+            if (usuario instanceof Gerente) {
+                System.out.println("ID: " + usuario.getID() + ", Nome: " + usuario.getNome() + ", Departamento: " + usuario.getDepartamento());
+            }
+        }
+     }
 }
 

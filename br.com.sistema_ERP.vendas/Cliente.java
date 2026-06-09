@@ -55,7 +55,7 @@ private static HashMap<Integer, Pessoa> banco_clientes = new HashMap<>();
         }
     }
 
-    public static void registrar_em_arquivo_csv() {
+    public static void registrarEmArquivoCSV() {
         try (PrintWriter writer = new PrintWriter("clientes.csv")) {
             StringBuilder sb = new StringBuilder();
             sb.append("codigo,nome,email,cpf,telefone,endereco\n");
