@@ -80,7 +80,7 @@ public class Interface extends RH {
     public static void ExibirMenuRH() {
         System.out.println("Bem-vindo ao Sistema ERP!");
         System.out.println("===========================");
-        System.out.println("1. Cadastrar Ponto");
+        System.out.println("1. Gerenciar RH");
         System.out.println("0. Sair");
         System.out.println("===========================");
     }
@@ -248,6 +248,11 @@ public class Interface extends RH {
             case 1:
                 System.out.println("===========================");
                 System.out.println("1. Registrar Ponto");
+                System.out.println("2. Exibir Funcionários");
+                System.out.println("3. Exibir Gerentes");
+                System.out.println("4. Cadastrar Usuario");
+                System.out.println("5. Registrar falta ");
+                System.out.println("6. Folha de pagamento");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
@@ -257,6 +262,8 @@ public class Interface extends RH {
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
 
+            seta = TesteEntrada.nextInt(scanner);
+             scanner.nextLine(); // Limpar o buffer do scanner
         if(seta==0){
             System.out.println("Encerrando o sistema...");
         }
@@ -269,6 +276,16 @@ public class Interface extends RH {
             scanner.nextLine(); // Limpar o buffer do scanner
             RH.registrarPonto(funcionarioId);
             }
+        }else if(seta==2){
+            RH.exibirFuncionarios();
+        }else if(seta==3){
+            RH.exibirGerentes();
+        }else if(seta==4){
+            RH.cadastrarUsuario(scanner);
+        }else if(seta==5){
+            RH.registrarFalta(scanner);
+        }else if(seta ==6){
+            RH.FolhaPagamento(scanner);
         }
     }
     public static void ExibirSubmenuFinanceiro(int id, int seta, Scanner scanner){
@@ -301,7 +318,7 @@ public class Interface extends RH {
             Financeiro.exibirDespesas();
         }
     }
-
+  
     public static void ExibirSubmenuEstoque(int id, int seta, Scanner scanner){
         System.out.println("===========================");
             System.out.println("1. Visualizar Estoque Ativo");
@@ -310,6 +327,7 @@ public class Interface extends RH {
             System.out.println("4. Ativar Produto");
             System.out.println("5. Desativar Produto");
             System.out.println("6. Remover Produto");
+            System.out.println("7. Comprar Produto");
             System.out.println("0. Voltar ao Menu Principal");
             System.out.println("===========================");
             seta = TesteEntrada.nextInt(scanner);
@@ -335,6 +353,9 @@ public class Interface extends RH {
                 break;
             case 6:
                 Estoque.removerProduto(scanner);
+                break;
+            case 7:
+                Estoque.comprarProduto(scanner);
                 break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");

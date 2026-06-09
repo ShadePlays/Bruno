@@ -7,6 +7,13 @@ public class Vendas {
     
     private static HashMap<Integer, Sale> banco_vendas = new HashMap<>();
     
+    public static void dados_teste() {
+        Sale venda1 = new Sale(1, 2, "01/01/2024", "Produto A", "123.456.789-00"    );
+        Sale venda2 = new Sale(2, 1, "02/01/2024", "Produto B", "987.654.321-00");
+        banco_vendas.put(1, venda1);
+        banco_vendas.put(2, venda2);
+    }
+
     public static void registrarVenda(Scanner scanner) {
         System.out.println("Registrar Venda");
         System.out.println("Digite o código do produto:");
@@ -26,11 +33,7 @@ public class Vendas {
        
         Financeiro.registrarFaturamento(Estoque.valorTotalProdutos(codigoProduto, quantidadeVendida), Estoque.NomeProduto(codigoProduto), dataVenda);
 
-        Sale venda = new Sale();
-        venda.setCodigoProduto(codigoProduto);
-        venda.setQuantidadeVendida(quantidadeVendida);
-        venda.setDataVenda(dataVenda);
-        venda.setNomeProduto(Estoque.NomeProduto(codigoProduto));
+        Sale venda = new Sale(codigoProduto, quantidadeVendida, dataVenda, Estoque.NomeProduto(codigoProduto), "123.456.789-00");
         banco_vendas.put(codigoProduto, venda);
        }
         else {

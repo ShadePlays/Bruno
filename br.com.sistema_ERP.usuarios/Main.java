@@ -13,6 +13,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int id;
 
+        // dados de teste
+            Financeiro.dados_teste();
+            Estoque.dados_teste();
+            Vendas.dados_teste();
+            Cliente.dados_teste();
+        
+
+
         try {
             id = RH.login(scanner);
                 if(id == -1){

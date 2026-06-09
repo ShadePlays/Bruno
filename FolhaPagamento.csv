@@ -1,4 +1,5 @@
 ID;Nome;Cargo;Departamento;Salário
 0;0;Gerente;0;0.0
-1;Bruno;Funcionario;Estoque;0.0
-2;Joao;Funcionario;Vendas;0.0
+1;João Silva;Gerente;Vendas;3000.0
+2;Maria Souza;Funcionario;RH;2375.0
+3;Carlos Oliveira;Funcionario;Estoque;2000.0
