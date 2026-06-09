@@ -1,17 +1,16 @@
 
 public class Usuario extends RH {
-  
-    protected int id;
-    protected String nome;
-    protected String email;
-    protected int senha;
-    protected boolean ativo;
-    protected String departamento;
-    protected double salario;
-    protected int numeroFaltas;
-   
 
-   protected Usuario(int id, String nome, String email, int senha,int numeroFaltas) {
+    private int id;
+    private String nome;
+    private String email;
+    private int senha;
+    private boolean ativo;
+    private String departamento;
+    private double salario;
+    private int numeroFaltas;
+
+    protected Usuario(int id, String nome, String email, int senha, int numeroFaltas) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -19,61 +18,73 @@ public class Usuario extends RH {
         this.ativo = true;
         this.numeroFaltas = numeroFaltas;
     }
+
     // get e sets
-   protected int getID(){
-            return this.id;
+    public int getID() {
+        return this.id;
     }
 
-    protected int getNumeroFaltas(){
-            return this.numeroFaltas;
+    public int getNumeroFaltas() {
+        return this.numeroFaltas;
     }
 
-    protected String getNome(){
-            return this.nome;
+    public String getNome() {
+        return this.nome;
     }
 
-   protected String getEmail(){
-            return this.email;
+    public String getEmail() {
+        return this.email;
     }
-   protected int getSenha(){
+
+    public int getSenha() {
         return this.senha;
     }
-   protected boolean getAtivo(){
+
+    public boolean getAtivo() {
         return this.ativo;
     }
-    protected String getDepartamento(){
+
+    public String getDepartamento() {
         return this.departamento;
     }
 
-    protected double getSalario(){
+    public double getSalario() {
         return this.salario;
     }
-    protected void setID(int id){
+
+    public void setID(int id) {
         this.id = id;
     }
-    protected void setNome(String nome){
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
-    protected void setEmail(String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
-    protected void setSenha(int senha){
+
+    public void setSenha(int senha) {
         this.senha = senha;
     }
-    protected void setNumeroFaltas(int numeroFaltas){
+
+    public void setNumeroFaltas(int numeroFaltas) {
         this.numeroFaltas = numeroFaltas;
     }
-    protected void setAtivo(boolean ativo){
+
+    public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    protected void setDepartamento(String departamento){
+
+    public void setDepartamento(String departamento) {
         this.departamento = departamento;
     }
-    protected void setSalario(double salario){
+
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 
-  protected void login(String id, int senha) {
+    protected void login(String email, int senha) {
         if (this.email.equals(email) && this.senha == senha) {
             System.out.println("Login bem-sucedido!");
         } else {
@@ -81,9 +92,4 @@ public class Usuario extends RH {
         }
     }
 
-    
-
-
-  
 }
-

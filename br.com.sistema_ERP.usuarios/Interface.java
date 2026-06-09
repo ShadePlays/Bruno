@@ -1,49 +1,49 @@
 
 import java.util.Scanner;
-public class Interface extends RH {
-    
-    
+
+public class Interface {
+
     public static void telaInicial(Scanner scanner, int id) {
-        if(id >-1){
+        if (id > -1) {
             int cargo = RH.departamento(id);
-            if(cargo == 1){
+            if (cargo == 1) {
                 Interface.ExibirMenuGerencia();
                 int seta = TesteEntrada.nextInt(scanner);
-                if(seta > 0){
-                scanner.nextLine(); // Limpar o buffer do scanner
-                Interface.ExibirSubmenuGerencia(id,seta, scanner);
-        }
-            } else if(cargo == 2){
+                if (seta > 0) {
+                    scanner.nextLine(); // Limpar o buffer do scanner
+                    Interface.ExibirSubmenuGerencia(id, seta, scanner);
+                }
+            } else if (cargo == 2) {
                 Interface.ExibirMenuVendas();
                 int seta = TesteEntrada.nextInt(scanner);
-                if(seta >0){
-                scanner.nextLine(); // Limpar o buffer do scanner
-                Interface.ExibirSubmenuVendas(id,seta, scanner);
-        }         
-            } else if(cargo == 3){
+                if (seta > 0) {
+                    scanner.nextLine(); // Limpar o buffer do scanner
+                    Interface.ExibirSubmenuVendas(id, seta, scanner);
+                }
+            } else if (cargo == 3) {
                 Interface.ExibirMenuEstoque();
                 int seta = TesteEntrada.nextInt(scanner);
-                if(seta == 1){
-                scanner.nextLine(); // Limpar o buffer do scanner
-                Interface.ExibirSubmenuEstoque(id,seta, scanner);
+                if (seta == 1) {
+                    scanner.nextLine(); // Limpar o buffer do scanner
+                    Interface.ExibirSubmenuEstoque(id, seta, scanner);
                 }
-                
-            }else if(cargo == 4){
+
+            } else if (cargo == 4) {
                 Interface.ExibirMenuRH();
                 int seta = TesteEntrada.nextInt(scanner);
-                if(seta == 1){
-                scanner.nextLine(); // Limpar o buffer do scanner
-                Interface.ExibirSubmenuRH(id,seta, scanner);
-                }   
-            }else if(cargo == 5){
+                if (seta == 1) {
+                    scanner.nextLine(); // Limpar o buffer do scanner
+                    Interface.ExibirSubmenuRH(id, seta, scanner);
+                }
+            } else if (cargo == 5) {
                 Interface.ExibirMenuFinanceiro();
                 int seta = TesteEntrada.nextInt(scanner);
-                if(seta == 1){
-                scanner.nextLine(); // Limpar o buffer do scanner
-                Interface.ExibirSubmenuFinanceiro(id,seta, scanner);
+                if (seta == 1) {
+                    scanner.nextLine(); // Limpar o buffer do scanner
+                    Interface.ExibirSubmenuFinanceiro(id, seta, scanner);
                 }
             }
-            
+
             else {
                 System.out.println("Cargo desconhecido. Acesso limitado.");
             }
@@ -52,6 +52,7 @@ public class Interface extends RH {
             System.out.println("Usuario não encontrado ou senha incorreta. Acesso negado.");
         }
     }
+
     public static void ExibirMenuGerencia() {
         System.out.println("Bem-vindo ao Sistema ERP!");
         System.out.println("===========================");
@@ -84,6 +85,7 @@ public class Interface extends RH {
         System.out.println("0. Sair");
         System.out.println("===========================");
     }
+
     public static void ExibirMenuEstoque() {
         System.out.println("Bem-vindo ao Sistema ERP!");
         System.out.println("===========================");
@@ -91,6 +93,7 @@ public class Interface extends RH {
         System.out.println("0. Sair");
         System.out.println("===========================");
     }
+
     public static void ExibirMenuFinanceiro() {
         System.out.println("Bem-vindo ao Sistema ERP!");
         System.out.println("===========================");
@@ -98,7 +101,7 @@ public class Interface extends RH {
         System.out.println("0. Sair");
         System.out.println("===========================");
     }
-    
+
     public static void ExibirSubmenuGerencia(int id, int setar, Scanner scanner) {
         switch (setar) {
             case 1:
@@ -121,25 +124,25 @@ public class Interface extends RH {
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
-                case 4:
+            case 4:
                 System.out.println("===========================");
                 System.out.println("1. Gerenciar Vendas");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
-                case 5:
+            case 5:
                 System.out.println("===========================");
                 System.out.println("1. Gerenciar RH");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
-                case 6:
+            case 6:
                 System.out.println("===========================");
                 System.out.println("1. Gerenciar Estoque");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
-                case 7:
+            case 7:
                 System.out.println("===========================");
                 System.out.println("1. Gerenciar Financeiro");
                 System.out.println("0. Voltar ao Menu Principal");
@@ -149,49 +152,50 @@ public class Interface extends RH {
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
 
-        if(setar==0){
+        if (setar == 0) {
             System.out.println("Encerrando o sistema...");
-        }
-        else if(setar==1){
-            setar= TesteEntrada.nextInt(scanner);
-            Interface.exibirSubmenuCadastrar(id,setar, scanner);
-           
-        }else if(setar==2){
-            setar= TesteEntrada.nextInt(scanner);
-            Interface.exibirSubmenuBuscar(id,setar, scanner);
-        }else if(setar==3){
-            setar= TesteEntrada.nextInt(scanner);
-            Interface.ExibirSubmenuExibir(id,setar, scanner);
+        } else if (setar == 1) {
+            setar = TesteEntrada.nextInt(scanner);
+            Interface.exibirSubmenuCadastrar(id, setar, scanner);
 
-        }else if(setar==4){
-            setar= TesteEntrada.nextInt(scanner);
-            Interface.ExibirSubmenuVendas(id,setar, scanner);
-        }else if(setar==5){
-            setar= TesteEntrada.nextInt(scanner);
-            Interface.ExibirSubmenuRH(id,setar, scanner);
-        }else if(setar==6){
-            Interface.ExibirSubmenuEstoque(id,setar, scanner);
-        }else if(setar==7){
-            Interface.ExibirSubmenuFinanceiro(id,setar, scanner);
+        } else if (setar == 2) {
+            setar = TesteEntrada.nextInt(scanner);
+            Interface.exibirSubmenuBuscar(id, setar, scanner);
+        } else if (setar == 3) {
+            setar = TesteEntrada.nextInt(scanner);
+            Interface.ExibirSubmenuExibir(id, setar, scanner);
+
+        } else if (setar == 4) {
+            setar = TesteEntrada.nextInt(scanner);
+            Interface.ExibirSubmenuVendas(id, setar, scanner);
+        } else if (setar == 5) {
+            setar = TesteEntrada.nextInt(scanner);
+            scanner.nextLine();
+            Interface.ExibirSubmenuRH(id, setar, scanner);
+        } else if (setar == 6) {
+            Interface.ExibirSubmenuEstoque(id, setar, scanner);
+        } else if (setar == 7) {
+            Interface.ExibirSubmenuFinanceiro(id, setar, scanner);
         }
     }
-    public static void exibirSubmenuCadastrar(int id, int seta, Scanner scanner){
-       
-        RH.submenuCadastrar(id, seta,scanner);
+
+    public static void exibirSubmenuCadastrar(int id, int seta, Scanner scanner) {
+
+        RH.submenuCadastrar(id, seta, scanner);
 
     }
 
-    public static void exibirSubmenuBuscar(int id, int seta, Scanner scanner){
+    public static void exibirSubmenuBuscar(int id, int seta, Scanner scanner) {
 
-         RH.submenuBuscar(id, seta, scanner);
-        
-        if(seta==0){
+        RH.submenuBuscar(id, seta, scanner);
+
+        if (seta == 0) {
             System.out.println("voltando ao menu principal...");
+        }
+
     }
 
-}
-    
-    public static void ExibirSubmenuVendas(int id, int seta, Scanner scanner){
+    public static void ExibirSubmenuVendas(int id, int seta, Scanner scanner) {
         switch (seta) {
             case 1:
                 System.out.println("===========================");
@@ -199,51 +203,52 @@ public class Interface extends RH {
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
-                case 2:
+            case 2:
                 System.out.println("===========================");
                 System.out.println("1. Exibir Vendas");
                 System.out.println("2. Exibir Vendas por Data");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
-                case 3:
-                    System.out.println("===========================");
-                    System.out.println("1. cadastrar Cliente");
-                    System.out.println("0. Voltar ao Menu Principal");
-                    System.out.println("===========================");
-                case 0:
-                    break;
+                break;
+            case 3:
+                System.out.println("===========================");
+                System.out.println("1. cadastrar Cliente");
+                System.out.println("0. Voltar ao Menu Principal");
+                System.out.println("===========================");
+                break;
+            case 0:
+                break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
 
-        if(seta==0){
+        if (seta == 0) {
             System.out.println("Encerrando o sistema...");
-        }
-        else if(seta==1){
-             seta= TesteEntrada.nextInt(scanner);
+        } else if (seta == 1) {
+            seta = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
-            if(seta==1){
-            Vendas.registrarVenda(scanner);
+            if (seta == 1) {
+                Vendas.registrarVenda(scanner);
             }
-        }else if(seta==2){
-             seta= TesteEntrada.nextInt(scanner);
-            if(seta==1){
-            Vendas.exibirVendas();
-            }else if(seta==2){
+        } else if (seta == 2) {
+            seta = TesteEntrada.nextInt(scanner);
+            if (seta == 1) {
+                Vendas.exibirVendas();
+            } else if (seta == 2) {
                 System.out.println("Digite a data para filtrar as vendas (dd/mm/yyyy):");
                 String data = scanner.nextLine();
                 Vendas.exibirVendasPorData(data);
             }
-        }else if(seta==3){
-             seta= TesteEntrada.nextInt(scanner);
+        } else if (seta == 3) {
+            seta = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
-            if(seta==1){
+            if (seta == 1) {
                 Cliente.cadastrarCliente(scanner);
             }
         }
     }
-     
-    public static void ExibirSubmenuRH(int id, int seta, Scanner scanner){
+
+    public static void ExibirSubmenuRH(int id, int seta, Scanner scanner) {
         switch (seta) {
             case 1:
                 System.out.println("===========================");
@@ -261,77 +266,64 @@ public class Interface extends RH {
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
-
+        if (seta != 0) {
             seta = TesteEntrada.nextInt(scanner);
-             scanner.nextLine(); // Limpar o buffer do scanner
-        if(seta==0){
-            System.out.println("Encerrando o sistema...");
-        }
-        else if(seta==1){
-            seta= TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
-            if(seta==1){
+        }
+        if (seta == 0) {
+            System.out.println("Encerrando o sistema...");
+        } else if (seta == 1) {
             System.out.println("Registrando ponto para qual funcionário? (Digite o ID do funcionário)");
             int funcionarioId = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
             RH.registrarPonto(funcionarioId);
-            }
-        }else if(seta==2){
+
+        } else if (seta == 2) {
             RH.exibirFuncionarios();
-        }else if(seta==3){
+        } else if (seta == 3) {
             RH.exibirGerentes();
-        }else if(seta==4){
+        } else if (seta == 4) {
             RH.cadastrarUsuario(scanner);
-        }else if(seta==5){
+        } else if (seta == 5) {
             RH.registrarFalta(scanner);
-        }else if(seta ==6){
+        } else if (seta == 6) {
             RH.FolhaPagamento(scanner);
         }
     }
-    public static void ExibirSubmenuFinanceiro(int id, int seta, Scanner scanner){
+
+    public static void ExibirSubmenuFinanceiro(int id, int seta, Scanner scanner) {
+        System.out.println("===========================");
+        System.out.println("1. cadastrar despesa");
+        System.out.println("2. exibir despesas");
+        System.out.println("0. Voltar ao Menu Principal");
+        System.out.println("===========================");
         seta = TesteEntrada.nextInt(scanner);
-        switch (seta) {
-            case 1:
-                System.out.println("===========================");
-                System.out.println("1. cadastrar despesa");
-                System.out.println("2. exibir despesas");
-                System.out.println("0. Voltar ao Menu Principal");
-                System.out.println("===========================");
-                break;
-            case 0:
-                break;
-            default:
-                System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
-        }
-        if(seta != 0){
-            seta = TesteEntrada.nextInt(scanner);
-        }
-        
-        if(seta==0){
-            System.out.println("Encerrando o sistema...");
-        }
-        else if(seta==1){
-          
+        scanner.nextLine();
+
+        if (seta == 0) {
+            System.out.println("voltando ao menu principal...");
+        } else if (seta == 1) {
             Financeiro.registrarDespesa(scanner);
-            
-        }else if(seta==2){
+        } else if (seta == 2) {
             Financeiro.exibirDespesas();
+        } else {
+            System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
     }
-  
-    public static void ExibirSubmenuEstoque(int id, int seta, Scanner scanner){
+
+    public static void ExibirSubmenuEstoque(int id, int seta, Scanner scanner) {
         System.out.println("===========================");
-            System.out.println("1. Visualizar Estoque Ativo");
-            System.out.println("2. Visualizar Estoque Inativo");
-            System.out.println("3. Adicionar Produto");
-            System.out.println("4. Ativar Produto");
-            System.out.println("5. Desativar Produto");
-            System.out.println("6. Remover Produto");
-            System.out.println("7. Comprar Produto");
-            System.out.println("0. Voltar ao Menu Principal");
-            System.out.println("===========================");
-            seta = TesteEntrada.nextInt(scanner);
-            scanner.nextLine(); // Limpar o buffer do scanner
+        System.out.println("1. Visualizar Estoque Ativo");
+        System.out.println("2. Visualizar Estoque Inativo");
+        System.out.println("3. Adicionar Produto");
+        System.out.println("4. Ativar Produto");
+        System.out.println("5. Desativar Produto");
+        System.out.println("6. Remover Produto");
+        System.out.println("7. Comprar Produto");
+        System.out.println("0. Voltar ao Menu Principal");
+        System.out.println("===========================");
+        seta = TesteEntrada.nextInt(scanner);
+        scanner.nextLine(); // Limpar o buffer do scanner
         switch (seta) {
             case 0:
                 System.out.println("Encerrando o sistema...");
@@ -361,19 +353,19 @@ public class Interface extends RH {
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
     }
-    public static void ExibirSubmenuExibir(int id, int seta, Scanner scanner){
-        if(seta==0){
+
+    public static void ExibirSubmenuExibir(int id, int seta, Scanner scanner) {
+        if (seta == 0) {
             System.out.println("Encerrando o sistema...");
-        }
-        else if(seta==1){
+        } else if (seta == 1) {
             RH.exibirFuncionarios();
-        }else if(seta==2){
+        } else if (seta == 2) {
             RH.exibirGerentes();
         }
     }
 
 }
-    
-   
 
-// A ideia é diminuir os códigos na MAIN, e deixar a MAIN apenas para chamar as funções, e a Interface para exibir os menus e receber as entradas do usuário, e as Funcoes_basicas para realizar as operações de cadastro, busca, etc.
+// A ideia é diminuir os códigos na MAIN, e deixar a MAIN apenas para chamar as
+// funções, e a Interface para exibir os menus e receber as entradas do usuário,
+// e as Funcoes_basicas para realizar as operações de cadastro, busca, etc.
