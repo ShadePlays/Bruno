@@ -1,6 +1,0 @@
-ID;Nome;Email;Senha;Ativo;Cargo;Departamento;Numero_de_Faltas
-0;0;0;0;true;0;Gerente;0
-1;João Silva;joao@example.com;123;true;0;Gerente;Vendas
-2;Maria Souza;maria@example.com;456;true;0;Funcionario;RH
-3;Carlos Oliveira;carlos@example.com;789;true;0;Funcionario;Estoque
-4;1;1;1;true;0;Usuario;N/A

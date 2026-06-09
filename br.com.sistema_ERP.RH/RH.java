@@ -59,12 +59,14 @@ public class RH {
                                 usuario.getNumeroFaltas());
             }
 
-            writer.close();
-
+          System.out.println("==================================================");
             System.out.println("Arquivo Usuarios.csv criado com sucesso!");
+            System.out.println("==================================================");
 
         } catch (Exception e) {
+            System.out.println("==================================================");
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
+            System.out.println("==================================================");
         }
 
         try {
@@ -103,10 +105,17 @@ public class RH {
                                     (gerente.getSalario() - proporcional));
                 }
             }
-            writer.close();
+           System.out.println("==================================================");
+            System.out.println("Arquivo FolhaPagamento.csv criado com sucesso!");
+            System.out.println("==================================================");
+            
         } catch (Exception e) {
+            // Print de erro enfeitado
+            System.out.println("==================================================");
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
+            System.out.println("==================================================");
         }
+        
         
     }
 
