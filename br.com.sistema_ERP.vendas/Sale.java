@@ -5,6 +5,13 @@ public class Sale {
     private String nomeProduto;
     private String CpfCliente;
 
+    public Sale(int codigoProduto, int quantidadeVendida, String dataVenda, String nomeProduto,String CpfCliente) {
+        this.codigoProduto = codigoProduto;
+        this.quantidadeVendida = quantidadeVendida;
+        this.dataVenda = dataVenda;
+        this.nomeProduto = nomeProduto;
+        this.CpfCliente = CpfCliente;
+    }
     public int getCodigoProduto() {
         return codigoProduto;
     }

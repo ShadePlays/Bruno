@@ -3,9 +3,10 @@ public class Gerente extends Usuario {
         
         
 
-   public Gerente(int id, String nome, String email, int senha, String departamento) {
+   public Gerente(int id, String nome, String email, int senha, String departamento, double salario) {
        super(id, nome, email, senha);
        this.departamento = departamento;
+       this.salario = salario;
         this.Permissoes = "Vizualizar Relatórios, Cadastrar Funcionários,Cadastrar Estoque, Gerenciar Vendas";
     }
 

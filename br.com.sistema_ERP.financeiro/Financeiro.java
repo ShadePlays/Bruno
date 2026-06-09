@@ -9,6 +9,27 @@ public final class Financeiro {
         private static HashMap<Integer, Despesa> banco_despesas = new HashMap<>();
         private static HashMap<Integer, Faturamento> banco_faturamentos = new HashMap<>();
     
+        public static void dados_teste(){
+            Despesa despesa1 = new Despesa();
+            despesa1.setValor(1000);
+            despesa1.setDescricao("Aluguel");
+            despesa1.setData("01/01/2024");
+            despesa1.setCategoria("operacional");
+            banco_despesas.put(1, despesa1);
+
+            Despesa despesa2 = new Despesa();
+            despesa2.setValor(500);
+            despesa2.setDescricao("Compra de mercadorias");
+            despesa2.setData("02/01/2024");
+            despesa2.setCategoria("compras");
+            banco_despesas.put(2, despesa2);
+
+            Faturamento faturamento1 = new Faturamento();
+            faturamento1.setValor(2000);
+            faturamento1.setDescricao("Venda de produtos");
+            banco_faturamentos.put(1, faturamento1);
+        }
+
         public static  void registrarCaixa(double valor) {
 
             caixa += valor;       
@@ -203,7 +224,8 @@ public final class Financeiro {
 
     try{
         PrintWriter writer = new PrintWriter("ponto_de_equilibrio.csv");
-
+        writer.println(" O ponto de equilíbrio é uma métrica importante para as empresas, pois ajuda a determinar o volume mínimo de vendas necessário para evitar prejuízos e começar a gerar lucro. Ele é usado para tomar decisões estratégicas, como definir preços, planejar campanhas de marketing e avaliar a viabilidade de novos produtos ou serviços.");
+        writer.println(); // Linha em branco para separar o texto do cálculo
         writer.println("=== PONTO DE EQUILÍBRIO TOTAL ===");
 
         float totalDespesasfixas = 0;

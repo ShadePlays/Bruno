@@ -1,14 +1,21 @@
 public class Pessoa {
-    private float cpf;
+    private String cpf;
     private String nome;
     private String email;
     private String telefone;
     private String endereco;
 
-    public void setCpf(float cpf) {
+    public Pessoa(String cpf, String nome, String email, String telefone, String endereco) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public float getCpf() {
+    public String getCpf() {
         return cpf;
     }
     public void setNome(String nome) {

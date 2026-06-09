@@ -10,6 +10,7 @@ public class RH  {
     
        private static HashMap<Integer, Usuario> banco_usuarios = new HashMap<>();
     
+
     static {
         LerDoArquivoCSV();
     }
@@ -117,8 +118,18 @@ public class RH  {
 
 
     protected static void criarUsuarioPadrao(){
-        Gerente usuario_padrao = new Gerente(0, "0","0", 0, "0");
+        Gerente usuario_padrao = new Gerente(0, "0","0", 0, "0", 0.0);
         banco_usuarios.put(0, usuario_padrao);
+
+       Gerente gerente1 = new Gerente(1, "João Silva", "joao@example.com", 123, "Vendas", 3000.0);
+        banco_usuarios.put(1, gerente1);
+
+        Funcionario funcionario1 = new Funcionario(2, "Maria Souza", "maria@example.com", 456, "RH", 2500.0);
+        banco_usuarios.put(2, funcionario1);
+
+        Funcionario funcionario2 = new Funcionario(3, "Carlos Oliveira", "carlos@example.com", 789, "Estoque", 2000.0);
+        banco_usuarios.put(3, funcionario2);
+
     }
 
      protected static HashMap<Integer, Usuario> cadastrarUsuario(Scanner scanner) {
@@ -132,7 +143,8 @@ public class RH  {
         System.out.println("Digite a senha do usuário:");
         int senha = TesteEntrada.nextInt(scanner);
         int id= banco_usuarios.size();
-      
+       
+
         Usuario novoUsuario = new Usuario(id, nome, email, senha);
         banco_usuarios.put(novoUsuario.id, novoUsuario);
         System.out.println("Usuário cadastrado com sucesso!");
@@ -198,7 +210,7 @@ public class RH  {
 
 
       
-        Gerente novoGerente = new Gerente(usuario.getID(), usuario.getNome(), usuario.getEmail(), usuario.getSenha(), usuario.getDepartamento());
+        Gerente novoGerente = new Gerente(usuario.getID(), usuario.getNome(), usuario.getEmail(), usuario.getSenha(), departamento, usuario.getSalario());
         
         System.out.println("Gerente cadastrado com sucesso!");
         System.out.println("ID do gerente:" + novoGerente.id);
@@ -209,7 +221,7 @@ public class RH  {
     protected static Gerente promoverFuncionario (int id, Usuario usuario) {
         if(usuario instanceof Funcionario){
             Funcionario funcionario = (Funcionario) usuario;
-            Gerente gerente_promovido = new Gerente(funcionario.getID(), funcionario.getNome(), funcionario.getEmail(), funcionario.getSenha(), funcionario.getDepartamento());
+            Gerente gerente_promovido = new Gerente(funcionario.getID(), funcionario.getNome(), funcionario.getEmail(), funcionario.getSenha(), funcionario.getDepartamento()   , funcionario.getSalario());
             System.out.println("Usuário promovido a gerente com sucesso! ID: " + gerente_promovido.id);
             return gerente_promovido;
 
@@ -425,7 +437,7 @@ public class RH  {
                 if ("Funcionario".equals(cargo)) {
                     usuario = new Funcionario(id, nome, email, senha, departamento, 0.0);
                 } else if ("Gerente".equals(cargo)) {
-                    usuario = new Gerente(id, nome, email, senha, departamento);
+                    usuario = new Gerente(id, nome, email, senha, departamento, 0.0);
                 } else {
                     usuario = new Usuario(id, nome, email, senha);
                 }

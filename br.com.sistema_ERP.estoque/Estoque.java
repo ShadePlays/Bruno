@@ -5,15 +5,56 @@ import java.util.Scanner;
 
 public class Estoque {
     
-    public static void leitura (HashMap<Integer, Produto> banco_produtos) {
-        LerCSV(banco_produtos);
-    }
+   
+
+    
 
     private static HashMap<Integer, Produto> banco_produtos = new HashMap<>();
     static {
         leitura(banco_produtos);
     }
+
+    public static void leitura (HashMap<Integer, Produto> banco_produtos) {
+        LerCSV(banco_produtos);
+    }
     
+    public static void dados_teste(){
+        ProdutoAlimenticio produto1 = new ProdutoAlimenticio();
+        produto1.setNome("Arroz");
+        produto1.setCusto(10.0);
+        produto1.setPrecoVenda(15.0);
+        produto1.setQuantidade(100);
+        produto1.setDescricao("Arroz branco tipo 1");
+        produto1.setDataValidade("31/12/2025");
+        produto1.setAtivo(true);
+        banco_produtos.put(1001, produto1);
+
+        ProdutoLimpeza produto2 = new ProdutoLimpeza();
+        produto2.setNome("Detergente");
+        produto2.setCusto(5.0);
+        produto2.setPrecoVenda(8.0);
+        produto2.setQuantidade(50);
+        produto2.setDescricao("Detergente líquido para limpeza geral");
+        produto2.setunidadeMedida("L");
+        produto2.setIngredientesAtivos("Tensoativos, fragrância, corante");
+        produto2.setVolume(500);
+        produto2.setAtivo(true);
+        banco_produtos.put(2001, produto2);
+
+        ProdutoEletronico produto3 = new ProdutoEletronico();
+        produto3.setNome("Smartphone");
+        produto3.setCusto(500.0);
+        produto3.setPrecoVenda(800.0);
+        produto3.setQuantidade(20);
+        produto3.setDescricao("Smartphone com tela de 6 polegadas e 128GB de armazenamento");
+        produto3.setMarca("MarcaX");
+        produto3.setModelo("ModeloY");
+        produto3.setVoltagem(220);
+        produto3.setGarantiaMeses(12);
+        produto3.setAtivo(true);
+        banco_produtos.put(3001, produto3);
+    }
+
     public static void registrarProduto(Scanner scanner) {
         System.out.println("Registrar Produto");
         System.out.println("Digite o tipo do produto (1 - Alimentício, 2 - Limpeza, 3 - Eletrônico):");
@@ -366,7 +407,7 @@ public class Estoque {
         }
     }
 
-        public static void LerCSV(HashMap<Integer, Produto> banco_produtos) {
+    public static void LerCSV(HashMap<Integer, Produto> banco_produtos) {
         try (Scanner scanner = new Scanner(new java.io.File("estoque.csv"))) {
             String linha = scanner.nextLine(); // Ler o cabeçalho
             while (scanner.hasNextLine()) {
