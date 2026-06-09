@@ -3,3 +3,4 @@ ID;Nome;Email;Senha;Ativo;Cargo;Departamento
 1;João Silva;joao@example.com;123;true;Gerente;Vendas
 2;Maria Souza;maria@example.com;456;true;Funcionario;RH
 3;Carlos Oliveira;carlos@example.com;789;true;Funcionario;Estoque
+4;1;1;1;true;Gerente;1

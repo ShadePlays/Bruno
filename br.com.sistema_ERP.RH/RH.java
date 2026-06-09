@@ -206,11 +206,37 @@ public class RH  {
        
        
         System.out.println("Digite o departamento do gerente:");
-        String departamento = scanner.nextLine();
+        System.out.println("1. Vendas");
+        System.out.println("2. Estoque");
+        System.out.println("3. RH");
+        System.out.println("4. Financeiro");
+            int departamento_opcao = TesteEntrada.nextInt(scanner);
+            scanner.nextLine(); // Limpar o buffer do scanner
+            String departamento = "";
+            switch (departamento_opcao) {
+                case 1:
+                    departamento = "Vendas";
+                    break;
+                case 2:
+                    departamento = "Estoque";
+                    break;
+                case 3:
+                    departamento = "RH";
+                    break;
+                case 4:
+                    departamento = "Financeiro";
+                    break;
+                default:
+                    System.out.println("Opção inválida. Definindo departamento como 'Geral'.");
+                    departamento = "Geral";
+            }
 
+            System.out.println("salario do gerente:");
+            double salario = TesteEntrada.nextDouble(scanner);
+            scanner.nextLine(); // Limpar o buffer do scanner
 
       
-        Gerente novoGerente = new Gerente(usuario.getID(), usuario.getNome(), usuario.getEmail(), usuario.getSenha(), departamento, usuario.getSalario());
+        Gerente novoGerente = new Gerente(usuario.getID(), usuario.getNome(), usuario.getEmail(), usuario.getSenha(), departamento, salario);
         
         System.out.println("Gerente cadastrado com sucesso!");
         System.out.println("ID do gerente:" + novoGerente.id);
