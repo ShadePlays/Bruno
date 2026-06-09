@@ -14,22 +14,21 @@ public class Gerente extends Usuario {
         
     }*/
 
-    @Override
-    protected String get_departamento() {
+   @Override
+    protected String getDepartamento() {
         return this.departamento;
     }
-    protected double get_salario() {
+    protected double getSalario() {
         return this.salario;
     }
-    protected void set_salario(Double salario) {
+    protected void setSalario(Double salario) {
         this.salario = salario;
     }
 
-
-    protected String get_permissoes() {
+    protected String getPermissoes() {
         return this.Permissoes;
     }
-    protected void set_permissoes(String permissoes) {
+    protected void setPermissoes(String permissoes) {
         this.Permissoes = permissoes;
     }
 

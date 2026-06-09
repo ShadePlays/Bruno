@@ -6,7 +6,6 @@ public abstract class Produto {
     private double custo;
     private int estoque;
     private boolean ativo;
-    private double lucro = precoVenda - custo;
 
     public int tipoProduto() { 
         return 0;
@@ -55,6 +54,7 @@ public abstract class Produto {
         this.ativo = ativo;
     }
     public void getLucro(){
+        double lucro = this.precoVenda - this.custo;
         if (lucro < 0){
             System.out.println("Você está perdendo " + (lucro * -1) + " reais");
         }

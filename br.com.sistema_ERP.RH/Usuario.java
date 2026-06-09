@@ -18,48 +18,49 @@ public class Usuario extends RH {
         this.ativo = true;
     }
     // get e sets
-   protected int get_id(){
+   protected int getID(){
             return this.id;
     }
 
-    protected String get_nome(){
+    protected String getNome(){
             return this.nome;
     }
 
-   protected String get_email(){
+   protected String getEmail(){
             return this.email;
     }
-   protected int get_senha(){
+   protected int getSenha(){
         return this.senha;
     }
-   protected boolean get_ativo(){
+   protected boolean getAtivo(){
         return this.ativo;
     }
-    protected String get_departamento(){
+    protected String getDepartamento(){
         return this.departamento;
     }
-    protected double get_salario(){
+
+    protected double getSalario(){
         return this.salario;
     }
-    protected void set_id(int id){
+    protected void setID(int id){
         this.id = id;
     }
-    protected void set_nome(String nome){
+    protected void setNome(String nome){
         this.nome = nome;
     }
-    protected void set_email(String email){
+    protected void setEmail(String email){
         this.email = email;
     }
-    protected void set_senha(int senha){
+    protected void setSenha(int senha){
         this.senha = senha;
     }
-    protected void set_ativo(boolean ativo){
+    protected void setAtivo(boolean ativo){
         this.ativo = ativo;
     }
-    protected void set_departamento(String departamento){
+    protected void setDepartamento(String departamento){
         this.departamento = departamento;
     }
-    protected void set_salario(double salario){
+    protected void setSalario(double salario){
         this.salario = salario;
     }
 

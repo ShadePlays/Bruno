@@ -1,6 +1,6 @@
 public class ProdutoAlimenticio extends Produto {
         private String dataValidade;
-
+        
         public String getDataValidade() {
             return dataValidade;
         }

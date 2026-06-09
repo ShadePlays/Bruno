@@ -24,7 +24,7 @@ public class Vendas {
        
         System.out.println("Venda registrada: Produto código " + codigoProduto + ", Quantidade vendida: " + quantidadeVendida);
        
-        Financeiro.registrarFaturamento(Estoque.valor_total_produtos(codigoProduto, quantidadeVendida), Estoque.NomeProduto(codigoProduto), dataVenda);
+        Financeiro.registrarFaturamento(Estoque.valorTotalProdutos(codigoProduto, quantidadeVendida), Estoque.NomeProduto(codigoProduto), dataVenda);
 
         Sale venda = new Sale();
         venda.setCodigoProduto(codigoProduto);

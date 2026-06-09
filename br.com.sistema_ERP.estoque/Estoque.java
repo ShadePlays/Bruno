@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Estoque {
     
     public static void leitura (HashMap<Integer, Produto> banco_produtos) {
-        ler_do_arquivo_csv(banco_produtos);
+        LerCSV(banco_produtos);
     }
 
     private static HashMap<Integer, Produto> banco_produtos = new HashMap<>();
@@ -255,7 +255,7 @@ public class Estoque {
         return soma;
     }
 
-    public static float valor_total_produtos(int codigoProduto, int quantidadeVendida) {
+    public static float valorTotalProdutos(int codigoProduto, int quantidadeVendida) {
         System.out.println("Valor Total dos Produtos");
         if(banco_produtos.isEmpty()) {
             System.out.println("Nenhum produto registrado.");
@@ -275,7 +275,7 @@ public class Estoque {
         return banco_produtos.get(codigoProduto).getNome();
     }
 
-    public static void registrar_em_arquivo_csv() {
+    public static void registrarCSV() {
           
         try(PrintWriter writer = new PrintWriter("estoque.csv")) {
            
@@ -366,7 +366,7 @@ public class Estoque {
         }
     }
 
-        public static void ler_do_arquivo_csv(HashMap<Integer, Produto> banco_produtos) {
+        public static void LerCSV(HashMap<Integer, Produto> banco_produtos) {
         try (Scanner scanner = new Scanner(new java.io.File("estoque.csv"))) {
             String linha = scanner.nextLine(); // Ler o cabeçalho
             while (scanner.hasNextLine()) {
