@@ -5,8 +5,15 @@ import java.util.Scanner;
 
 public class Estoque {
     
-    private static HashMap<Integer, Produto> banco_produtos = new HashMap<>();
+    public static void leitura (HashMap<Integer, Produto> banco_produtos) {
+        ler_do_arquivo_csv(banco_produtos);
+    }
 
+    private static HashMap<Integer, Produto> banco_produtos = new HashMap<>();
+    static {
+        leitura(banco_produtos);
+    }
+    
     public static void registrarProduto(Scanner scanner) {
         System.out.println("Registrar Produto");
         System.out.println("Digite o tipo do produto (1 - Alimentício, 2 - Limpeza, 3 - Eletrônico):");
@@ -200,7 +207,7 @@ public class Estoque {
         System.out.println("Produtos em Estoque:");
         for (Integer codigo : banco_produtos.keySet()) {
             if (banco_produtos.get(codigo).isAtivo()) {
-                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo) + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
+                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo).getNome() + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
             }
         }
     }
@@ -209,7 +216,7 @@ public class Estoque {
         System.out.println("Produtos em Estoque:");
         for (Integer codigo : banco_produtos.keySet()) {
             if (!banco_produtos.get(codigo).isAtivo()) {
-                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo) + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
+                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo).getNome() + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
             }
         }
     }
@@ -282,7 +289,7 @@ public class Estoque {
                 Produto produto = entry.getValue();
 
                 if( cabeçalhoAlimenticio ==false){
-                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade");
+                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo");
                     cabeçalhoAlimenticio = true;
                 }
                 if(produto.tipoProduto()==1){
@@ -294,7 +301,8 @@ public class Estoque {
                     produto.getPrecoVenda() + ";" +
                     produto.getQuantidade() + ";" +
                     produto.getDescricao() + ";" +
-                    (produto instanceof ProdutoAlimenticio ? ((ProdutoAlimenticio) produto).getDataValidade() : "")
+                    (produto instanceof ProdutoAlimenticio ? ((ProdutoAlimenticio) produto).getDataValidade() : "") + ";" +
+                    produto.isAtivo()
                 );
             }
             }
@@ -305,7 +313,7 @@ public class Estoque {
                 Produto produto = entry.getValue();
 
                 if( cabeçalhoLimpeza ==false){
-                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume");
+                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo");
                     cabeçalhoLimpeza = true;
                 }
                 if(produto.tipoProduto()== 2){
@@ -319,7 +327,8 @@ public class Estoque {
                     produto.getDescricao() + ";" +
                     (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getunidadeMedida() : "") + ";" +
                     (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getIngredientesAtivos() : "") + ";" +
-                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getVolume() : "")
+                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getVolume() : "") + ";" +
+                    produto.isAtivo()
                 );
             }
             }
@@ -330,7 +339,7 @@ public class Estoque {
                 Produto produto = entry.getValue();
 
                 if( cabeçalhoEletronico ==false){
-                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses");
+                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo");
                     cabeçalhoEletronico = true;
                 }
                 if(produto.tipoProduto()== 3 ){
@@ -345,7 +354,8 @@ public class Estoque {
                     (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getMarca() : "") + ";" +
                     (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getModelo() : "") + ";" +
                     (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getVoltagem() : "") + ";" +
-                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getGarantiaMeses() : "")
+                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getGarantiaMeses() : "") + ";" +
+                    produto.isAtivo()
                 );
             }
             }
@@ -355,4 +365,59 @@ public class Estoque {
             System.out.println("Erro ao registrar dados no arquivo: " + e.getMessage());
         }
     }
+
+        public static void ler_do_arquivo_csv(HashMap<Integer, Produto> banco_produtos) {
+        try (Scanner scanner = new Scanner(new java.io.File("estoque.csv"))) {
+            String linha = scanner.nextLine(); // Ler o cabeçalho
+            while (scanner.hasNextLine()) {
+                linha = scanner.nextLine();
+                if (linha.trim().isEmpty()) {
+                    continue; // Pular linhas vazias
+                }
+                if (linha.startsWith("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo") ||
+                    linha.startsWith("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo") ||
+                    linha.startsWith("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo")) {
+                    continue; // Pular linhas de cabeçalho
+                }
+                String[] dados = linha.split(";");
+                int codigo = Integer.parseInt(dados[0]);
+                int tipoProduto = Integer.parseInt(dados[1]);
+                String nome = dados[2];
+                double custo = Double.parseDouble(dados[3]);
+                double precoVenda = Double.parseDouble(dados[4]);
+                int quantidade = Integer.parseInt(dados[5]);
+                String descricao = dados[6];
+
+                Produto produto;
+                if (tipoProduto == 1) {
+                    produto = new ProdutoAlimenticio();
+                    ((ProdutoAlimenticio) produto).setDataValidade(dados[7]);
+                    produto.setAtivo(Boolean.parseBoolean(dados[8]));
+                } else if (tipoProduto == 2) {
+                    produto = new ProdutoLimpeza();
+                    ((ProdutoLimpeza) produto).setunidadeMedida(dados[7]);
+                    ((ProdutoLimpeza) produto).setIngredientesAtivos(dados[8]);
+                    ((ProdutoLimpeza) produto).setVolume(Double.parseDouble(dados[9]));
+                    produto.setAtivo(Boolean.parseBoolean(dados[10]));
+                } else {
+                    produto = new ProdutoEletronico();
+                    ((ProdutoEletronico) produto).setMarca(dados[7]);
+                    ((ProdutoEletronico) produto).setModelo(dados[8]);
+                    ((ProdutoEletronico) produto).setVoltagem(Integer.parseInt(dados[9]));
+                    ((ProdutoEletronico) produto).setGarantiaMeses(Integer.parseInt(dados[10]));
+                    produto.setAtivo(Boolean.parseBoolean(dados[11]));
+                }
+
+                produto.setNome(nome);
+                produto.setCusto(custo);
+                produto.setDescricao(descricao);
+                produto.setPrecoVenda(precoVenda);
+                produto.setQuantidade(quantidade);
+                banco_produtos.put(codigo, produto);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao ler dados do arquivo: " + e.getMessage());
+        }
+    }
 }
+

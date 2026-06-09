@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
 
     /**
-     * @param args
+     * @param args 
      */
     public static void main(String[] args) {
         
@@ -16,17 +16,11 @@ public class Main {
          while(seta !=0){
         Interface.tela_inicial(scanner);
         System.out.print("Deseja continuar? (1 - Sim, 0 - Não): ");
-        seta = scanner.nextInt();
+        seta = TesteEntrada.nextInt(scanner);
         scanner.nextLine(); // Limpar o buffer do scanner
     }
 
-        // teste de cadastro de produtos
-    int cont = 0;
-    while(cont <=3){
-        Estoque.registrarProduto(scanner);
-        cont++;
-    }
-    // termina aqui o teste de cadastro de produtos
+    
        
         Financeiro.registrar_em_arquivo_csv();
         RH.registrar_em_arquivo_csv();
