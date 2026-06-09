@@ -13,7 +13,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int id;
 
-        //adiconar dados de teste
+        // dados de teste
             Financeiro.dados_teste();
             Estoque.dados_teste();
             Vendas.dados_teste();

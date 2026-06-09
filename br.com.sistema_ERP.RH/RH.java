@@ -42,7 +42,7 @@ public class RH  {
 
         PrintWriter writer = new PrintWriter("Usuarios.csv");
 
-        writer.println("ID;Nome;Email;Senha;Ativo;Cargo;Departamento");
+        writer.println("ID;Nome;Email;Senha;Ativo;Cargo;Departamento;Numero_de_Faltas");
 
         for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
 
@@ -60,6 +60,7 @@ public class RH  {
                 usuario.getEmail() + ";" +
                 usuario.getSenha() + ";" +
                 usuario.getAtivo() + ";" +
+                usuario.getNumeroFaltas() + ";" +
                 usuario.getClass().getSimpleName() + ";" +
                 departamento
             );
@@ -76,10 +77,13 @@ public class RH  {
 
         try {
         PrintWriter writer = new PrintWriter("FolhaPagamento.csv");
-        writer.println("ID;Nome;Cargo;Departamento;Salário");
+        writer.println("ID;Nome;Cargo;Departamento;Pagamento_mes");
         for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
             Integer id = entry.getKey();
             Usuario usuario = entry.getValue();
+             int dias_faltas = usuario.getNumeroFaltas();
+             //descontar dias faltados
+         double proporcional = (dias_faltas / 20.0) * usuario.getSalario();
 
             if(usuario instanceof Funcionario){
                 Funcionario funcionario = (Funcionario) usuario;
@@ -92,7 +96,7 @@ public class RH  {
                     funcionario.getNome() + ";" +
                     "Funcionario" + ";" +
                     departamento + ";" +
-                    funcionario.getSalario()
+                    (funcionario.getSalario()- proporcional)
                 );
             } else if(usuario instanceof Gerente){
                 Gerente gerente = (Gerente) usuario;
@@ -105,7 +109,7 @@ public class RH  {
                     gerente.getNome() + ";" +
                     "Gerente" + ";" +
                     departamento + ";" +
-                    gerente.getSalario()
+                    (gerente.getSalario()- proporcional)
                 );
             }
         }
@@ -145,7 +149,7 @@ public class RH  {
         int id= banco_usuarios.size();
        
 
-        Usuario novoUsuario = new Usuario(id, nome, email, senha);
+        Usuario novoUsuario = new Usuario(id, nome, email, senha, 0);
         banco_usuarios.put(novoUsuario.id, novoUsuario);
         System.out.println("Usuário cadastrado com sucesso!");
         System.out.println("ID do usuário:" + novoUsuario.id);
@@ -398,15 +402,25 @@ public class RH  {
         }
     }
 
-    protected static void FolhaPagamento(int id){
-        if(banco_usuarios.get(id) instanceof Funcionario){
-            Funcionario funcionario = (Funcionario) banco_usuarios.get(id);
-            System.out.println("Calculando folha de pagamento para " + funcionario.getNome() + "...");
-            System.out.println("Salário: " + funcionario.getSalario());
+    protected static void FolhaPagamento(Scanner scanner){
+           System.out.println("Digite o ID do funcionário:");
+            int id = scanner.nextInt();
+           Funcionario funcionario = (Funcionario) banco_usuarios.get(id);
+    
+                 if (funcionario != null) {
+             int dias_faltas = funcionario.getNumeroFaltas();
+             //descontar dias faltados
+        double proporcional = (dias_faltas / 20.0) * funcionario.getSalario();
 
-        } else {
-            System.out.println("Apenas funcionários do RH podem calcular folha de pagamento.");
-        }
+        System.out.println("Calculando folha de pagamento para " + funcionario.getNome() + "...");
+        System.out.println("Salário Bruto: " + funcionario.getSalario());
+        System.out.println("Número de faltas: " + dias_faltas);
+        System.out.println("Desconto por faltas: " + proporcional);
+        System.out.println("Salário final: " + (funcionario.getSalario() - proporcional));
+    } else {
+        System.out.println("Funcionário não encontrado.");
+    }
+
     }
      protected static void FolhaPagamentoTotal(){
         double Somatorio_rh = 0;
@@ -420,18 +434,22 @@ public class RH  {
 
             if(usuario instanceof Funcionario){
                 Funcionario funcionario = (Funcionario) usuario;
+                //descontar dias faltados
+                        int dias_faltas= funcionario.getNumeroFaltas();
+                        double proporcional =(dias_faltas/20.0)*funcionario.getSalario();
+
                 switch (funcionario.getDepartamento()) {
                     case "RH":
-                        Somatorio_rh += funcionario.getSalario();
+                        Somatorio_rh += funcionario.getSalario() - proporcional;
                         break;
                     case "Vendas":
-                        Somatorio_vendas += funcionario.getSalario();
+                        Somatorio_vendas += funcionario.getSalario() - proporcional;
                         break;
                     case "Estoque":
-                        Somatorio_estoque += funcionario.getSalario();
+                        Somatorio_estoque += funcionario.getSalario() - proporcional ;
                         break;
                     case "Financeiro":
-                        Somatorio_financeiro += funcionario.getSalario();
+                        Somatorio_financeiro += funcionario.getSalario() - proporcional;
                         break;
                 }
             } else if(usuario instanceof Gerente){
@@ -440,6 +458,17 @@ public class RH  {
             }
         }
     }
+
+     public static void registrarFalta(Scanner scanner) {
+            System.out.println("Registrando falta para qual funcionário? (Digite o ID do funcionário)");
+            int funcionarioId = TesteEntrada.nextInt(scanner);
+            scanner.nextLine(); // Limpar o buffer do scanner
+            banco_usuarios.get(funcionarioId).setNumeroFaltas(banco_usuarios.get(funcionarioId).getNumeroFaltas() + 1);
+            System.out.println("Falta registrada para o funcionário ID: " + funcionarioId + ". Total de faltas: " + banco_usuarios.get(funcionarioId).getNumeroFaltas());
+       
+
+    }
+
 
     private static void LerDoArquivoCSV() {
         try (Scanner scanner = new Scanner(new java.io.File("Usuarios.csv"))) {
@@ -465,7 +494,7 @@ public class RH  {
                 } else if ("Gerente".equals(cargo)) {
                     usuario = new Gerente(id, nome, email, senha, departamento, 0.0);
                 } else {
-                    usuario = new Usuario(id, nome, email, senha);
+                    usuario = new Usuario(id, nome, email, senha, 0);
                 }
 
                 usuario.setAtivo(ativo);
@@ -493,5 +522,6 @@ public class RH  {
             }
         }
      }
-}
+
+    }
 

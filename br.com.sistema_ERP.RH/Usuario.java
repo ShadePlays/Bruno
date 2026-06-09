@@ -8,18 +8,24 @@ public class Usuario extends RH {
     protected boolean ativo;
     protected String departamento;
     protected double salario;
+    protected int numeroFaltas;
    
 
-   protected Usuario(int id, String nome, String email, int senha) {
+   protected Usuario(int id, String nome, String email, int senha,int numeroFaltas) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.ativo = true;
+        this.numeroFaltas = numeroFaltas;
     }
     // get e sets
    protected int getID(){
             return this.id;
+    }
+
+    protected int getNumeroFaltas(){
+            return this.numeroFaltas;
     }
 
     protected String getNome(){
@@ -53,6 +59,9 @@ public class Usuario extends RH {
     }
     protected void setSenha(int senha){
         this.senha = senha;
+    }
+    protected void setNumeroFaltas(int numeroFaltas){
+        this.numeroFaltas = numeroFaltas;
     }
     protected void setAtivo(boolean ativo){
         this.ativo = ativo;
