@@ -5,8 +5,8 @@ public class Funcionario extends Usuario {
 
     Funcionario(int id, String nome, String email, int senha, String departamento, double salario) {
         super(id, nome, email, senha);
-        this.departamento = departamento;
         this.salario = salario;
+        this.departamento = departamento;
     }
 
     public String getCargo() {

@@ -1,5 +1,4 @@
 ID;Nome;Cargo;Departamento;Salário
 0;0;Gerente;0;0.0
-1;b;Funcionario;null;0.0
-3;Marco;Funcionario;null;0.0
-4;asda;Gerente;N/A;0.0
+1;Bruno;Funcionario;Estoque;0.0
+2;Joao;Funcionario;Vendas;0.0

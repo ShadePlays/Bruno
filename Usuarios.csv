@@ -1,6 +1,4 @@
 ID;Nome;Email;Senha;Ativo;Cargo;Departamento
-0;0;0;0;true;Gerente;N/A
-1;b;b;1;true;Funcionario;Estoque
-2;Marco;marquino;1;true;Usuario;N/A
-3;Marco;Marquinho;1;true;Funcionario;Vendas
-4;asda;qsdas;1;true;Gerente;N/A
+0;0;0;0;true;Gerente;0
+1;Bruno;bruno@email.com;1;true;Funcionario;Estoque
+2;Joao;Joao@email.com;1;true;Funcionario;Vendas

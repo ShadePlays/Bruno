@@ -3,11 +3,9 @@ import java.util.Scanner;
 public class Interface extends RH {
     
     
-    public static void tela_inicial(Scanner scanner){
-       int id=RH.login(scanner);
+    public static void telaInicial(Scanner scanner, int id) {
         if(id >-1){
             int cargo = RH.departamento(id);
-            System.out.println("Cargo identificado: " + cargo);
             if(cargo == 1){
                 Interface.ExibirMenuGerencia();
                 int seta = TesteEntrada.nextInt(scanner);
@@ -56,14 +54,14 @@ public class Interface extends RH {
     public static void ExibirMenuGerencia() {
         System.out.println("Bem-vindo ao Sistema ERP!");
         System.out.println("===========================");
+        System.out.println("1. Cadastrar");
+        System.out.println("2. Buscar");
+        System.out.println("3. Exibir Todos");
+        System.out.println("4. Gerenciar Vendas");
+        System.out.println("5. Gerenciar RH");
+        System.out.println("6. Gerenciar Estoque");
+        System.out.println("7. Gerenciar financeiro");
         System.out.println("0. Sair");
-        System.out.println("exibirMenu(1) - Cadastrar");
-        System.out.println("exibirMenu(2) - Buscar");
-        System.out.println("exibirMenu(3) - Exibir Todos");
-        System.out.println("exibirMenu(4) - Gerenciar Vendas");
-        System.out.println("exibirMenu(5) - Gerenciar RH");
-        System.out.println("exibirMenu(6) - Gerenciar Estoque");
-        System.out.println("exibirMenu(7) - Gerenciar financeiro");
         System.out.println("===========================");
     }
 
@@ -178,13 +176,13 @@ public class Interface extends RH {
     }
     public static void exibirSubmenuCadastrar(int id, int seta, Scanner scanner){
        
-        RH.submenu_cadastrar(id, seta,scanner);
+        RH.submenuCadastrar(id, seta,scanner);
 
     }
 
     public static void exibirSubmenuBuscar(int id, int seta, Scanner scanner){
 
-         RH.submenu_buscar(id, seta, scanner);
+         RH.submenuBuscar(id, seta, scanner);
         
         if(seta==0){
             System.out.println("voltando ao menu principal...");
