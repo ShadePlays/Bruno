@@ -3,7 +3,7 @@ public class ProdutoEletronico extends Produto {
     private String modelo;
     private int voltagem;
     private int garantiaMeses;
-    
+
     public String getMarca() {
         return marca;
     }
@@ -13,7 +13,7 @@ public class ProdutoEletronico extends Produto {
     }
 
     public String getModelo() {
-        
+
         return modelo;
     }
 
@@ -42,6 +42,7 @@ public class ProdutoEletronico extends Produto {
         descricao = (this.getNome() + " modelo " + this.getModelo() + " da marca " + this.getMarca());
         super.setDescricao(descricao);
     }
+
     @Override
     public int tipoProduto() {
         return 3;

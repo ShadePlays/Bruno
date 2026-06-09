@@ -4,44 +4,52 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Vendas {
-    
+
     private static HashMap<Integer, Sale> banco_vendas = new HashMap<>();
-    
+
     public static void dados_teste() {
-        Sale venda1 = new Sale(1, 2, "01/01/2024", "Produto A", "123.456.789-00"    );
+        Sale venda1 = new Sale(1, 2, "01/01/2024", "Produto A", "123.456.789-00");
         Sale venda2 = new Sale(2, 1, "02/01/2024", "Produto B", "987.654.321-00");
         banco_vendas.put(1, venda1);
         banco_vendas.put(2, venda2);
     }
 
     public static void registrarVenda(Scanner scanner) {
-        System.out.println("Registrar Venda");
-        System.out.println("Digite o código do produto:");
-        int codigoProduto = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer do scanner
-        System.out.println("Digite a quantidade vendida:");
-        int quantidadeVendida = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer do scanner
-        System.out.println("Digite a data da venda (dd/mm/yyyy):");
-        String dataVenda = scanner.nextLine();
+        try {
+            System.out.println("Registrar Venda");
+            System.out.println("Digite o código do produto:");
+            int codigoProduto = TesteEntrada.nextInt(scanner);
+            scanner.nextLine(); // Limpar o buffer do scanner
+            System.out.println("Digite a quantidade vendida:");
+            int quantidadeVendida = TesteEntrada.nextInt(scanner);
+            scanner.nextLine(); // Limpar o buffer do scanner
+            System.out.println("Digite a data da venda (dd/mm/yyyy):");
+            String dataVenda = scanner.nextLine();
+            System.out.println("Digite o CPF do cliente:");
+            String cpfCliente = scanner.nextLine();
 
-       if(Estoque.verificarEstoque(codigoProduto)>=quantidadeVendida){
-       
-        Estoque.atualizarQuantidade(codigoProduto, -quantidadeVendida);
-       
-        System.out.println("Venda registrada: Produto código " + codigoProduto + ", Quantidade vendida: " + quantidadeVendida);
-       
-        Financeiro.registrarFaturamento(Estoque.valorTotalProdutos(codigoProduto, quantidadeVendida), Estoque.NomeProduto(codigoProduto), dataVenda);
+            if (Estoque.verificarEstoque(codigoProduto) >= quantidadeVendida) {
 
-        Sale venda = new Sale(codigoProduto, quantidadeVendida, dataVenda, Estoque.NomeProduto(codigoProduto), "123.456.789-00");
-        banco_vendas.put(codigoProduto, venda);
-       }
-        else {
-        System.out.println("Estoque insuficiente para o produto código " + codigoProduto);
-        
+                Estoque.atualizarQuantidade(codigoProduto, -quantidadeVendida);
+
+                System.out.println("Venda registrada: Produto código " + codigoProduto + ", Quantidade vendida: "
+                        + quantidadeVendida);
+
+                Financeiro.registrarFaturamento(Estoque.valorTotalProdutos(codigoProduto, quantidadeVendida),
+                        Estoque.NomeProduto(codigoProduto), dataVenda);
+
+                Sale venda = new Sale(codigoProduto, quantidadeVendida, dataVenda, Estoque.NomeProduto(codigoProduto),
+                        cpfCliente);
+                banco_vendas.put(codigoProduto, venda);
+            } else {
+                System.out.println("Estoque insuficiente para o produto código " + codigoProduto);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao registrar a venda: " + e.getMessage());
+        }
+
     }
-
-}
 
     public static void exibirVendas() {
         System.out.println("Vendas Registradas:");
@@ -60,32 +68,31 @@ public class Vendas {
     }
 
     public static void registrar_em_arquivo_csv() {
-         try{
+        try {
 
-        PrintWriter writer = new PrintWriter("vendas.csv");
+            PrintWriter writer = new PrintWriter("vendas.csv");
 
-        writer.println("codigoProduto;quantidadeVendida;dataVenda;nomeProduto");
+            writer.println("codigoProduto;quantidadeVendida;dataVenda;nomeProduto");
             for (Map.Entry<Integer, Sale> entry : banco_vendas.entrySet()) {
-    
+
                 Integer codigo = entry.getKey();
                 Sale venda = entry.getValue();
-    
+
                 writer.println(
-                    codigo + ";" +
-                    venda.getCodigoProduto() + ";" +
-                    venda.getQuantidadeVendida() + ";" +
-                    venda.getDataVenda() + ";" +
-                    venda.getNomeProduto()
-                );
+                        codigo + ";" +
+                                venda.getCodigoProduto() + ";" +
+                                venda.getQuantidadeVendida() + ";" +
+                                venda.getDataVenda() + ";" +
+                                venda.getNomeProduto());
             }
-       
-        writer.close();
 
-        System.out.println("Arquivo vendas.csv criado com sucesso!");
+            writer.close();
 
-         }catch (Exception erro) {
+            System.out.println("Arquivo vendas.csv criado com sucesso!");
+
+        } catch (Exception erro) {
             System.out.println("Ocorreu um erro ao criar o arquivo vendas.csv: " + erro.getMessage());
-         }
+        }
 
     }
 
@@ -114,7 +121,4 @@ public class Vendas {
         }
     }
 
-   
 }
-
-

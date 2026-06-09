@@ -4,21 +4,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Estoque {
-    
-   
-
-    
 
     private static HashMap<Integer, Produto> banco_produtos = new HashMap<>();
     static {
-        leitura(banco_produtos);
-    }
-
-    public static void leitura (HashMap<Integer, Produto> banco_produtos) {
         LerCSV(banco_produtos);
     }
-    
-    public static void dados_teste(){
+
+    public static void dados_teste() {
         ProdutoAlimenticio produto1 = new ProdutoAlimenticio();
         produto1.setNome("Arroz");
         produto1.setCusto(10.0);
@@ -55,8 +47,7 @@ public class Estoque {
         banco_produtos.put(3001, produto3);
     }
 
-
-   public static void comprarProduto(Scanner scanner) {
+    public static void comprarProduto(Scanner scanner) {
         System.out.println("Comprar Produto");
         System.out.println("Digite o código do produto:");
         int codigoProduto = TesteEntrada.nextInt(scanner);
@@ -65,15 +56,14 @@ public class Estoque {
         int quantidadeComprada = TesteEntrada.nextInt(scanner);
         scanner.nextLine(); // Limpar o buffer do scanner
         if (banco_produtos.containsKey(codigoProduto)) {
-            banco_produtos.get(codigoProduto).setQuantidade(banco_produtos.get(codigoProduto).getQuantidade() + quantidadeComprada);
+            banco_produtos.get(codigoProduto)
+                    .setQuantidade(banco_produtos.get(codigoProduto).getQuantidade() + quantidadeComprada);
             System.out.println("Compra registrada: " + banco_produtos.get(codigoProduto));
+            double valorUnitario = banco_produtos.get(codigoProduto).getCusto();
+            Financeiro.registrarCompras(quantidadeComprada, valorUnitario);
         } else {
             System.out.println("Produto não encontrado.");
         }
-
-     
-        double valorUnitario = banco_produtos.get(codigoProduto).getCusto();
-        Financeiro.registrarCompras(quantidadeComprada, valorUnitario);
 
     }
 
@@ -86,7 +76,7 @@ public class Estoque {
             return;
         }
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         System.out.println("Digite o nome do produto:");
         String nome = scanner.nextLine();
 
@@ -129,11 +119,11 @@ public class Estoque {
                 dataAno = TesteEntrada.nextInt(scanner);
                 scanner.nextLine(); // Limpar o buffer do scanner
             }
-            
+
             System.out.println("Digite o mês: ");
             int dataMes = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
-             while (dataMes < 1 || dataMes > 12) {
+            while (dataMes < 1 || dataMes > 12) {
                 System.out.println("Coloque um mês válido (1-12): ");
                 dataMes = TesteEntrada.nextInt(scanner);
                 scanner.nextLine(); // Limpar o buffer do scanner
@@ -143,12 +133,12 @@ public class Estoque {
             int dataDia = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
             if (dataMes == 2) {
-                     while (dataDia < 1 || dataDia > 29) {
-                         System.out.println("Coloque um dia válido para fevereiro (1-29): ");
-                          dataDia = TesteEntrada.nextInt(scanner);
-                          scanner.nextLine(); // Limpar o buffer do scanner
-                       }
-           } else if (dataMes == 4 || dataMes == 6 || dataMes == 9 || dataMes == 11) {
+                while (dataDia < 1 || dataDia > 29) {
+                    System.out.println("Coloque um dia válido para fevereiro (1-29): ");
+                    dataDia = TesteEntrada.nextInt(scanner);
+                    scanner.nextLine(); // Limpar o buffer do scanner
+                }
+            } else if (dataMes == 4 || dataMes == 6 || dataMes == 9 || dataMes == 11) {
                 if (dataDia > 30 || dataDia < 1) {
                     System.out.println("Coloque um dia válido para o mês selecionado (1-30): ");
                     while (dataDia < 1 || dataDia > 30) {
@@ -157,14 +147,14 @@ public class Estoque {
                         scanner.nextLine(); // Limpar o buffer do scanner
                     }
                 }
-                } else {
-                      while (dataDia < 1 || dataDia > 31) {
-                            System.out.println("Coloque um dia válido para o mês selecionado (1-31): ");
-                            dataDia = TesteEntrada.nextInt(scanner);
-                            scanner.nextLine(); // Limpar o buffer do scanner
-                        }
+            } else {
+                while (dataDia < 1 || dataDia > 31) {
+                    System.out.println("Coloque um dia válido para o mês selecionado (1-31): ");
+                    dataDia = TesteEntrada.nextInt(scanner);
+                    scanner.nextLine(); // Limpar o buffer do scanner
                 }
-            
+            }
+
             String dataValidade = String.format("%02d/%02d/%04d", dataDia, dataMes, dataAno);
             ((ProdutoAlimenticio) produto).setDataValidade(dataValidade);
 
@@ -173,12 +163,12 @@ public class Estoque {
             System.out.println("Digite a unidade de medida do produto: (L, ml, oz)");
             String unidadeMedida = scanner.nextLine();
             unidadeMedida = unidadeMedida.toUpperCase();
-                while (!unidadeMedida.equals("L") && !unidadeMedida.equals("ML") && !unidadeMedida.equals("OZ")) {
-                    System.out.println("Coloque uma unidade de medida válida (L, ml, oz): ");
-                    unidadeMedida = scanner.nextLine();
-                    unidadeMedida = unidadeMedida.toUpperCase();
-                }
-            
+            while (!unidadeMedida.equals("L") && !unidadeMedida.equals("ML") && !unidadeMedida.equals("OZ")) {
+                System.out.println("Coloque uma unidade de medida válida (L, ml, oz): ");
+                unidadeMedida = scanner.nextLine();
+                unidadeMedida = unidadeMedida.toUpperCase();
+            }
+
             ((ProdutoLimpeza) produto).setunidadeMedida(unidadeMedida);
             System.out.println("Digite os ingredientes ativos do produto:");
             String ingredientesAtivos = scanner.nextLine();
@@ -217,11 +207,11 @@ public class Estoque {
             System.out.println("Digite a garantia em meses do produto:");
             int garantiaMeses = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
-                while (garantiaMeses < 0) {
-                    System.out.println("Coloque um valor válido para a garantia (0 ou superior): ");
-                    garantiaMeses = TesteEntrada.nextInt(scanner);
-                    scanner.nextLine(); // Limpar o buffer do scanner
-                }
+            while (garantiaMeses < 0) {
+                System.out.println("Coloque um valor válido para a garantia (0 ou superior): ");
+                garantiaMeses = TesteEntrada.nextInt(scanner);
+                scanner.nextLine(); // Limpar o buffer do scanner
+            }
             ((ProdutoEletronico) produto).setGarantiaMeses(garantiaMeses);
         }
 
@@ -233,8 +223,8 @@ public class Estoque {
         produto.setPrecoVenda(precoVenda);
         produto.setQuantidade(quantidade);
         produto.tipoProduto();
-        produto.setAtivo( true);
-        int codigo = tipoProduto*1000 +banco_produtos.size() + 1; 
+        produto.setAtivo(true);
+        int codigo = tipoProduto * 1000 + banco_produtos.size() + 1;
         banco_produtos.put(codigo, produto);
         System.out.println("Produto registrado: " + banco_produtos.get(codigo));
 
@@ -270,7 +260,9 @@ public class Estoque {
         System.out.println("Produtos em Estoque:");
         for (Integer codigo : banco_produtos.keySet()) {
             if (banco_produtos.get(codigo).isAtivo()) {
-                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo).getNome() + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
+                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo).getNome()
+                        + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: "
+                        + banco_produtos.get(codigo).getQuantidade());
             }
         }
     }
@@ -279,14 +271,17 @@ public class Estoque {
         System.out.println("Produtos em Estoque:");
         for (Integer codigo : banco_produtos.keySet()) {
             if (!banco_produtos.get(codigo).isAtivo()) {
-                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo).getNome() + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: " + banco_produtos.get(codigo).getQuantidade());
+                System.out.println("codigo: " + codigo + ", Nome: " + banco_produtos.get(codigo).getNome()
+                        + ", Preço de Venda: " + banco_produtos.get(codigo).getPrecoVenda() + ", Quantidade: "
+                        + banco_produtos.get(codigo).getQuantidade());
             }
         }
     }
 
     public static void atualizarQuantidade(int codigoProduto, int quantidade) {
-         if (banco_produtos.containsKey(codigoProduto)) {
-            banco_produtos.get(codigoProduto).setQuantidade(banco_produtos.get(codigoProduto).getQuantidade() + quantidade);
+        if (banco_produtos.containsKey(codigoProduto)) {
+            banco_produtos.get(codigoProduto)
+                    .setQuantidade(banco_produtos.get(codigoProduto).getQuantidade() + quantidade);
             System.out.println("Quantidade atualizada: " + banco_produtos.get(codigoProduto));
         } else {
             System.out.println("Produto não encontrado.");
@@ -308,30 +303,30 @@ public class Estoque {
 
     public static int verificarEstoque(int codigoProduto) {
         System.out.println("Verificar Estoque");
-        if(banco_produtos.isEmpty()) {
+        if (banco_produtos.isEmpty()) {
             System.out.println("Nenhum produto registrado.");
             return 0;
         }
         int soma = 0;
         soma = banco_produtos.get(codigoProduto).getQuantidade();
-        
+
         return soma;
     }
 
     public static float valorTotalProdutos(int codigoProduto, int quantidadeVendida) {
         System.out.println("Valor Total dos Produtos");
-        if(banco_produtos.isEmpty()) {
+        if (banco_produtos.isEmpty()) {
             System.out.println("Nenhum produto registrado.");
             return 0;
         }
         float valor_total = 0;
         valor_total = (float) (banco_produtos.get(codigoProduto).getPrecoVenda() * quantidadeVendida);
-        
+
         return valor_total;
     }
 
     public static String NomeProduto(int codigoProduto) {
-        if(banco_produtos.isEmpty()) {
+        if (banco_produtos.isEmpty()) {
             System.out.println("Nenhum produto registrado.");
             return "";
         }
@@ -339,90 +334,106 @@ public class Estoque {
     }
 
     public static void registrarCSV() {
-          
-        try(PrintWriter writer = new PrintWriter("estoque.csv")) {
-           
+
+        try (PrintWriter writer = new PrintWriter("estoque.csv")) {
+
             boolean cabeçalhoAlimenticio = false;
             boolean cabeçalhoLimpeza = false;
             boolean cabeçalhoEletronico = false;
 
-            for(Map.Entry<Integer,Produto> entry: banco_produtos.entrySet()){
-                
+            for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
+
                 Integer codigo = entry.getKey();
                 Produto produto = entry.getValue();
 
-                if( cabeçalhoAlimenticio ==false){
+                if (cabeçalhoAlimenticio == false) {
                     writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo");
                     cabeçalhoAlimenticio = true;
                 }
-                if(produto.tipoProduto()==1){
-                writer.println(
-                    codigo + ";" +
-                    produto.tipoProduto() + ";" +
-                    produto.getNome() + ";" +
-                    produto.getCusto() + ";" +
-                    produto.getPrecoVenda() + ";" +
-                    produto.getQuantidade() + ";" +
-                    produto.getDescricao() + ";" +
-                    (produto instanceof ProdutoAlimenticio ? ((ProdutoAlimenticio) produto).getDataValidade() : "") + ";" +
-                    produto.isAtivo()
-                );
-            }
+                if (produto.tipoProduto() == 1) {
+                    writer.println(
+                            codigo + ";" +
+                                    produto.tipoProduto() + ";" +
+                                    produto.getNome() + ";" +
+                                    produto.getCusto() + ";" +
+                                    produto.getPrecoVenda() + ";" +
+                                    produto.getQuantidade() + ";" +
+                                    produto.getDescricao() + ";" +
+                                    (produto instanceof ProdutoAlimenticio
+                                            ? ((ProdutoAlimenticio) produto).getDataValidade()
+                                            : "")
+                                    + ";" +
+                                    produto.isAtivo());
+                }
             }
 
-            for(Map.Entry<Integer,Produto> entry: banco_produtos.entrySet()){
-                
+            for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
+
                 Integer codigo = entry.getKey();
                 Produto produto = entry.getValue();
 
-                if( cabeçalhoLimpeza ==false){
-                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo");
+                if (cabeçalhoLimpeza == false) {
+                    writer.println(
+                            "codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo");
                     cabeçalhoLimpeza = true;
                 }
-                if(produto.tipoProduto()== 2){
-                writer.println(
-                    codigo + ";" +
-                    produto.tipoProduto() + ";" +
-                    produto.getNome() + ";" +
-                    produto.getCusto() + ";" +
-                    produto.getPrecoVenda() + ";" +
-                    produto.getQuantidade() + ";" +
-                    produto.getDescricao() + ";" +
-                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getunidadeMedida() : "") + ";" +
-                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getIngredientesAtivos() : "") + ";" +
-                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getVolume() : "") + ";" +
-                    produto.isAtivo()
-                );
-            }
+                if (produto.tipoProduto() == 2) {
+                    writer.println(
+                            codigo + ";" +
+                                    produto.tipoProduto() + ";" +
+                                    produto.getNome() + ";" +
+                                    produto.getCusto() + ";" +
+                                    produto.getPrecoVenda() + ";" +
+                                    produto.getQuantidade() + ";" +
+                                    produto.getDescricao() + ";" +
+                                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getunidadeMedida()
+                                            : "")
+                                    + ";" +
+                                    (produto instanceof ProdutoLimpeza
+                                            ? ((ProdutoLimpeza) produto).getIngredientesAtivos()
+                                            : "")
+                                    + ";" +
+                                    (produto instanceof ProdutoLimpeza ? ((ProdutoLimpeza) produto).getVolume() : "")
+                                    + ";" +
+                                    produto.isAtivo());
+                }
             }
 
-            for(Map.Entry<Integer,Produto> entry: banco_produtos.entrySet()){
-                
+            for (Map.Entry<Integer, Produto> entry : banco_produtos.entrySet()) {
+
                 Integer codigo = entry.getKey();
                 Produto produto = entry.getValue();
 
-                if( cabeçalhoEletronico ==false){
-                    writer.println("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo");
+                if (cabeçalhoEletronico == false) {
+                    writer.println(
+                            "codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo");
                     cabeçalhoEletronico = true;
                 }
-                if(produto.tipoProduto()== 3 ){
-                writer.println(
-                    codigo + ";" +
-                    produto.tipoProduto() + ";" +
-                    produto.getNome() + ";" +
-                    produto.getCusto() + ";" +
-                    produto.getPrecoVenda() + ";" +
-                    produto.getQuantidade() + ";" +
-                    produto.getDescricao() + ";" +
-                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getMarca() : "") + ";" +
-                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getModelo() : "") + ";" +
-                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getVoltagem() : "") + ";" +
-                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getGarantiaMeses() : "") + ";" +
-                    produto.isAtivo()
-                );
+                if (produto.tipoProduto() == 3) {
+                    writer.println(
+                            codigo + ";" +
+                                    produto.tipoProduto() + ";" +
+                                    produto.getNome() + ";" +
+                                    produto.getCusto() + ";" +
+                                    produto.getPrecoVenda() + ";" +
+                                    produto.getQuantidade() + ";" +
+                                    produto.getDescricao() + ";" +
+                                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getMarca()
+                                            : "")
+                                    + ";" +
+                                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getModelo()
+                                            : "")
+                                    + ";" +
+                                    (produto instanceof ProdutoEletronico ? ((ProdutoEletronico) produto).getVoltagem()
+                                            : "")
+                                    + ";" +
+                                    (produto instanceof ProdutoEletronico
+                                            ? ((ProdutoEletronico) produto).getGarantiaMeses()
+                                            : "")
+                                    + ";" +
+                                    produto.isAtivo());
+                }
             }
-            }
-
 
         } catch (Exception e) {
             System.out.println("Erro ao registrar dados no arquivo: " + e.getMessage());
@@ -437,9 +448,13 @@ public class Estoque {
                 if (linha.trim().isEmpty()) {
                     continue; // Pular linhas vazias
                 }
-                if (linha.startsWith("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo") ||
-                    linha.startsWith("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo") ||
-                    linha.startsWith("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo")) {
+                if (linha.startsWith("codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo")
+                        ||
+                        linha.startsWith(
+                                "codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo")
+                        ||
+                        linha.startsWith(
+                                "codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo")) {
                     continue; // Pular linhas de cabeçalho
                 }
                 String[] dados = linha.split(";");
@@ -483,4 +498,3 @@ public class Estoque {
         }
     }
 }
-

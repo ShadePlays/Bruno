@@ -2,15 +2,13 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
+public class Cliente {
 
-public class Cliente  {
-    
-private static HashMap<Integer, Pessoa> banco_clientes = new HashMap<>();
-
-
+    private static HashMap<Integer, Pessoa> banco_clientes = new HashMap<>();
 
     public static void dados_teste() {
-        Pessoa cliente1 = new Pessoa("123.456.789-00", "João Silva", "joao.silva@example.com", "11 99999-9999", "Rua Exemplo, 123, São Paulo/SP");
+        Pessoa cliente1 = new Pessoa("123.456.789-00", "João Silva", "joao.silva@example.com", "11 99999-9999",
+                "Rua Exemplo, 123, São Paulo/SP");
         banco_clientes.put(1, cliente1);
 
     }
@@ -23,19 +21,16 @@ private static HashMap<Integer, Pessoa> banco_clientes = new HashMap<>();
         String email = scanner.nextLine();
         System.out.println("Digite o CPF do cliente:");
         String cpf = scanner.nextLine();
-        scanner.nextLine(); // Limpar o buffer do scanner
         System.out.println("Digite o telefone do cliente:");
         String telefone = scanner.nextLine();
         System.out.println("Digite o endereço do cliente:");
         String endereco = scanner.nextLine();
 
         Pessoa cliente = new Pessoa(cpf, nome, email, telefone, endereco);
-        
+
         int codigo = banco_clientes.size() + 1;
         banco_clientes.put(codigo, cliente);
         System.out.println("Cliente registrado: " + banco_clientes.get(codigo));
-
-
 
     }
 
@@ -77,5 +72,5 @@ private static HashMap<Integer, Pessoa> banco_clientes = new HashMap<>();
         } catch (Exception erro) {
             System.out.println("Erro ao registrar clientes em arquivo CSV: " + erro.getMessage());
         }
-    }   
+    }
 }

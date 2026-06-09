@@ -2,7 +2,6 @@ public class ProdutoLimpeza extends Produto {
     private String unidadeMedida;
     private String ingredientesAtivos;
     private double volume;
-    
 
     public String getunidadeMedida() {
         return unidadeMedida;
@@ -21,7 +20,7 @@ public class ProdutoLimpeza extends Produto {
     }
 
     public double getVolume() {
-        
+
         return volume;
     }
 
@@ -34,6 +33,7 @@ public class ProdutoLimpeza extends Produto {
         descricao = (this.getNome() + " com volume de " + this.getVolume() + " " + this.getunidadeMedida());
         super.setDescricao(descricao);
     }
+
     @Override
     public int tipoProduto() {
         return 2;
