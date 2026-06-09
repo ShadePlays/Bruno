@@ -118,6 +118,54 @@ public class RH  {
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
         }
         
+        // 1. Primeiro, acumulamos os valores (reutilizando a lógica do seu primeiro método)
+double somatorioRh = 0;
+double somatorioVendas = 0;
+double somatorioEstoque = 0;
+double somatorioFinanceiro = 0;
+double somatorioGerentes = 0;
+
+for (Map.Entry<Integer, Usuario> entry : banco_usuarios.entrySet()) {
+    Usuario usuario = entry.getValue();
+
+    if (usuario instanceof Funcionario) {
+        Funcionario funcionario = (Funcionario) usuario;
+        int dias_faltas = funcionario.getNumeroFaltas();
+        double proporcional = (dias_faltas / 20.0) * funcionario.getSalario();
+        double salarioFinal = funcionario.getSalario() - proporcional;
+
+        switch (funcionario.getDepartamento()) {
+            case "RH":          somatorioRh += salarioFinal; break;
+            case "Vendas":      somatorioVendas += salarioFinal; break;
+            case "Estoque":     somatorioEstoque += salarioFinal; break;
+            case "Financeiro":  somatorioFinanceiro += salarioFinal; break;
+        }
+    } else if (usuario instanceof Gerente) {
+        Gerente gerente = (Gerente) usuario;
+        somatorioGerentes += gerente.getSalario();
+    }
+}
+
+try (PrintWriter writer = new PrintWriter("FolhaPagamento_total.csv")) {
+    // Escreve o cabeçalho correto
+    writer.println("departamento;pagamento_total");
+
+    // Escreve as linhas somadas de cada departamento
+    writer.printf("RH;%.2f%n", somatorioRh);
+    writer.printf("Vendas;%.2f%n", somatorioVendas);
+    writer.printf("Estoque;%.2f%n", somatorioEstoque);
+    writer.printf("Financeiro;%.2f%n", somatorioFinanceiro);
+    writer.printf("Gerentes;%.2f%n", somatorioGerentes);
+
+     double totalGeral = somatorioRh + somatorioVendas + somatorioEstoque + somatorioFinanceiro + somatorioGerentes;
+        writer.printf("VALOR TOTAL DA FOLHA: R$ %.2f%n", totalGeral);
+         writer.printf("=====================================================");
+
+    System.out.println("Arquivo 'FolhaPagamento_total.csv' gerado com sucesso!");
+
+} catch (Exception e) {
+    System.out.println("Erro ao criar arquivo: " + e.getMessage());
+}
     }
 
 
@@ -412,11 +460,15 @@ public class RH  {
              //descontar dias faltados
         double proporcional = (dias_faltas / 20.0) * funcionario.getSalario();
 
+        System.out.println("==================================================");
         System.out.println("Calculando folha de pagamento para " + funcionario.getNome() + "...");
+        System.out.println("--------------------------------------------------");
         System.out.println("Salário Bruto: " + funcionario.getSalario());
         System.out.println("Número de faltas: " + dias_faltas);
         System.out.println("Desconto por faltas: " + proporcional);
+        System.out.println("--------------------------------------------------");
         System.out.println("Salário final: " + (funcionario.getSalario() - proporcional));
+        System.out.println("==================================================");
     } else {
         System.out.println("Funcionário não encontrado.");
     }
@@ -457,6 +509,19 @@ public class RH  {
                 Somatorio_gerentes += gerente.getSalario();
             }
         }
+
+        System.out.println("========== RELATÓRIO DE FOLHA DE PAGAMENTO ==========");
+        System.out.printf("Total RH: R$ %.2f%n", Somatorio_rh);
+        System.out.printf("Total Vendas: R$ %.2f%n", Somatorio_vendas);
+        System.out.printf("Total Estoque: R$ %.2f%n", Somatorio_estoque);
+        System.out.printf("Total Financeiro: R$ %.2f%n", Somatorio_financeiro);
+        System.out.printf("Total Gerentes: R$ %.2f%n", Somatorio_gerentes);
+        System.out.println("-----------------------------------------------------");
+
+        double totalGeral = Somatorio_rh + Somatorio_vendas + Somatorio_estoque + Somatorio_financeiro + Somatorio_gerentes;
+        System.out.printf("VALOR TOTAL DA FOLHA: R$ %.2f%n", totalGeral);
+        System.out.println("=====================================================");
+
     }
 
      public static void registrarFalta(Scanner scanner) {

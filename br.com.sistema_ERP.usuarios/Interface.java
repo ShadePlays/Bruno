@@ -295,6 +295,7 @@ public class Interface extends RH {
                 System.out.println("===========================");
                 System.out.println("1. cadastrar despesa");
                 System.out.println("2. exibir despesas");
+                System.out.println( "3. exibir custos por departamento");
                 System.out.println("0. Voltar ao Menu Principal");
                 System.out.println("===========================");
                 break;
@@ -316,6 +317,9 @@ public class Interface extends RH {
             
         }else if(seta==2){
             Financeiro.exibirDespesas();
+        }
+        else if(seta==3){
+            RH.FolhaPagamentoTotal();
         }
     }
   
