@@ -200,15 +200,13 @@ public final class Financeiro {
     } catch (Exception erro) {
         System.out.println("Erro ao criar arquivo: " + erro.getMessage());
     }
-}
-        
-        public static double getCaixa() {
-            return caixa;
-        }
 
-        public static void calcular_ponto_de_equilibrio_total() {
-            System.out.println("Cálculo do Ponto de Equilíbrio Total\n");
-            float totalDespesasfixas = 0;
+    try{
+        PrintWriter writer = new PrintWriter("ponto_de_equilibrio.csv");
+
+        writer.println("=== PONTO DE EQUILÍBRIO TOTAL ===");
+
+        float totalDespesasfixas = 0;
             float totalDespesasvariaveis = 0;
                 for (Despesa despesa : banco_despesas.values()) {
                     if(despesa.getCategoria().equalsIgnoreCase("operacional")){
@@ -225,10 +223,23 @@ public final class Financeiro {
             }
 
             float pontoEquilibrio = totalDespesas / (totalFaturamentos - totalDespesas);
-            System.out.println("Ponto de Equilíbrio Total: " + pontoEquilibrio);
 
+        writer.println("Ponto de Equilíbrio Total: " + pontoEquilibrio);
+
+        writer.close();
+
+        System.out.println("Arquivo ponto_de_equilibrio.csv criado com sucesso!");
+
+    } catch (Exception erro) {
+        System.out.println("Erro ao criar arquivo: " + erro.getMessage());
+    }
+}
+        
+        public static double getCaixa() {
+            return caixa;
         }
 
+    
 
 
     }
