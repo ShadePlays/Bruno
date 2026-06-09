@@ -310,6 +310,7 @@ public class Interface extends RH {
             System.out.println("4. Ativar Produto");
             System.out.println("5. Desativar Produto");
             System.out.println("6. Remover Produto");
+            System.out.println("7. Comprar Produto");
             System.out.println("0. Voltar ao Menu Principal");
             System.out.println("===========================");
             seta = TesteEntrada.nextInt(scanner);
@@ -335,6 +336,9 @@ public class Interface extends RH {
                 break;
             case 6:
                 Estoque.removerProduto(scanner);
+                break;
+            case 7:
+                Estoque.comprarProduto(scanner);
                 break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");

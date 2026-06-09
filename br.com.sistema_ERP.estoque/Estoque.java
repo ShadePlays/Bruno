@@ -55,6 +55,28 @@ public class Estoque {
         banco_produtos.put(3001, produto3);
     }
 
+
+   public static void comprarProduto(Scanner scanner) {
+        System.out.println("Comprar Produto");
+        System.out.println("Digite o código do produto:");
+        int codigoProduto = TesteEntrada.nextInt(scanner);
+        scanner.nextLine(); // Limpar o buffer do scanner
+        System.out.println("Digite a quantidade a ser comprada:");
+        int quantidadeComprada = TesteEntrada.nextInt(scanner);
+        scanner.nextLine(); // Limpar o buffer do scanner
+        if (banco_produtos.containsKey(codigoProduto)) {
+            banco_produtos.get(codigoProduto).setQuantidade(banco_produtos.get(codigoProduto).getQuantidade() + quantidadeComprada);
+            System.out.println("Compra registrada: " + banco_produtos.get(codigoProduto));
+        } else {
+            System.out.println("Produto não encontrado.");
+        }
+
+     
+        double valorUnitario = banco_produtos.get(codigoProduto).getCusto();
+        Financeiro.registrarCompras(quantidadeComprada, valorUnitario);
+
+    }
+
     public static void registrarProduto(Scanner scanner) {
         System.out.println("Registrar Produto");
         System.out.println("Digite o tipo do produto (1 - Alimentício, 2 - Limpeza, 3 - Eletrônico):");

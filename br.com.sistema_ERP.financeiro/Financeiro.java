@@ -30,6 +30,12 @@ public final class Financeiro {
             banco_faturamentos.put(1, faturamento1);
         }
 
+
+        public static void registrarCompras(int quantidade, double valorUnitario) {
+            double valorTotal = quantidade * valorUnitario;
+            caixa -= valorTotal;
+            System.out.println("Compra registrada: Quantidade: " + quantidade + ", Valor Unitário: " + valorUnitario + ", Valor Total: " + valorTotal);
+        }
         public static  void registrarCaixa(double valor) {
 
             caixa += valor;       
