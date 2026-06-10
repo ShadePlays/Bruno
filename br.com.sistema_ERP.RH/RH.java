@@ -119,19 +119,70 @@ public class RH {
     }
 
     protected static void criarUsuarioPadrao() {
-        Gerente usuario_padrao = new Gerente(0, "0", "0", 0, "0", 0.0);
-        banco_usuarios.put(0, usuario_padrao);
 
-        Gerente gerente1 = new Gerente(1, "João Silva", "joao@example.com", 123, "Vendas", 3000.0);
-        banco_usuarios.put(1, gerente1);
+    Gerente usuario_padrao = new Gerente(0, "Administrador", "admin@sistema.com", 0, "Geral", 0.0);
+    banco_usuarios.put(0, usuario_padrao);
 
-        Funcionario funcionario1 = new Funcionario(2, "Maria Souza", "maria@example.com", 456, "RH", 2500.0);
-        banco_usuarios.put(2, funcionario1);
+    Gerente gerente1 = new Gerente(1, "João Silva", "joao@example.com", 123, "Vendas", 6000.0);
+    banco_usuarios.put(1, gerente1);
 
-        Funcionario funcionario2 = new Funcionario(3, "Carlos Oliveira", "carlos@example.com", 789, "Estoque", 2000.0);
-        banco_usuarios.put(3, funcionario2);
+    Gerente gerente2 = new Gerente(2, "Ana Pereira", "ana@example.com", 456, "Financeiro", 6500.0);
+    banco_usuarios.put(2, gerente2);
 
-    }
+    Funcionario funcionario1 = new Funcionario(3, "Carlos Oliveira", "carlos@example.com", 111, "Estoque", 2500.0);
+    banco_usuarios.put(3, funcionario1);
+
+    Funcionario funcionario2 = new Funcionario(4, "Maria Souza", "maria@example.com", 222, "RH", 2800.0);
+    banco_usuarios.put(4, funcionario2);
+
+    Funcionario funcionario3 = new Funcionario(5, "Pedro Almeida", "pedro@example.com", 333, "Vendas", 2700.0);
+    banco_usuarios.put(5, funcionario3);
+
+    Funcionario funcionario4 = new Funcionario(6, "Juliana Martins", "juliana@example.com", 444, "Financeiro", 3000.0);
+    banco_usuarios.put(6, funcionario4);
+
+    Funcionario funcionario5 = new Funcionario(7, "Lucas Santos", "lucas@example.com", 555, "Estoque", 2400.0);
+    banco_usuarios.put(7, funcionario5);
+
+    Funcionario funcionario6 = new Funcionario(8, "Camila Rocha", "camila@example.com", 666, "RH", 2900.0);
+    banco_usuarios.put(8, funcionario6);
+
+    Funcionario funcionario7 = new Funcionario(9, "Rafael Gomes", "rafael@example.com", 777, "Vendas", 2750.0);
+    banco_usuarios.put(9, funcionario7);
+
+    Funcionario funcionario8 = new Funcionario(10, "Beatriz Ferreira", "beatriz@example.com", 888, "Financeiro", 3100.0);
+    banco_usuarios.put(10, funcionario8);
+
+    Funcionario funcionario9 = new Funcionario(11, "Gabriel Mendes", "gabriel@example.com", 999, "Estoque", 2550.0);
+    banco_usuarios.put(11, funcionario9);
+
+    Funcionario funcionario10 = new Funcionario(12, "Larissa Barbosa", "larissa@example.com", 1010, "Vendas", 2850.0);
+    banco_usuarios.put(12, funcionario10);
+
+    Funcionario funcionario11 = new Funcionario(13, "Bruno Costa", "bruno@example.com", 1111, "RH", 2700.0);
+    banco_usuarios.put(13, funcionario11);
+
+    Funcionario funcionario12 = new Funcionario(14, "Fernanda Lima", "fernanda@example.com", 1212, "Financeiro", 3200.0);
+    banco_usuarios.put(14, funcionario12);
+
+    Funcionario funcionario13 = new Funcionario(15, "Thiago Ribeiro", "thiago@example.com", 1313, "Estoque", 2500.0);
+    banco_usuarios.put(15, funcionario13);
+
+    Funcionario funcionario14 = new Funcionario(16, "Patrícia Alves", "patricia@example.com", 1414, "RH", 2800.0);
+    banco_usuarios.put(16, funcionario14);
+
+    Funcionario funcionario15 = new Funcionario(17, "Eduardo Nunes", "eduardo@example.com", 1515, "Vendas", 2950.0);
+    banco_usuarios.put(17, funcionario15);
+
+    Funcionario funcionario16 = new Funcionario(18, "Vanessa Carvalho", "vanessa@example.com", 1616, "Financeiro", 3050.0);
+    banco_usuarios.put(18, funcionario16);
+
+    Funcionario funcionario17 = new Funcionario(19, "Ricardo Moreira", "ricardo@example.com", 1717, "Estoque", 2450.0);
+    banco_usuarios.put(19, funcionario17);
+
+    Funcionario funcionario18 = new Funcionario(20, "Aline Rodrigues", "aline@example.com", 1818, "Vendas", 2900.0);
+    banco_usuarios.put(20, funcionario18);
+}
 
     protected static HashMap<Integer, Usuario> cadastrarUsuario(Scanner scanner) {
         System.out.println("Cadastro de Usuário:");
@@ -385,23 +436,29 @@ public class RH {
     }
 
     protected static void FolhaPagamento(Scanner scanner){
-           System.out.println("Digite o ID do funcionário:");
+           System.out.println("Digite o ID do usuario:");
             int id = scanner.nextInt();
-           Funcionario funcionario = (Funcionario) banco_usuarios.get(id);
+           Usuario usuario =  banco_usuarios.get(id);
     
-                 if (funcionario != null) {
-             int dias_faltas = funcionario.getNumeroFaltas();
+                 if (usuario != null) {
+             int dias_faltas = usuario.getNumeroFaltas();
              //descontar dias faltados
-        double proporcional = (dias_faltas / 20.0) * funcionario.getSalario();
+        double proporcional = (dias_faltas / 20.0) * usuario.getSalario();
 
-        System.out.println("Calculando folha de pagamento para " + funcionario.getNome() + "...");
-        System.out.println("Salário Bruto: " + funcionario.getSalario());
-        System.out.println("Número de faltas: " + dias_faltas);
-        System.out.println("Desconto por faltas: " + proporcional);
-        System.out.println("Salário final: " + (funcionario.getSalario() - proporcional));
-    } else {
-        System.out.println("Funcionário não encontrado.");
-    }
+        System.out.println("==================================================");
+                System.out.println("Calculando folha de pagamento para " + usuario.getNome() + "...");
+                System.out.println("--------------------------------------------------");
+                System.out.println("Salário Bruto: " + usuario.getSalario());
+                System.out.println("Número de faltas: " + dias_faltas);
+                System.out.println("Desconto por faltas: " + proporcional);
+                System.out.println("--------------------------------------------------");
+                System.out.println("Salário final: " + (usuario.getSalario() - proporcional));
+                System.out.println("==================================================");
+            } else {
+                System.out.println("==================================================");
+                System.out.println("Usuario não encontrado.");
+                System.out.println("==================================================");
+            }
 
     }
 

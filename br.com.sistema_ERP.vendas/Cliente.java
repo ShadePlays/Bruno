@@ -14,11 +14,87 @@ public class Cliente {
     }
 
     public static void dados_teste() {
-        Pessoa cliente1 = new Pessoa("123.456.789-00", "João Silva", "joao.silva@example.com", "11 99999-9999",
-                "Rua Exemplo, 123, São Paulo/SP");
-        banco_clientes.put(1, cliente1);
 
-    }
+    Pessoa cliente1 = new Pessoa(
+            "123.456.789-00",
+            "João Silva",
+            "joao.silva@example.com",
+            "11 99999-9999",
+            "Rua Exemplo, 123, São Paulo/SP");
+    banco_clientes.put(1, cliente1);
+
+    Pessoa cliente2 = new Pessoa(
+            "987.654.321-00",
+            "Maria Souza",
+            "maria.souza@example.com",
+            "31 98888-1111",
+            "Av. Central, 456, Belo Horizonte/MG");
+    banco_clientes.put(2, cliente2);
+
+    Pessoa cliente3 = new Pessoa(
+            "456.789.123-10",
+            "Carlos Oliveira",
+            "carlos.oliveira@example.com",
+            "21 97777-2222",
+            "Rua das Flores, 78, Rio de Janeiro/RJ");
+    banco_clientes.put(3, cliente3);
+
+    Pessoa cliente4 = new Pessoa(
+            "741.852.963-20",
+            "Fernanda Lima",
+            "fernanda.lima@example.com",
+            "41 96666-3333",
+            "Rua Paraná, 890, Curitiba/PR");
+    banco_clientes.put(4, cliente4);
+
+    Pessoa cliente5 = new Pessoa(
+            "258.369.147-30",
+            "Pedro Almeida",
+            "pedro.almeida@example.com",
+            "85 95555-4444",
+            "Av. Beira Mar, 1020, Fortaleza/CE");
+    banco_clientes.put(5, cliente5);
+
+    Pessoa cliente6 = new Pessoa(
+            "369.258.147-40",
+            "Juliana Martins",
+            "juliana.martins@example.com",
+            "61 94444-5555",
+            "SQN 308, Brasília/DF");
+    banco_clientes.put(6, cliente6);
+
+    Pessoa cliente7 = new Pessoa(
+            "159.357.486-50",
+            "Lucas Santos",
+            "lucas.santos@example.com",
+            "51 93333-6666",
+            "Rua da Praia, 55, Porto Alegre/RS");
+    banco_clientes.put(7, cliente7);
+
+    Pessoa cliente8 = new Pessoa(
+            "852.741.963-60",
+            "Camila Rocha",
+            "camila.rocha@example.com",
+            "71 92222-7777",
+            "Av. Oceânica, 310, Salvador/BA");
+    banco_clientes.put(8, cliente8);
+
+    Pessoa cliente9 = new Pessoa(
+            "963.852.741-70",
+            "Gabriel Mendes",
+            "gabriel.mendes@example.com",
+            "19 91111-8888",
+            "Rua Campinas, 150, Campinas/SP");
+    banco_clientes.put(9, cliente9);
+
+    Pessoa cliente10 = new Pessoa(
+            "147.258.369-80",
+            "Larissa Barbosa",
+            "larissa.barbosa@example.com",
+            "32 90000-9999",
+            "Rua Tiradentes, 340, Juiz de Fora/MG");
+    banco_clientes.put(10, cliente10);
+}
 
     public static void cadastrarCliente(Scanner scanner) {
         System.out.println("Registrar Cliente");

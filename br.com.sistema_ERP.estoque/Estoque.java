@@ -11,42 +11,112 @@ public class Estoque {
     }
 
     public static void dados_teste() {
-        ProdutoAlimenticio produto1 = new ProdutoAlimenticio();
-        produto1.setNome("Arroz");
-        produto1.setCusto(10.0);
-        produto1.setPrecoVenda(15.0);
-        produto1.setQuantidade(100);
-        produto1.setDescricao("Arroz branco tipo 1");
-        produto1.setDataValidade("31/12/2025");
-        produto1.setAtivo(true);
-        banco_produtos.put(1001, produto1);
 
-        ProdutoLimpeza produto2 = new ProdutoLimpeza();
-        produto2.setNome("Detergente");
-        produto2.setCusto(5.0);
-        produto2.setPrecoVenda(8.0);
-        produto2.setQuantidade(50);
-        produto2.setDescricao("Detergente líquido para limpeza geral");
-        produto2.setunidadeMedida("L");
-        produto2.setIngredientesAtivos("Tensoativos, fragrância, corante");
-        produto2.setVolume(500);
-        produto2.setAtivo(true);
-        banco_produtos.put(2001, produto2);
+    ProdutoAlimenticio produto1 = new ProdutoAlimenticio();
+    produto1.setNome("Arroz");
+    produto1.setCusto(10.0);
+    produto1.setPrecoVenda(15.0);
+    produto1.setQuantidade(100);
+    produto1.setDescricao("Arroz branco tipo 1");
+    produto1.setDataValidade("31/12/2026");
+    produto1.setAtivo(true);
+    banco_produtos.put(1001, produto1);
 
-        ProdutoEletronico produto3 = new ProdutoEletronico();
-        produto3.setNome("Smartphone");
-        produto3.setCusto(500.0);
-        produto3.setPrecoVenda(800.0);
-        produto3.setQuantidade(20);
-        produto3.setDescricao("Smartphone com tela de 6 polegadas e 128GB de armazenamento");
-        produto3.setMarca("MarcaX");
-        produto3.setModelo("ModeloY");
-        produto3.setVoltagem(220);
-        produto3.setGarantiaMeses(12);
-        produto3.setAtivo(true);
-        banco_produtos.put(3001, produto3);
-    }
+    ProdutoAlimenticio produto2 = new ProdutoAlimenticio();
+    produto2.setNome("Feijão Carioca");
+    produto2.setCusto(8.0);
+    produto2.setPrecoVenda(12.5);
+    produto2.setQuantidade(80);
+    produto2.setDescricao("Feijão carioca pacote 1kg");
+    produto2.setDataValidade("15/11/2026");
+    produto2.setAtivo(true);
+    banco_produtos.put(1002, produto2);
 
+    ProdutoAlimenticio produto3 = new ProdutoAlimenticio();
+    produto3.setNome("Macarrão Espaguete");
+    produto3.setCusto(4.0);
+    produto3.setPrecoVenda(6.5);
+    produto3.setQuantidade(120);
+    produto3.setDescricao("Macarrão espaguete 500g");
+    produto3.setDataValidade("20/10/2026");
+    produto3.setAtivo(true);
+    banco_produtos.put(1003, produto3);
+
+    ProdutoLimpeza produto4 = new ProdutoLimpeza();
+    produto4.setNome("Detergente");
+    produto4.setCusto(5.0);
+    produto4.setPrecoVenda(8.0);
+    produto4.setQuantidade(50);
+    produto4.setDescricao("Detergente líquido para limpeza geral");
+    produto4.setunidadeMedida("ML");
+    produto4.setIngredientesAtivos("Tensoativos, fragrância, corante");
+    produto4.setVolume(500);
+    produto4.setAtivo(true);
+    banco_produtos.put(2001, produto4);
+
+    ProdutoLimpeza produto5 = new ProdutoLimpeza();
+    produto5.setNome("Água Sanitária");
+    produto5.setCusto(6.0);
+    produto5.setPrecoVenda(9.5);
+    produto5.setQuantidade(40);
+    produto5.setDescricao("Água sanitária 1L");
+    produto5.setunidadeMedida("L");
+    produto5.setIngredientesAtivos("Hipoclorito de sódio");
+    produto5.setVolume(1);
+    produto5.setAtivo(true);
+    banco_produtos.put(2002, produto5);
+
+    ProdutoLimpeza produto6 = new ProdutoLimpeza();
+    produto6.setNome("Desinfetante");
+    produto6.setCusto(7.0);
+    produto6.setPrecoVenda(11.0);
+    produto6.setQuantidade(35);
+    produto6.setDescricao("Desinfetante floral");
+    produto6.setunidadeMedida("L");
+    produto6.setIngredientesAtivos("Cloreto de benzalcônio");
+    produto6.setVolume(2);
+    produto6.setAtivo(true);
+    banco_produtos.put(2003, produto6);
+
+    ProdutoEletronico produto7 = new ProdutoEletronico();
+    produto7.setNome("Smartphone");
+    produto7.setCusto(500.0);
+    produto7.setPrecoVenda(800.0);
+    produto7.setQuantidade(20);
+    produto7.setDescricao("Smartphone com 128GB");
+    produto7.setMarca("Samsung");
+    produto7.setModelo("Galaxy A35");
+    produto7.setVoltagem(220);
+    produto7.setGarantiaMeses(12);
+    produto7.setAtivo(true);
+    banco_produtos.put(3001, produto7);
+
+    ProdutoEletronico produto8 = new ProdutoEletronico();
+    produto8.setNome("Notebook");
+    produto8.setCusto(2500.0);
+    produto8.setPrecoVenda(3400.0);
+    produto8.setQuantidade(10);
+    produto8.setDescricao("Notebook i5 16GB RAM SSD 512GB");
+    produto8.setMarca("Dell");
+    produto8.setModelo("Inspiron 15");
+    produto8.setVoltagem(220);
+    produto8.setGarantiaMeses(24);
+    produto8.setAtivo(true);
+    banco_produtos.put(3002, produto8);
+
+    ProdutoEletronico produto9 = new ProdutoEletronico();
+    produto9.setNome("Fone Bluetooth");
+    produto9.setCusto(80.0);
+    produto9.setPrecoVenda(150.0);
+    produto9.setQuantidade(30);
+    produto9.setDescricao("Fone sem fio com cancelamento de ruído");
+    produto9.setMarca("JBL");
+    produto9.setModelo("Tune 520BT");
+    produto9.setVoltagem(127);
+    produto9.setGarantiaMeses(12);
+    produto9.setAtivo(true);
+    banco_produtos.put(3003, produto9);
+}
     public static void comprarProduto(Scanner scanner) {
         System.out.println("Comprar Produto");
         System.out.println("Digite o código do produto:");

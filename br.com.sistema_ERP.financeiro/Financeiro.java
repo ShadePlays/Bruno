@@ -9,25 +9,83 @@ public final class Financeiro {
     private static HashMap<Integer, Faturamento> banco_faturamentos = new HashMap<>();
 
     public static void dados_teste() {
-        Despesa despesa1 = new Despesa();
-        despesa1.setValor(1000);
-        despesa1.setDescricao("Aluguel");
-        despesa1.setData("01/01/2024");
-        despesa1.setCategoria("operacional");
-        banco_despesas.put(1, despesa1);
 
-        Despesa despesa2 = new Despesa();
-        despesa2.setValor(500);
-        despesa2.setDescricao("Compra de mercadorias");
-        despesa2.setData("02/01/2024");
-        despesa2.setCategoria("compras");
-        banco_despesas.put(2, despesa2);
+    Despesa despesa1 = new Despesa();
+    despesa1.setValor(1000);
+    despesa1.setDescricao("Aluguel");
+    despesa1.setData("01/01/2024");
+    despesa1.setCategoria("operacional");
+    banco_despesas.put(1, despesa1);
 
-        Faturamento faturamento1 = new Faturamento();
-        faturamento1.setValor(2000);
-        faturamento1.setDescricao("Venda de produtos");
-        banco_faturamentos.put(1, faturamento1);
-    }
+    Despesa despesa2 = new Despesa();
+    despesa2.setValor(500);
+    despesa2.setDescricao("Compra de mercadorias");
+    despesa2.setData("02/01/2024");
+    despesa2.setCategoria("compras");
+    banco_despesas.put(2, despesa2);
+
+    Despesa despesa3 = new Despesa();
+    despesa3.setValor(350);
+    despesa3.setDescricao("Conta de energia");
+    despesa3.setData("05/01/2024");
+    despesa3.setCategoria("operacional");
+    banco_despesas.put(3, despesa3);
+
+    Despesa despesa4 = new Despesa();
+    despesa4.setValor(180);
+    despesa4.setDescricao("Conta de água");
+    despesa4.setData("05/01/2024");
+    despesa4.setCategoria("operacional");
+    banco_despesas.put(4, despesa4);
+
+    Despesa despesa5 = new Despesa();
+    despesa5.setValor(750);
+    despesa5.setDescricao("Reposição de estoque");
+    despesa5.setData("10/01/2024");
+    despesa5.setCategoria("compras");
+    banco_despesas.put(5, despesa5);
+
+    Despesa despesa6 = new Despesa();
+    despesa6.setValor(420);
+    despesa6.setDescricao("Internet e telefone");
+    despesa6.setData("12/01/2024");
+    despesa6.setCategoria("operacional");
+    banco_despesas.put(6, despesa6);
+
+    Despesa despesa7 = new Despesa();
+    despesa7.setValor(900);
+    despesa7.setDescricao("Compra de eletrônicos");
+    despesa7.setData("15/01/2024");
+    despesa7.setCategoria("compras");
+    banco_despesas.put(7, despesa7);
+
+    Faturamento faturamento1 = new Faturamento();
+    faturamento1.setValor(2000);
+    faturamento1.setDescricao("Venda de produtos alimentícios");
+    banco_faturamentos.put(1, faturamento1);
+
+    Faturamento faturamento2 = new Faturamento();
+    faturamento2.setValor(3200);
+    faturamento2.setDescricao("Venda de produtos eletrônicos");
+    banco_faturamentos.put(2, faturamento2);
+
+    Faturamento faturamento3 = new Faturamento();
+    faturamento3.setValor(1500);
+    faturamento3.setDescricao("Venda de produtos de limpeza");
+    banco_faturamentos.put(3, faturamento3);
+
+    Faturamento faturamento4 = new Faturamento();
+    faturamento4.setValor(2800);
+    faturamento4.setDescricao("Promoção de fim de semana");
+    banco_faturamentos.put(4, faturamento4);
+
+    Faturamento faturamento5 = new Faturamento();
+    faturamento5.setValor(4100);
+    faturamento5.setDescricao("Venda para cliente corporativo");
+    banco_faturamentos.put(5, faturamento5);
+
+    caixa = 13600.0;
+}
 
     public static void registrarCompras(int quantidade, double valorUnitario) {
         double valorTotal = quantidade * valorUnitario;
