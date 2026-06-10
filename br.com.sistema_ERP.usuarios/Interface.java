@@ -76,6 +76,7 @@ public class Interface extends RH {
         System.out.println("4. Cadastrar Cliente");
         System.out.println("5. Exibir Clientes");
         System.out.println("6. Remover Cliente");
+        System.out.println("7. Listar compras");
         System.out.println("0. Sair");
         System.out.println("===========================");
     }
@@ -217,6 +218,13 @@ public class Interface extends RH {
             case 6:
                 Cliente.removerCliente(scanner);
                 break;
+            case 7:
+                System.out.println("===========================");
+                System.out.println("1. Listar compras de um Cliente");
+                System.out.println("2. Listar todas as compras");
+                System.out.println("0. Voltar ao menu principal");
+                System.out.println("===========================");
+                break;
             case 0:
                 break;
             default:
@@ -226,7 +234,17 @@ public class Interface extends RH {
         if (seta == 0) {
             System.out.println("Encerrando o sistema...");
         }
+        if (seta == 7) {
+            seta = TesteEntrada.nextInt(scanner);
+            if (seta == 1){
+                Cliente.listarCompras(scanner);
+            }
+            else if (seta == 2){
+                Cliente.listarTodasAsCompras();
+            }
+        }
     }
+
 
     public static void ExibirSubmenuRH(int id, int seta, Scanner scanner) {
         switch (seta) {

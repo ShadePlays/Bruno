@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -119,4 +121,87 @@ public class Cliente {
         }
     }
 
+    public static void listarCompras(Scanner scanner){
+        System.out.println("Digite o CPF do cliente que você gostaria de listar as compras: ");
+        scanner.nextLine(); // Limpar o buffer do scanner
+        String CPF = scanner.nextLine();
+        String formatoCPF = "";
+        if (CPF.matches("\\d+")) {
+            formatoCPF = CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." + CPF.substring(6, 9) + "-" + CPF.substring(9,11);
+        }
+        else{
+            formatoCPF = CPF;
+        }
+        ArrayList<String> compras = new ArrayList<>();
+        
+        try (Scanner scanner2 = new Scanner(new File("vendas.csv"))) {
+            scanner2.nextLine(); // Pular cabeçalho
+            while (scanner2.hasNextLine()) {
+                String linha = scanner2.nextLine();
+                if (linha.trim().isEmpty()) {
+                    continue;
+                }
+                String[] campos = linha.split(";");
+                if (campos.length >= 5) {
+                    String cpfCliente = campos[4].trim();
+                    if (cpfCliente.equals(formatoCPF)) {
+                        String nomeProduto = campos[3].trim();
+                        String quantidadeVendida = campos[1].trim();
+                        String compra = "Nome: " + nomeProduto + ", Quantidade: " + quantidadeVendida;
+                        compras.add(compra);
+                    }
+                }
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro ao ler arquivo vendas.csv: " + erro.getMessage());
+        }
+        
+        if (compras.isEmpty()) {
+            System.out.println("Nenhuma compra encontrada para o CPF: " + formatoCPF);
+        } else {
+            System.out.println("Compras do cliente CPF " + formatoCPF + ":");
+            for (String compra : compras) {
+                System.out.println(compra);
+            }
+        }
+    }
+    public static void listarTodasAsCompras(){
+        HashMap<String, ArrayList<String>> comprasPorCPF = new HashMap<>();
+        
+        try (Scanner scanner2 = new Scanner(new File("vendas.csv"))) {
+            scanner2.nextLine(); // Pular cabeçalho
+            while (scanner2.hasNextLine()) {
+                String linha = scanner2.nextLine();
+                if (linha.trim().isEmpty()) {
+                    continue;
+                }
+                String[] campos = linha.split(";");
+                if (campos.length >= 5) {
+                    String cpfCliente = campos[4].trim();
+                    String nomeProduto = campos[3].trim();
+                    String quantidadeVendida = campos[1].trim();
+                    String compra = "Nome: " + nomeProduto + ", Quantidade: " + quantidadeVendida;
+                    
+                    if (!comprasPorCPF.containsKey(cpfCliente)) {
+                        comprasPorCPF.put(cpfCliente, new ArrayList<>());
+                    }
+                    comprasPorCPF.get(cpfCliente).add(compra);
+                }
+            }
+        } catch (Exception erro) {
+            System.out.println("Erro ao ler arquivo vendas.csv: " + erro.getMessage());
+        }
+        
+        if (comprasPorCPF.isEmpty()) {
+            System.out.println("Nenhuma compra encontrada.");
+        } else {
+            System.out.println("Todas as compras registradas:");
+            for (String cpf : comprasPorCPF.keySet()) {
+                System.out.println("CPF: " + cpf);
+                for (String compra : comprasPorCPF.get(cpf)) {
+                    System.out.println("  - " + compra);
+                }
+            }
+        }
+    }
 }

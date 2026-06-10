@@ -31,6 +31,9 @@ public class Vendas {
             String dataVenda = scanner.nextLine();
             System.out.println("Digite o CPF do cliente:");
             String cpfCliente = scanner.nextLine();
+            if (cpfCliente.length() == 11) {
+                cpfCliente = cpfCliente.substring(0, 3) + "." + cpfCliente.substring(3, 6) + "." + cpfCliente.substring(6, 9) + "-" + cpfCliente.substring(9, 11);
+            }
 
             if (Estoque.verificarEstoque(codigoProduto) >= quantidadeVendida) {
 
@@ -50,7 +53,7 @@ public class Vendas {
 
             }
         } catch (Exception e) {
-            System.out.println("Ocorreu um erro ao registrar a venda: " + e.getMessage());
+            System.out.println("Ocorreu um erro ao registrar a venda: ");
         }
 
     }
