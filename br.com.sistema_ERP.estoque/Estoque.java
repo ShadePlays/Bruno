@@ -6,9 +6,6 @@ import java.util.Scanner;
 public class Estoque {
 
     private static HashMap<Integer, Produto> banco_produtos = new HashMap<>();
-    static {
-        LerCSV(banco_produtos);
-    }
 
     public static void dados_teste() {
         ProdutoAlimenticio produto1 = new ProdutoAlimenticio();
