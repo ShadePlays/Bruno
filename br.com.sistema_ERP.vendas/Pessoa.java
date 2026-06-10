@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pessoa {
     private String cpf;
     private String nome;
     private String email;
     private String telefone;
     private String endereco;
+     private List <Sale> compras;
 
     public Pessoa(String cpf2, String nome, String email, String telefone, String endereco) {
         this.cpf = cpf2;
@@ -11,6 +15,15 @@ public class Pessoa {
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
+
+        this.compras= new ArrayList<>();
+    }
+     public List<Sale> getCompras() {
+        return compras;
+    }
+
+    public void adicionarCompra(Sale compra) {
+        compras.add(compra);
     }
 
     public void setCpf(String cpf) {

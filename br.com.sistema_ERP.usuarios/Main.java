@@ -16,6 +16,7 @@ public class Main {
         Estoque.dados_teste();
         Vendas.dados_teste();
         Cliente.dados_teste();
+        Vendas.dados_teste();
 
         try {
             id = RH.login(scanner);

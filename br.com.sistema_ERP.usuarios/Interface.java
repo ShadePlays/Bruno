@@ -225,7 +225,7 @@ public class Interface extends RH {
                 System.out.println("2. Listar todas as compras");
                 System.out.println("0. Voltar ao menu principal");
                 System.out.println("===========================");
-                seta= scanner.nextInt();// tem que atualizar a seta;
+                
                 break;
             case 8:
                 Cliente.alterarDados(scanner);
@@ -235,12 +235,12 @@ public class Interface extends RH {
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
-
         if (seta == 0) {
             System.out.println("Encerrando o sistema...");
         }
-        if (seta == 7) {
-            seta = TesteEntrada.nextInt(scanner);
+        else if (seta == 7) {
+            
+        seta= scanner.nextInt();
             if (seta == 1){
                 Cliente.listarCompras(scanner);
             }

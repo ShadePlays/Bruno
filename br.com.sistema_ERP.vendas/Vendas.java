@@ -11,44 +11,67 @@ public class Vendas {
         Vendas.LeituraCSV(banco_vendas);
     }
 
+    
     public static void dados_teste() {
 
-    Sale venda1 = new Sale(1001, 2, "01/01/2024", "Arroz", "123.456.789-00");
-    banco_vendas.put(1, venda1);
+    adicionarVenda(1,
+            new Sale(1001, 2, "01/01/2024", "Arroz", "123.456.789-00"));
 
-    Sale venda2 = new Sale(1002, 3, "02/01/2024", "Feijão Carioca", "987.654.321-00");
-    banco_vendas.put(2, venda2);
+    adicionarVenda(2,
+            new Sale(1002, 3, "02/01/2024", "Feijão Carioca", "987.654.321-00"));
 
-    Sale venda3 = new Sale(1003, 5, "03/01/2024", "Macarrão Espaguete", "456.123.789-10");
-    banco_vendas.put(3, venda3);
+    adicionarVenda(3,
+            new Sale(1003, 5, "03/01/2024", "Macarrão Espaguete", "456.789.123-10"));
 
-    Sale venda4 = new Sale(2001, 4, "04/01/2024", "Detergente", "321.654.987-20");
-    banco_vendas.put(4, venda4);
+    adicionarVenda(4,
+            new Sale(2001, 4, "04/01/2024", "Detergente", "741.852.963-20"));
 
-    Sale venda5 = new Sale(2002, 2, "05/01/2024", "Água Sanitária", "741.852.963-30");
-    banco_vendas.put(5, venda5);
+    adicionarVenda(5,
+            new Sale(2002, 2, "05/01/2024", "Água Sanitária", "258.369.147-30"));
 
-    Sale venda6 = new Sale(2003, 1, "06/01/2024", "Desinfetante", "159.357.486-40");
-    banco_vendas.put(6, venda6);
+    adicionarVenda(6,
+            new Sale(2003, 1, "06/01/2024", "Desinfetante", "369.258.147-40"));
 
-    Sale venda7 = new Sale(3001, 1, "08/01/2024", "Smartphone", "258.369.147-50");
-    banco_vendas.put(7, venda7);
+    adicionarVenda(7,
+            new Sale(3001, 1, "08/01/2024", "Smartphone", "159.357.486-50"));
 
-    Sale venda8 = new Sale(3002, 1, "10/01/2024", "Notebook", "369.258.147-60");
-    banco_vendas.put(8, venda8);
+    adicionarVenda(8,
+            new Sale(3002, 1, "10/01/2024", "Notebook", "852.741.963-60"));
 
-    Sale venda9 = new Sale(3003, 3, "12/01/2024", "Fone Bluetooth", "147.258.369-70");
-    banco_vendas.put(9, venda9);
+    adicionarVenda(9,
+            new Sale(3003, 3, "12/01/2024", "Fone Bluetooth", "963.852.741-70"));
 
-    Sale venda10 = new Sale(1001, 8, "15/01/2024", "Arroz", "963.852.741-80");
-    banco_vendas.put(10, venda10);
+    adicionarVenda(10,
+            new Sale(1001, 8, "15/01/2024", "Arroz", "147.258.369-80"));
 
-    Sale venda11 = new Sale(1002, 6, "18/01/2024", "Feijão Carioca", "852.741.963-90");
-    banco_vendas.put(11, venda11);
+    // Compras adicionais
+    adicionarVenda(11,
+            new Sale(1004, 2, "18/01/2024", "Açúcar", "123.456.789-00"));
 
-    Sale venda12 = new Sale(3001, 2, "20/01/2024", "Smartphone", "741.963.852-11");
-    banco_vendas.put(12, venda12);
+    adicionarVenda(12,
+            new Sale(1005, 6, "20/01/2024", "Café", "123.456.789-00"));
+
+    adicionarVenda(13,
+            new Sale(3004, 1, "22/01/2024", "Mouse Gamer", "987.654.321-00"));
+
+    adicionarVenda(14,
+            new Sale(2004, 3, "24/01/2024", "Sabão em Pó", "741.852.963-20"));
+
+    adicionarVenda(15,
+            new Sale(3005, 2, "26/01/2024", "Teclado Mecânico", "159.357.486-50"));
 }
+   private static void adicionarVenda(int codigoVenda, Sale venda) {
+
+    banco_vendas.put(codigoVenda, venda);
+
+    for (Pessoa cliente : Cliente.getBancoClientes().values()) {
+
+        if (cliente.getCpf().equals(venda.getCpfCliente())) {
+            cliente.adicionarCompra(venda);
+        }
+    }
+}
+
 
     public static void registrarVenda(Scanner scanner) {
         try {
