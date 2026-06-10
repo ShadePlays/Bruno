@@ -1,5 +1,5 @@
 codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo
-1001;1;Arroz;10.0;15.0;100;Arroz que vence em null;31/12/2025;true
+1001;1;Arroz;10.0;15.0;99;Arroz que vence em null;31/12/2025;true
 1004;1;Banana;5.99;9.99;12;Banana que vence em 17/10/2026;17/10/2026;true
 codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo
 2001;2;Detergente;5.0;8.0;50;Detergente com volume de 0.0 null;L;Tensoativos, fragrância, corante;500.0;true
