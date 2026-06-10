@@ -94,11 +94,13 @@ public class Vendas {
             }
 
             writer.close();
-
+            System.out.println("==================================================");
             System.out.println("Arquivo vendas.csv criado com sucesso!");
-
+            System.out.println("==================================================");
         } catch (Exception erro) {
+            System.out.println("==================================================");
             System.out.println("Ocorreu um erro ao criar o arquivo vendas.csv: ");
+            System.out.println("==================================================");
         }
 
     }

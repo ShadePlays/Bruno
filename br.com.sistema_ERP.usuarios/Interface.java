@@ -77,6 +77,7 @@ public class Interface extends RH {
         System.out.println("5. Exibir Clientes");
         System.out.println("6. Remover Cliente");
         System.out.println("7. Listar compras");
+        System.out.println("8. Alterar dados do cliente");
         System.out.println("0. Sair");
         System.out.println("===========================");
     }
@@ -224,6 +225,10 @@ public class Interface extends RH {
                 System.out.println("2. Listar todas as compras");
                 System.out.println("0. Voltar ao menu principal");
                 System.out.println("===========================");
+                seta= scanner.nextInt();// tem que atualizar a seta;
+                break;
+            case 8:
+                Cliente.alterarDados(scanner);
                 break;
             case 0:
                 break;

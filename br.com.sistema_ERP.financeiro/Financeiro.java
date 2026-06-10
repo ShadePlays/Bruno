@@ -152,11 +152,14 @@ public final class Financeiro {
             }
 
             writer.close();
-
+            System.out.println("==================================================");
             System.out.println("Arquivo despesas.csv criado com sucesso!");
+            System.out.println("==================================================");
 
         } catch (Exception e) {
+            System.out.println("==================================================");
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
+            System.out.println("==================================================");
         }
 
         try {
@@ -176,11 +179,13 @@ public final class Financeiro {
             }
 
             writer.close();
-
+            System.out.println("==================================================");
             System.out.println("Arquivo faturamentos.csv criado com sucesso!");
-
+            System.out.println("==================================================");
         } catch (Exception e) {
+            System.out.println("==================================================");
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
+            System.out.println("==================================================");
         }
 
         try {
@@ -206,11 +211,12 @@ public final class Financeiro {
             }
 
             float resultado = totalFaturamentos - totalDespesas;
-
+            writer.println("==================================================");
             writer.println("Total de Faturamentos: " + totalFaturamentos);
             writer.println("Total de Despesas: " + totalDespesas);
+            writer.println("==================================================");
             writer.println("Resultado: " + resultado);
-
+         
             writer.close();
 
             System.out.println("Arquivo Demonstração_de_resultados.csv criado com sucesso!");

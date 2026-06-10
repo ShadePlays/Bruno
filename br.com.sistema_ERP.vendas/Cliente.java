@@ -204,4 +204,71 @@ public class Cliente {
             }
         }
     }
+    
+    public static void alterarDados(Scanner scanner) {
+
+    exibirClientes();
+
+    System.out.println("Digite o código do cliente que deseja alterar:");
+    int codigo = scanner.nextInt();
+    scanner.nextLine();
+
+    if (!banco_clientes.containsKey(codigo)) {
+        System.out.println("Cliente não encontrado.");
+        return;
+    }
+
+    Pessoa cliente = banco_clientes.get(codigo);
+
+    System.out.println("""
+            O que deseja alterar?
+            1 - Nome
+            2 - Email
+            3 - CPF
+            4 - Telefone
+            5 - Endereço
+            """);
+
+    int opcao = scanner.nextInt();
+    scanner.nextLine();
+
+    switch (opcao) {
+
+        case 1:
+            System.out.println("Novo nome:");
+            cliente.setNome(scanner.nextLine());
+            break;
+
+        case 2:
+            System.out.println("Novo email:");
+            cliente.setEmail(scanner.nextLine());
+            break;
+
+        case 3:
+            System.out.println("Novo CPF:");
+            cliente.setCpf(scanner.nextLine());
+            break;
+
+        case 4:
+            System.out.println("Novo telefone:");
+            cliente.setTelefone(scanner.nextLine());
+            break;
+
+        case 5:
+            System.out.println("Novo endereço:");
+            cliente.setEndereco(scanner.nextLine());
+            break;
+
+        default:
+            System.out.println("Opção inválida.");
+            return;
+    }
+
+    // Atualiza o HashMap
+    banco_clientes.put(codigo, cliente);
+
+
+    System.out.println("Dados alterados com sucesso!");
+}
+
 }
