@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -5,6 +7,9 @@ import java.util.Scanner;
 public class Cliente {
 
     private static HashMap<Integer, Pessoa> banco_clientes = new HashMap<>();
+    static {
+        carregarDeArquivoCSV();
+    }
 
     public static void dados_teste() {
         Pessoa cliente1 = new Pessoa("123.456.789-00", "João Silva", "joao.silva@example.com", "11 99999-9999",
@@ -16,6 +21,7 @@ public class Cliente {
     public static void cadastrarCliente(Scanner scanner) {
         System.out.println("Registrar Cliente");
         System.out.println("Digite o nome do cliente:");
+        scanner.nextLine(); // Limpar buffer do scanner
         String nome = scanner.nextLine();
         System.out.println("Digite o email do cliente:");
         String email = scanner.nextLine();
@@ -30,14 +36,14 @@ public class Cliente {
 
         int codigo = banco_clientes.size() + 1;
         banco_clientes.put(codigo, cliente);
-        System.out.println("Cliente registrado: " + banco_clientes.get(codigo));
+        System.out.println("Cliente registrado: " + banco_clientes.get(codigo).getNome());
 
     }
 
     public static void exibirClientes() {
         System.out.println("Clientes Cadastrados:");
         for (Integer codigo : banco_clientes.keySet()) {
-            System.out.println("codigo: " + codigo + ", Nome: " + banco_clientes.get(codigo));
+            System.out.println("codigo: " + codigo + ", Nome: " + banco_clientes.get(codigo).getNome());
         }
     }
 
@@ -73,4 +79,44 @@ public class Cliente {
             System.out.println("Erro ao registrar clientes em arquivo CSV: " + erro.getMessage());
         }
     }
+
+    public static void carregarDeArquivoCSV() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("clientes.csv"))) {
+            banco_clientes.clear();
+
+            String linha = reader.readLine();
+
+            while ((linha = reader.readLine()) != null) {
+                if (linha.trim().isEmpty()) {
+                    continue;
+                }
+
+                String[] dados = linha.split(",", 6);
+
+                if (dados.length == 6) {
+                    int codigo = Integer.parseInt(dados[0].trim());
+                    String nome = dados[1].trim();
+                    String email = dados[2].trim();
+                    String cpf = dados[3].trim();
+                    String telefone = dados[4].trim();
+                    String endereco = dados[5].trim();
+
+                    Pessoa cliente = new Pessoa(cpf, nome, email, telefone, endereco);
+                    cliente.setNome(nome);
+                    cliente.setEmail(email);
+                    cliente.setCpf(cpf);
+                    cliente.setTelefone(telefone);
+                    cliente.setEndereco(endereco);
+                    
+                    banco_clientes.put(codigo, cliente);
+                }
+            }
+
+            System.out.println("Clientes carregados de clientes.csv com sucesso!");
+
+        } catch (Exception erro) {
+            System.out.println("Erro ao carregar clientes do arquivo CSV: " + erro.getMessage());
+        }
+    }
+
 }

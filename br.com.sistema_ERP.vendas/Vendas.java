@@ -71,12 +71,12 @@ public class Vendas {
         }
     }
 
-    public static void registrar_em_arquivo_csv() {
+    public static void registrarEmArquivoCSV() {
         try {
 
             PrintWriter writer = new PrintWriter("vendas.csv");
 
-            writer.println("codigoProduto;quantidadeVendida;dataVenda;nomeProduto");
+            writer.println("codigoProduto;quantidadeVendida;dataVenda;nomeProduto;cpfCliente");
             for (Map.Entry<Integer, Sale> entry : banco_vendas.entrySet()) {
 
                 Integer codigo = entry.getKey();
@@ -86,7 +86,8 @@ public class Vendas {
                         codigo + ";" +
                                 venda.getQuantidadeVendida() + ";" +
                                 venda.getDataVenda() + ";" +
-                                venda.getNomeProduto());
+                                venda.getNomeProduto() + ";" +
+                                venda.getCpfCliente());
             }
 
             writer.close();
@@ -137,7 +138,8 @@ public class Vendas {
                 int quantidadeVendida = Integer.parseInt(campos[1]);
                 String dataVenda = campos[2];
                 String nomeProduto = campos[3];
-                Sale venda = new Sale(codigoProduto, quantidadeVendida, dataVenda, nomeProduto, "");
+                String cpfCliente = campos[4];
+                Sale venda = new Sale(codigoProduto, quantidadeVendida, dataVenda, nomeProduto, cpfCliente);
                 banco_vendas.put(codigoProduto, venda);
             }
         } catch (Exception erro) {

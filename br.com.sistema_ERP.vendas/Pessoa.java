@@ -5,8 +5,8 @@ public class Pessoa {
     private String telefone;
     private String endereco;
 
-    public Pessoa(String cpf, String nome, String email, String telefone, String endereco) {
-        this.cpf = cpf;
+    public Pessoa(String cpf2, String nome, String email, String telefone, String endereco) {
+        this.cpf = cpf2;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;

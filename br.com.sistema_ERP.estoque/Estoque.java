@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Estoque {
 
     private static HashMap<Integer, Produto> banco_produtos = new HashMap<>();
-    static {
+    static{
         LerCSV(banco_produtos);
     }
 
@@ -495,6 +495,38 @@ public class Estoque {
             }
         } catch (Exception e) {
             System.out.println("Erro ao ler dados do arquivo: " + e.getMessage());
+        }
+    }
+    public static double mudarPreco(Scanner scanner) {
+        System.out.println("Mudar Preço:");
+        System.out.println("Digite o código do produto:");
+        int codigoProduto = TesteEntrada.nextInt(scanner);
+        scanner.nextLine(); // Limpar o buffer do scanner
+        if (banco_produtos.containsKey(codigoProduto)) {
+            System.out.println("Digite o novo preço:");
+            double novoPreco = TesteEntrada.nextDouble(scanner);
+            banco_produtos.get(codigoProduto).setPrecoVenda(novoPreco);
+            System.out.println("Preço alterado com sucesso!");
+            return (double) novoPreco;
+        } else {
+            System.out.println("Produto não encontrado.");
+            return 0;
+        }
+    }
+    public static double mudarCusto(Scanner scanner) {
+        System.out.println("Mudar custo:");
+        System.out.println("Digite o código do produto:");
+        int codigoProduto = TesteEntrada.nextInt(scanner);
+        scanner.nextLine(); // Limpar o buffer do scanner
+        if (banco_produtos.containsKey(codigoProduto)) {
+            System.out.println("Digite o novo custo:");
+            double novoCusto = TesteEntrada.nextDouble(scanner);
+            banco_produtos.get(codigoProduto).setCusto(novoCusto);
+            System.out.println("Custo alterado com sucesso!");
+            return (double) novoCusto;
+        } else {
+            System.out.println("Produto não encontrado.");
+            return 0;
         }
     }
 }

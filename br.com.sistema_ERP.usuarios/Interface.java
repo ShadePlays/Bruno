@@ -74,6 +74,8 @@ public class Interface extends RH {
         System.out.println("2. Exibir Vendas");
         System.out.println("3. Exibir Vendas por Data");
         System.out.println("4. Cadastrar Cliente");
+        System.out.println("5. Exibir Clientes");
+        System.out.println("6. Remover Cliente");
         System.out.println("0. Sair");
         System.out.println("===========================");
     }
@@ -206,7 +208,14 @@ public class Interface extends RH {
                 Vendas.exibirVendasPorData(data);
                 break;
             case 4:
+
                 Cliente.cadastrarCliente(scanner);
+                break;
+            case 5:
+                Cliente.exibirClientes();
+                break;
+            case 6:
+                Cliente.removerCliente(scanner);
                 break;
             case 0:
                 break;
@@ -304,6 +313,8 @@ public class Interface extends RH {
         System.out.println("5. Desativar Produto");
         System.out.println("6. Remover Produto");
         System.out.println("7. Comprar Produto");
+        System.out.println("8. Mudar preço do Produto");
+        System.out.println("9. Mudar custo do Produto");
         System.out.println("0. Voltar ao Menu Principal");
         System.out.println("===========================");
         seta = TesteEntrada.nextInt(scanner);
@@ -332,6 +343,12 @@ public class Interface extends RH {
                 break;
             case 7:
                 Estoque.comprarProduto(scanner);
+                break;
+            case 8:
+                Estoque.mudarPreco(scanner);
+                break;
+            case 9:
+                Estoque.mudarCusto(scanner);
                 break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");

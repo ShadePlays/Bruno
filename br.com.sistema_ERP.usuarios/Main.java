@@ -46,8 +46,9 @@ public class Main {
 
         Financeiro.registrar_em_arquivo_csv();
         RH.registrarEmArquivoCSV();
-        Vendas.registrar_em_arquivo_csv();
+        Vendas.registrarEmArquivoCSV();
         Estoque.registrarCSV();
+        Cliente.registrarEmArquivoCSV();
 
         scanner.close();
         System.out.println("Sistema encerrado.");
