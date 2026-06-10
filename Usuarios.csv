@@ -6,3 +6,4 @@ ID;Nome;Email;Senha;Ativo;Cargo;Departamento;Numero_de_Faltas
 4;Paulo;paulo@email.com;1;true;Gerente;Geral;0
 5;Andre;andre@email.com;1;true;Funcionario;Vendas;0
 6;Merentiel;merentiel@email.com;1;true;Funcionario;Geral;0
+7;Leopoldo;leopoldo@email.com;1;true;Funcionario;RH;0

@@ -238,19 +238,17 @@ public class Interface extends RH {
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
 
-        seta = TesteEntrada.nextInt(scanner);
-        scanner.nextLine(); // Limpar o buffer do scanner
+        if (seta != 0) {
+            seta = TesteEntrada.nextInt(scanner);
+        }
+
         if (seta == 0) {
             System.out.println("Encerrando o sistema...");
         } else if (seta == 1) {
-            seta = TesteEntrada.nextInt(scanner);
+            System.out.println("Registrando ponto para qual funcionário? (Digite o ID do funcionário)");
+            int funcionarioId = TesteEntrada.nextInt(scanner);
             scanner.nextLine(); // Limpar o buffer do scanner
-            if (seta == 1) {
-                System.out.println("Registrando ponto para qual funcionário? (Digite o ID do funcionário)");
-                int funcionarioId = TesteEntrada.nextInt(scanner);
-                scanner.nextLine(); // Limpar o buffer do scanner
-                RH.registrarPonto(funcionarioId);
-            }
+            RH.registrarPonto(funcionarioId);
         } else if (seta == 2) {
             RH.exibirFuncionarios();
         } else if (seta == 3) {
