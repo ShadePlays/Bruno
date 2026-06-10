@@ -98,7 +98,8 @@ public class Vendas {
                         + quantidadeVendida);
 
                 Financeiro.registrarFaturamento(Estoque.valorTotalProdutos(codigoProduto, quantidadeVendida),
-                        Estoque.NomeProduto(codigoProduto), dataVenda);
+     
+                Estoque.NomeProduto(codigoProduto), dataVenda);
 
                 Sale venda = new Sale(codigoProduto, quantidadeVendida, dataVenda, Estoque.NomeProduto(codigoProduto),
                         cpfCliente);
@@ -111,13 +112,6 @@ public class Vendas {
             System.out.println("Ocorreu um erro ao registrar a venda: ");
         }
 
-    }
-
-    public static void exibirVendas() {
-        System.out.println("Vendas Registradas:");
-        for (Integer codigo : banco_vendas.keySet()) {
-            System.out.println("codigo: " + codigo + ", Venda: " + banco_vendas.get(codigo).getNomeProduto());
-        }
     }
 
     public static void exibirVendasPorData(String data) {

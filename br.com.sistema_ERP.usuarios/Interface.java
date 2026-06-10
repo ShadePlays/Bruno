@@ -144,10 +144,7 @@ public class Interface extends RH {
                 System.out.println("===========================");
                 break;
             case 7:
-                System.out.println("===========================");
-                System.out.println("1. Gerenciar Financeiro");
-                System.out.println("0. Voltar ao Menu Principal");
-                System.out.println("===========================");
+                ExibirSubmenuFinanceiro(id, setar, scanner);
                 break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
@@ -171,11 +168,12 @@ public class Interface extends RH {
             Interface.ExibirSubmenuVendas(id, setar, scanner);
         } else if (setar == 5) {
             setar = TesteEntrada.nextInt(scanner);
-            Interface.ExibirSubmenuRH(id, setar, scanner);
+            if (setar == 1)
+                Interface.ExibirSubmenuRH(id, setar, scanner);
+            else if (setar != 1 && setar != 0)
+                System.out.println("Comando não reconhecido.");
         } else if (setar == 6) {
             Interface.ExibirSubmenuEstoque(id, setar, scanner);
-        } else if (setar == 7) {
-            Interface.ExibirSubmenuFinanceiro(id, setar, scanner);
         }
     }
 
@@ -201,7 +199,7 @@ public class Interface extends RH {
                 Vendas.registrarVenda(scanner);
                 break;
             case 2:
-                Vendas.exibirVendas();
+                Cliente.listarTodasAsCompras();
                 break;
             case 3:
                 System.out.println("Digite a data para filtrar as vendas (dd/mm/yyyy):");
@@ -225,7 +223,7 @@ public class Interface extends RH {
                 System.out.println("2. Listar todas as compras");
                 System.out.println("0. Voltar ao menu principal");
                 System.out.println("===========================");
-                
+
                 break;
             case 8:
                 Cliente.alterarDados(scanner);
@@ -237,19 +235,15 @@ public class Interface extends RH {
         }
         if (seta == 0) {
             System.out.println("Encerrando o sistema...");
-        }
-        else if (seta == 7) {
-            
-        seta= scanner.nextInt();
-            if (seta == 1){
+        } else if (seta == 7) {
+
+            seta = scanner.nextInt();
+            if (seta == 1) {
                 Cliente.listarCompras(scanner);
             }
-            else if (seta == 2){
-                Cliente.listarTodasAsCompras();
-            }
+
         }
     }
-
 
     public static void ExibirSubmenuRH(int id, int seta, Scanner scanner) {
         switch (seta) {
@@ -295,38 +289,42 @@ public class Interface extends RH {
     }
 
     public static void ExibirSubmenuFinanceiro(int id, int seta, Scanner scanner) {
+        System.out.println("===========================");
+        System.out.println("1. Cadastrar despesa");
+        System.out.println("2. Exibir despesas");
+        System.out.println("3. Exibir custos por departamento");
+        System.out.println("4. Apagar uma despesa");
+        System.out.println("5. Apagar todas as despesas");
+        System.out.println("0. Voltar ao Menu Principal");
+        System.out.println("===========================");
         seta = TesteEntrada.nextInt(scanner);
         switch (seta) {
             case 1:
-                System.out.println("===========================");
-                System.out.println("1. cadastrar despesa");
-                System.out.println("2. exibir despesas");
-                System.out.println("3. exibir custos por departamento");
-                System.out.println("0. Voltar ao Menu Principal");
-                System.out.println("===========================");
+                Financeiro.registrarDespesa(scanner);
+                break;
+            case 2:
+                Financeiro.exibirDespesas();
+                break;
+            case 3:
+                RH.FolhaPagamentoTotal();
+                break;
+            case 4:
+                Financeiro.apagarDespesa(scanner);
+                break;
+            case 5:
+                Financeiro.apagarTodasDespesas(scanner);
                 break;
             case 0:
                 break;
             default:
                 System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
         }
-        if (seta != 0) {
-            seta = TesteEntrada.nextInt(scanner);
-        }
-
+        
         if (seta == 0) {
             System.out.println("Encerrando o sistema...");
-        } else if (seta == 1) {
 
-            Financeiro.registrarDespesa(scanner);
-
-        } else if (seta == 2) {
-            Financeiro.exibirDespesas();
-        } else if (seta == 3) {
-            RH.FolhaPagamentoTotal();
         }
     }
-
     public static void ExibirSubmenuEstoque(int id, int seta, Scanner scanner) {
         System.out.println("===========================");
         System.out.println("1. Visualizar Estoque Ativo");

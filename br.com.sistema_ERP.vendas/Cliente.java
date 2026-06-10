@@ -125,7 +125,7 @@ public class Cliente {
     public static void exibirClientes() {
         System.out.println("Clientes Cadastrados:");
         for (Integer codigo : banco_clientes.keySet()) {
-            System.out.println("codigo: " + codigo + ", Nome: " + banco_clientes.get(codigo).getNome());
+            System.out.println("Código: " + codigo + ", Nome: " + banco_clientes.get(codigo).getNome() + ", Email: " + banco_clientes.get(codigo).getEmail() + ", Número: " + banco_clientes.get(codigo).getTelefone() + ", CPF: " + banco_clientes.get(codigo).getCpf());
         }
     }
 
@@ -135,8 +135,8 @@ public class Cliente {
         int codigoCliente = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
         if (banco_clientes.containsKey(codigoCliente)) {
+            System.out.println("Cliente removido: " + banco_clientes.get(codigoCliente).getNome());
             banco_clientes.remove(codigoCliente);
-            System.out.println("Cliente removido.");
         } else {
             System.out.println("Cliente não encontrado.");
         }

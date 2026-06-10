@@ -45,7 +45,7 @@ public class Main {
             }
         }
 
-        Financeiro.registrar_em_arquivo_csv();
+        Financeiro.registrarEmArquivoCSV();
         RH.registrarEmArquivoCSV();
         Vendas.registrarEmArquivoCSV();
         Estoque.registrarCSV();

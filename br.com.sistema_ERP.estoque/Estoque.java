@@ -128,7 +128,7 @@ public class Estoque {
         if (banco_produtos.containsKey(codigoProduto)) {
             banco_produtos.get(codigoProduto)
                     .setQuantidade(banco_produtos.get(codigoProduto).getQuantidade() + quantidadeComprada);
-            System.out.println("Compra registrada: " + banco_produtos.get(codigoProduto));
+            System.out.println("Compra registrada: " + banco_produtos.get(codigoProduto).getNome() + " de custo "+ banco_produtos.get(codigoProduto).getCusto());
             double valorUnitario = banco_produtos.get(codigoProduto).getCusto();
             Financeiro.registrarCompras(quantidadeComprada, valorUnitario);
         } else {
