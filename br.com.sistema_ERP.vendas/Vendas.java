@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +7,9 @@ import java.util.Scanner;
 public class Vendas {
 
     private static HashMap<Integer, Sale> banco_vendas = new HashMap<>();
+    static {
+        Vendas.LeituraCSV(banco_vendas);
+    }
 
     public static void dados_teste() {
         Sale venda1 = new Sale(1, 2, "01/01/2024", "Produto A", "123.456.789-00");
@@ -54,7 +58,7 @@ public class Vendas {
     public static void exibirVendas() {
         System.out.println("Vendas Registradas:");
         for (Integer codigo : banco_vendas.keySet()) {
-            System.out.println("codigo: " + codigo + ", Venda: " + banco_vendas.get(codigo));
+            System.out.println("codigo: " + codigo + ", Venda: " + banco_vendas.get(codigo).getNomeProduto());
         }
     }
 
@@ -62,7 +66,7 @@ public class Vendas {
         System.out.println("Vendas na data: " + data);
         for (Integer codigo : banco_vendas.keySet()) {
             if (banco_vendas.get(codigo).getDataVenda().equalsIgnoreCase(data)) {
-                System.out.println("codigo: " + codigo + ", Venda: " + banco_vendas.get(codigo));
+                System.out.println("codigo: " + codigo + ", Venda: " + banco_vendas.get(codigo).getNomeProduto());
             }
         }
     }
@@ -80,7 +84,6 @@ public class Vendas {
 
                 writer.println(
                         codigo + ";" +
-                                venda.getCodigoProduto() + ";" +
                                 venda.getQuantidadeVendida() + ";" +
                                 venda.getDataVenda() + ";" +
                                 venda.getNomeProduto());
@@ -91,7 +94,7 @@ public class Vendas {
             System.out.println("Arquivo vendas.csv criado com sucesso!");
 
         } catch (Exception erro) {
-            System.out.println("Ocorreu um erro ao criar o arquivo vendas.csv: " + erro.getMessage());
+            System.out.println("Ocorreu um erro ao criar o arquivo vendas.csv: ");
         }
 
     }
@@ -118,6 +121,27 @@ public class Vendas {
             System.out.println("Venda atualizada: " + venda);
         } else {
             System.out.println("Venda não encontrada para o código do produto: " + codigoProduto);
+        }
+    }
+
+    public static void LeituraCSV(HashMap<Integer, Sale> banco_vendas) {
+        try (Scanner scanner = new Scanner(new File("vendas.csv"))) {
+            scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                String linha = scanner.nextLine();
+                if (linha.trim().isEmpty()) {
+                    continue;
+                }
+                String[] campos = linha.split(";");
+                int codigoProduto = Integer.parseInt(campos[0]);
+                int quantidadeVendida = Integer.parseInt(campos[1]);
+                String dataVenda = campos[2];
+                String nomeProduto = campos[3];
+                Sale venda = new Sale(codigoProduto, quantidadeVendida, dataVenda, nomeProduto, "");
+                banco_vendas.put(codigoProduto, venda);
+            }
+        } catch (Exception erro) {
+            System.out.println("Ocorreu um erro ao ler o arquivo vendas.csv: " + erro.getMessage());
         }
     }
 

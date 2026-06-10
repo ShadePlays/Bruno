@@ -62,7 +62,7 @@ public class RH {
           System.out.println("==================================================");
             System.out.println("Arquivo Usuarios.csv criado com sucesso!");
             System.out.println("==================================================");
-
+            writer.close();
         } catch (Exception e) {
             System.out.println("==================================================");
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
@@ -108,14 +108,13 @@ public class RH {
            System.out.println("==================================================");
             System.out.println("Arquivo FolhaPagamento.csv criado com sucesso!");
             System.out.println("==================================================");
-            
+            writer.close();
         } catch (Exception e) {
             // Print de erro enfeitado
             System.out.println("==================================================");
             System.out.println("Erro ao criar arquivo: " + e.getMessage());
             System.out.println("==================================================");
         }
-        
         
     }
 

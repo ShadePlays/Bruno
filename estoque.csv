@@ -1,9 +1,7 @@
 codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;dataValidade;ativo
 1001;1;Arroz;10.0;15.0;100;Arroz que vence em null;31/12/2025;true
-1003;1;Banana;3.42;5.99;15;Banana que vence em 05/10/2026;05/10/2026;true
-1006;1;Tomate;1.3;2.0;36;Tomate que vence em 14/10/2026;14/10/2026;true
+1004;1;Banana;5.99;9.99;12;Banana que vence em 17/10/2026;17/10/2026;true
 codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;unidadeMedida;ingredientesAtivos;volume;ativo
 2001;2;Detergente;5.0;8.0;50;Detergente com volume de 0.0 null;L;Tensoativos, fragrância, corante;500.0;true
-2002;2;Cif;22.0;29.0;32;Cif com volume de 1.2 L;L;Cloro;1.2;true
 codigo;tipoProduto;nome;custo;precoVenda;quantidade;descricao;marca;modelo;voltagem;garantiaMeses;ativo
 3001;3;Smartphone;500.0;800.0;20;Smartphone modelo null da marca null;MarcaX;ModeloY;220;12;true
