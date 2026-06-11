@@ -1,5 +1,5 @@
 
-public class Usuario extends RH {
+public class Usuario  {
 
     private int id;
     private String nome;

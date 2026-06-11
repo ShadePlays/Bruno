@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Interface extends RH {
+public class Interface  {
 
     public static void telaInicial(Scanner scanner, int id) {
         if (id > -1) {
