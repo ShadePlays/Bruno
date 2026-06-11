@@ -142,22 +142,29 @@ public class Cliente {
 
     public static void registrarEmArquivoCSV() {
         try (PrintWriter writer = new PrintWriter("clientes.csv")) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("codigo,nome,email,cpf,telefone,endereco\n");
-            for (Integer codigo : banco_clientes.keySet()) {
-                Pessoa cliente = banco_clientes.get(codigo);
-                sb.append(codigo).append(",")
-                        .append(cliente.getNome()).append(",")
-                        .append(cliente.getEmail()).append(",")
-                        .append(cliente.getCpf()).append(",")
-                        .append(cliente.getTelefone()).append(",")
-                        .append(cliente.getEndereco()).append("\n");
-            }
-            writer.write(sb.toString());
-            System.out.println("Clientes registrados em clientes.csv");
-        } catch (Exception erro) {
-            System.out.println("Erro ao registrar clientes em arquivo CSV: " + erro.getMessage());
+        StringBuilder sb = new StringBuilder();
+    
+        sb.append("codigo;nome;email;cpf;telefone;endereco\n");
+    
+        for (Integer codigo : banco_clientes.keySet()) {
+        Pessoa cliente = banco_clientes.get(codigo);
+        
+       
+        sb.append(codigo).append(";")
+                .append(cliente.getNome()).append(";")
+                .append(cliente.getEmail()).append(";")
+                .append(cliente.getCpf()).append(";")
+                .append(cliente.getTelefone()).append(";")
+                .append(cliente.getEndereco()).append("\n");
+    }
+    
+    writer.write(sb.toString());
+    System.out.println("Clientes registrados em clientes.csv");
+}       catch (Exception erro) {
+         System.out.println("Erro ao registrar clientes em arquivo CSV: " + erro.getMessage());
         }
+
+
           try {
 
         PrintWriter writer = new PrintWriter("compras.csv");
